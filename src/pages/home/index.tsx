@@ -7,7 +7,8 @@ import Subtitle from "../../assets/images/text/subtitle.png";
 import Title from "../../assets/images/text/title.png";
 import TestStart from "../../assets/images/button/test-start.png";
 
-const WIDTH = "37.29vw";
+const DESKTOP_WIDTH = "37.29vw";
+const MOBILE_WIDTH = "100%";
 
 const StyledMainPage = styled.div`
   height: 100%;
@@ -17,6 +18,10 @@ const StyledMainPage = styled.div`
   align-items: center;
   padding: 9.53vh 0 8.42vh 0;
   gap: 37.77vh;
+
+  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
+    padding: 17.73vh 20px 8.42vh 20px;
+  }
 `;
 
 const StyledFlex = styled.div`
@@ -38,17 +43,29 @@ const StyledBottom = styled(StyledFlex)`
 `;
 
 const StyleSubtitle = styled(StyledImage)`
-  width: ${WIDTH};
+  width: ${DESKTOP_WIDTH};
   content: url(${Subtitle});
+
+  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
+    width: ${MOBILE_WIDTH};
+  }
 `;
 
 const SytleTitle = styled(StyledImage)`
-  width: ${WIDTH};
+  width: ${DESKTOP_WIDTH};
   content: url(${Title});
+
+  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
+    width: ${MOBILE_WIDTH};
+  }
 `;
 
 const StyledButton = styled.button`
-  width: ${WIDTH};
+  width: ${DESKTOP_WIDTH};
+
+  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
+    width: ${MOBILE_WIDTH};
+  }
 `;
 
 const StyledMoveToTest = styled.img`
@@ -61,8 +78,12 @@ const StyledTestCount = styled.span`
   font-size: 1.5rem;
   color: ${PALETTE.WHITE};
 
-  @media (max-width: ${(props) => props.theme.media.sm}px) {
-    font-size: 12px;
+  @media screen and (max-width: ${(props) => props.theme.media.md}px) {
+    font-size: 1.2rem;
+  }
+
+  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
+    font-size: 1rem;
   }
 `;
 
