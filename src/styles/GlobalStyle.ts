@@ -31,6 +31,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
   button {
+    font-family: 'SBAggroB', sans-serif;
     background: none;
     border: none;
     cursor: pointer;

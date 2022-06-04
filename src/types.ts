@@ -6,3 +6,17 @@ export type TestCountResult = {
         "testCount": number
     }
 }
+
+export type Answer = "a" | "b" | null;
+
+export interface Question {
+    id: number;
+    question: {
+        situation: string;
+        ask: string;
+    }
+    answer: {
+        a: string;
+        b: string;
+    };
+}
