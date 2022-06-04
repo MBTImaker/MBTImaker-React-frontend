@@ -15,7 +15,7 @@ const StyledBoxContainer = styled.div`
   gap: 20px;
 `;
 
-const StyledMoveToNextQuestion = styled.div`
+const StyledMoveToNextQuestion = styled.button`
   font-family: "SBAggroB", sans-serif;
   position: fixed;
   bottom: 8.51%;
@@ -54,12 +54,10 @@ const Check = () => {
         ))}
       </StyledBoxContainer>
 
-      <Link to="/check">
-        <StyledMoveToNextQuestion>
-          {QUESTION_LIST.length - currentQuestionIndex}개의 항목이 남았습니다.
-          (총 {QUESTION_LIST.length}문항)
-        </StyledMoveToNextQuestion>
-      </Link>
+      <StyledMoveToNextQuestion>
+        {QUESTION_LIST.length - currentQuestionIndex}개의 항목이 남았습니다. (총{" "}
+        {QUESTION_LIST.length}문항)
+      </StyledMoveToNextQuestion>
     </>
   );
 };
