@@ -62,7 +62,10 @@ export const QuestionBox = ({
   const [userSelected, setUserSelected] = useState<Answer>(null);
 
   const HandleClick = useCallback((answer: Answer) => {
-    setUserSelected(answer);
+    // console.log(answer, userSelected);
+    if (userSelected === answer) {
+      setUserSelected(null);
+    } else setUserSelected(answer);
   }, []);
 
   return (
