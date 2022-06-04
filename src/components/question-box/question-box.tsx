@@ -29,6 +29,8 @@ const StyledQuestionContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  line-height: 48px;
   gap: 30px;
 `;
 
@@ -46,7 +48,16 @@ const StyledButtonContainer = styled.div`
   gap: 20px;
 `;
 
-export const QuestionBox = ({ id, question, answer }: Question) => {
+type QuestionBoxProps = Question & {
+  currentQuestionIndex: number;
+};
+
+export const QuestionBox = ({
+  currentQuestionIndex,
+  id,
+  question,
+  answer,
+}: QuestionBoxProps) => {
   const { loading, error, image } = useImage(id);
   const [userSelected, setUserSelected] = useState<Answer>(null);
 
@@ -64,13 +75,16 @@ export const QuestionBox = ({ id, question, answer }: Question) => {
       </StyledQuestionContainer>
 
       <StyledButtonContainer>
+        {/* <Link to={String(String(id) + 1)} spy={true} smooth={true}> */}
         <SelectButton
+          currentQuestionIndex={currentQuestionIndex}
           id="a"
           onClick={HandleClick}
           content={answer.a}
           isClicked={userSelected === "a"}
         />
         <SelectButton
+          currentQuestionIndex={currentQuestionIndex}
           id="b"
           onClick={HandleClick}
           content={answer.b}

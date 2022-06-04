@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
 import { Answer } from "../../types";
 
-const StyledButton = styled.button<{ content: string; isClicked: boolean }>`
+const StyledButton = styled.button<{ isClicked: boolean }>`
   width: 74.3%;
   height: 12.76vh;
   background: ${(props) =>
@@ -13,14 +13,10 @@ const StyledButton = styled.button<{ content: string; isClicked: boolean }>`
   border-radius: 80px;
   font-size: 1.25rem;
   color: ${(props) => (props.isClicked ? PALETTE.WHITE : PALETTE.GRAY)};
-
-  &::after {
-    content: ${(props) => props.content};
-    white-space: pre;
-  }
 `;
 
 type SelectButtonProps = {
+  currentQuestionIndex: number;
   id: Answer;
   onClick: (answer: Answer) => void;
   isClicked: boolean;
@@ -28,6 +24,7 @@ type SelectButtonProps = {
 };
 
 export const SelectButton = ({
+  currentQuestionIndex,
   id,
   onClick,
   isClicked,
@@ -38,8 +35,9 @@ export const SelectButton = ({
       onClick={() => {
         onClick(id);
       }}
-      content={content}
       isClicked={isClicked}
-    />
+    >
+      {content}
+    </StyledButton>
   );
 };
