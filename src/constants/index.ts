@@ -7,7 +7,7 @@ export const QUESTION_LIST: Question[] = [
         // qBottom: "고민하는 나는?",
         // btnTop: "오늘은 특별한 날 화려하게 꾸민다.",
         // btnBottom: "그래도 단순한 게 좋다.<br>미니멀하게 꾸민다."
-        id: 1,
+        id: "1",
         question: {
             situation: "오늘은 크리스마스 홈파티 하는 날. 방을 어떻게 꾸밀까?",
             ask: "고민하는 나는?",
@@ -23,7 +23,7 @@ export const QUESTION_LIST: Question[] = [
         // qBottom: "고민하는 나는?",
         // btnTop: "오늘은 특별한 날 화려하게 꾸민다.",
         // btnBottom: "그래도 단순한 게 좋다.<br>미니멀하게 꾸민다."
-        id: 2,
+        id: "2",
         question: {
             situation: "오늘은 크리스마스 홈파티 하는 날.<br>방을 어떻게 꾸밀까?",
             ask: "고민하는 나는?",
@@ -39,7 +39,7 @@ export const QUESTION_LIST: Question[] = [
         // qBottom: "고민하는 나는?",
         // btnTop: "오늘은 특별한 날 화려하게 꾸민다.",
         // btnBottom: "그래도 단순한 게 좋다.<br>미니멀하게 꾸민다."
-        id: 3,
+        id: "3",
         question: {
             situation: "오늘은 크리스마스 홈파티 하는 날.<br>방을 어떻게 꾸밀까?",
             ask: "고민하는 나는?",

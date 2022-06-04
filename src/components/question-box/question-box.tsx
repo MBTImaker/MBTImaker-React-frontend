@@ -5,7 +5,7 @@ import { PALETTE } from "../../styles/palette";
 import { Answer, Question } from "../../types";
 import { SelectButton } from "../select-button";
 
-const StyledBox = styled.article`
+const StyledBox = styled.li`
   width: 716px;
   height: 87.03vh;
   display: flex;
@@ -55,7 +55,7 @@ export const QuestionBox = ({ id, question, answer }: Question) => {
   }, []);
 
   return (
-    <StyledBox>
+    <StyledBox id={id}>
       <StyledId image={image} />
 
       <StyledQuestionContainer>

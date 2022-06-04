@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-scroll";
 import styled from "styled-components";
 import { QuestionBox } from "../../components/question-box";
 import { QUESTION_LIST } from "../../constants";
 import { PALETTE } from "../../styles/palette";
 import { Question } from "../../types";
 
-const StyledBoxContainer = styled.div`
+const StyledBoxContainer = styled.li`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -15,7 +15,7 @@ const StyledBoxContainer = styled.div`
   gap: 20px;
 `;
 
-const StyledMoveToNextQuestion = styled.button`
+const StyledMoveToNextQuestion = styled.div`
   font-family: "SBAggroB", sans-serif;
   position: fixed;
   bottom: 8.51%;
@@ -39,25 +39,31 @@ const StyledMoveToNextQuestion = styled.button`
 `;
 
 const Check = () => {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(1);
+
+  const onClick = () => {
+    setCurrentQuestionIndex(currentQuestionIndex + 1);
+  };
 
   return (
     <>
       <StyledBoxContainer>
-        {QUESTION_LIST.map((q: Question, index) => (
+        {QUESTION_LIST.map((q: Question) => (
           <QuestionBox
             key={q.id}
-            id={q.id}
+            id={String(q.id)}
             question={q.question}
             answer={q.answer}
           />
         ))}
       </StyledBoxContainer>
 
-      <StyledMoveToNextQuestion>
-        {QUESTION_LIST.length - currentQuestionIndex}개의 항목이 남았습니다. (총{" "}
-        {QUESTION_LIST.length}문항)
-      </StyledMoveToNextQuestion>
+      <Link to={String(currentQuestionIndex + 1)} spy={true} smooth={true}>
+        <StyledMoveToNextQuestion onClick={onClick}>
+          {QUESTION_LIST.length - Number(currentQuestionIndex)}개의 항목이
+          남았습니다. (총 {QUESTION_LIST.length}문항)
+        </StyledMoveToNextQuestion>
+      </Link>
     </>
   );
 };
