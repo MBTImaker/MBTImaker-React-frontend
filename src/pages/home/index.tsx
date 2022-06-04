@@ -6,6 +6,7 @@ import { TestCountResult } from "../../types";
 import Subtitle from "../../assets/images/text/subtitle.png";
 import Title from "../../assets/images/text/title.png";
 import TestStart from "../../assets/images/button/test-start.png";
+import { Link } from "react-router-dom";
 
 const DESKTOP_WIDTH = "37.29vw";
 const MOBILE_WIDTH = "100%";
@@ -60,18 +61,14 @@ const SytleTitle = styled(StyledImage)`
   }
 `;
 
-const StyledButton = styled.button`
+const StyledMoveToTest = styled.img`
   width: ${DESKTOP_WIDTH};
+  content: url(${TestStart});
+  object-fit: cover;
 
   @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
     width: ${MOBILE_WIDTH};
   }
-`;
-
-const StyledMoveToTest = styled.img`
-  width: 100%;
-  content: url(${TestStart});
-  object-fit: cover;
 `;
 
 const StyledTestCount = styled.span`
@@ -107,9 +104,9 @@ const Home = () => {
       </StyledTop>
 
       <StyledBottom>
-        <StyledButton>
+        <Link to="/check">
           <StyledMoveToTest />
-        </StyledButton>
+        </Link>
         <StyledTestCount>현재 총 {testCount}명이 참여했어요.</StyledTestCount>
       </StyledBottom>
     </StyledMainPage>
