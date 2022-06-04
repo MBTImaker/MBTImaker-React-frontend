@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import styled from "styled-components";
+import useImage from "../../hooks/useImage";
 import { PALETTE } from "../../styles/palette";
 import { Answer, Question } from "../../types";
 import { SelectButton } from "../select-button";
@@ -14,10 +15,13 @@ const StyledBox = styled.article`
   border: 6px solid ${PALETTE.DARK_GREEN};
   background: ${PALETTE.DARK_WHITE};
   gap: 40px;
+  padding-top: 62px;
 `;
 
-const StyledId = styled.div<{ questionId: number }>`
-  content: url();
+const StyledId = styled.div<{ image: any }>`
+  height: 70px;
+  content: url(${(props) => props.image});
+  padding: 11px 0px;
 `;
 
 const StyledQuestionContainer = styled.div`
@@ -31,6 +35,7 @@ const StyledQuestionContainer = styled.div`
 const StyledQuestion = styled.h3`
   font-size: 2rem;
   white-space: pre;
+  font-weight: 100;
 `;
 
 const StyledButtonContainer = styled.div`
@@ -42,6 +47,7 @@ const StyledButtonContainer = styled.div`
 `;
 
 export const QuestionBox = ({ id, question, answer }: Question) => {
+  const { loading, error, image } = useImage(id);
   const [userSelected, setUserSelected] = useState<Answer>(null);
 
   const HandleClick = useCallback((answer: Answer) => {
@@ -50,7 +56,7 @@ export const QuestionBox = ({ id, question, answer }: Question) => {
 
   return (
     <StyledBox>
-      <StyledId questionId={id} />
+      <StyledId image={image} />
 
       <StyledQuestionContainer>
         <StyledQuestion>{question.situation}</StyledQuestion>

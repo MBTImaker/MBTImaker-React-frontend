@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    font-family: 'SBAggroB', sans-serif;
+    font-family: 'SBAggroM', sans-serif;
     height: 100vh;
     background-image: url(${BackgroundPattern});
     background-repeat: repeat-y;

@@ -16,6 +16,7 @@ const StyledBoxContainer = styled.div`
 `;
 
 const StyledMoveToNextQuestion = styled.div`
+  font-family: "SBAggroB", sans-serif;
   position: fixed;
   bottom: 8.51%;
   left: 50%;
