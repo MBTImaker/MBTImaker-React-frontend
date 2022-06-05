@@ -49,6 +49,7 @@
   "author": "hotbreakb <areyhappy12@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/react-scroll": "^1.8.3",
     "@types/styled-components": "^5.1.25"
   }
 }

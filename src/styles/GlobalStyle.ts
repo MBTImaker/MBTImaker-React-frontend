@@ -11,26 +11,18 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    font-family: 'SBAggroB', sans-serif;
+    font-family: 'SBAggroM', sans-serif;
     height: 100vh;
     background-image: url(${BackgroundPattern});
     background-repeat: repeat-y;
     background-size: cover;
     background-color: ${PALETTE.GREEN};
-
-    @media all and (min-width:768px) { 
-      width: 412px;
-      /* height: 100%; */
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%); 
-     }
   }
   #root{
     height: 100%;
   }
   button {
+    font-family: 'SBAggroB', sans-serif;
     background: none;
     border: none;
     cursor: pointer;
@@ -38,7 +30,7 @@ const GlobalStyle = createGlobalStyle`
   }
   a{
     text-decoration: none;
-    color:${PALETTE.BLACK}
+    color:${PALETTE.BLACK_010}
   }
   h1{
     margin: 0;
