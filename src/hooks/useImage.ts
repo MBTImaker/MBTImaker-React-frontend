@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const useImage = (id: string) => {
+const useImage = (id: number) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<any>();
     const [image, setImage] = useState(null);

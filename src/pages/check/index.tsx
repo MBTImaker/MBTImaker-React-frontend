@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import styled from "styled-components";
 import { QuestionBox } from "../../components/question-box";
 import { QUESTION_LIST } from "../../constants";
 import { PALETTE } from "../../styles/palette";
-import { Question } from "../../types";
+import { Answer, Question, TestCode } from "../../types";
 
 const StyledBoxContainer = styled.ul`
   width: 100%;
@@ -43,6 +43,7 @@ const StyledMoveToNextSpan = styled.span`
 
 const Check = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(1);
+  const [userTestCode, setUserTestCode] = useState<TestCode>({});
   const QUESTION_LIST_LENGTH = QUESTION_LIST.length;
 
   const onClick = () => {
@@ -53,14 +54,23 @@ const Check = () => {
     setCurrentQuestionIndex(nextQuestionIndex);
   };
 
+  const handleTestCode = useCallback((id: number, userSelected: Answer) => {
+    const userSelectedNumber = userSelected === "a" ? 0 : 1;
+    setUserTestCode((userTestCode) => ({
+      ...userTestCode,
+      [id]: userSelectedNumber,
+    }));
+  }, []);
+
   return (
     <>
       <StyledBoxContainer>
         {QUESTION_LIST.map((q: Question) => (
           <QuestionBox
             currentQuestionIndex={currentQuestionIndex}
+            handleTestCode={handleTestCode}
             key={q.id}
-            id={String(q.id)}
+            id={q.id}
             question={q.question}
             answer={q.answer}
           />

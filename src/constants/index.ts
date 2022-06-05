@@ -2,7 +2,7 @@ import { Question } from './../types';
 
 export const QUESTION_LIST: Question[] = [
     {
-        id: "1",
+        id: 1,
         question: {
             situation: `오늘은 크리스마스 홈파티 하는 날.\n방을 어떻게 꾸밀까?`,
             ask: "고민하는 나는?",
@@ -13,7 +13,7 @@ export const QUESTION_LIST: Question[] = [
         }
     },
     {
-        id: "2",
+        id: 2,
         question: {
             situation: `오늘은\n크리스마스`,
             ask: `집에 있는 나는?`,
@@ -24,7 +24,7 @@ export const QUESTION_LIST: Question[] = [
         }
     },
     {
-        id: "3",
+        id: 3,
         question: {
             situation: `내가 영화 속\n히어로라면`,
             ask: `나는?`,
@@ -35,7 +35,7 @@ export const QUESTION_LIST: Question[] = [
         }
     },
     {
-        id: "4",
+        id: 4,
         question: {
             situation: `지금 밖에\n눈이 내린다.`,
             ask: `옆 사람에게 나는?`,
@@ -46,7 +46,7 @@ export const QUESTION_LIST: Question[] = [
         }
     },
     {
-        id: "5",
+        id: 5,
         question: {
             situation: `크리스마스에\n재밌는 영화를 보았다.`,
             ask: `친구에게 묘사하는 나는?`,
@@ -57,7 +57,7 @@ export const QUESTION_LIST: Question[] = [
         }
     },
     {
-        id: "6",
+        id: 6,
         question: {
             situation: `영화를 선택하려는데\n평점이 생각보다 낮았다.`,
             ask: `그러면 나는?`,
@@ -68,7 +68,7 @@ export const QUESTION_LIST: Question[] = [
         }
     },
     {
-        id: "7",
+        id: 7,
         question: {
             situation: `크리스마스 데이트하는 날,\n사고가 나 상대방이 늦었다.`,
             ask: `그때 나는?`,
@@ -79,7 +79,7 @@ export const QUESTION_LIST: Question[] = [
         }
     },
     {
-        id: "8",
+        id: 8,
         question: {
             situation: `크리스마스\n선물을 받았다고`,
             ask: `자랑하는 친구에게 나는?`,
@@ -90,7 +90,7 @@ export const QUESTION_LIST: Question[] = [
         }
     },
     {
-        id: "9",
+        id: 9,
         question: {
             situation: `영화를\n볼 때,`,
             ask: `나는?`,
@@ -101,7 +101,7 @@ export const QUESTION_LIST: Question[] = [
         }
     },
     {
-        id: "10",
+        id: 10,
         question: {
             situation: `크리스마스 아침에\n일어나서`,
             ask: `나는?`,
@@ -112,7 +112,7 @@ export const QUESTION_LIST: Question[] = [
         }
     },
     {
-        id: "11",
+        id: 11,
         question: {
             situation: `크리스마스\n홈 파티가 끝나고,`,
             ask: `나는?`,
@@ -123,7 +123,7 @@ export const QUESTION_LIST: Question[] = [
         }
     },
     {
-        id: "12",
+        id: 12,
         question: {
             situation: `영화관에서 영화를 보려는데,\n자리가 없다.`,
             ask: `그때 나는?`,

@@ -10,7 +10,7 @@ export type TestCountResult = {
 export type Answer = "a" | "b" | null;
 
 export interface Question {
-    id: string;
+    id: number;
     question: {
         situation: string;
         ask: string;
@@ -20,3 +20,5 @@ export interface Question {
         b: string;
     };
 }
+
+export type TestCode = Record<number, 0 | 1>

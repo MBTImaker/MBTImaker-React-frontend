@@ -54,10 +54,12 @@ const StyledButtonContainer = styled.div`
 
 type QuestionBoxProps = Question & {
   currentQuestionIndex: number;
+  handleTestCode: (id: number, userSelected: Answer) => void;
 };
 
 export const QuestionBox = ({
   currentQuestionIndex,
+  handleTestCode,
   id,
   question,
   answer,
@@ -66,14 +68,16 @@ export const QuestionBox = ({
   const [userSelected, setUserSelected] = useState<Answer>(null);
 
   const HandleClick = useCallback((answer: Answer) => {
-    // console.log(answer, userSelected);
     if (userSelected === answer) {
       setUserSelected(null);
-    } else setUserSelected(answer);
+    } else {
+      setUserSelected(answer);
+      handleTestCode(id, answer);
+    }
   }, []);
 
   return (
-    <StyledBox id={id}>
+    <StyledBox>
       <StyledId image={image} />
 
       <StyledQuestionContainer>
@@ -82,7 +86,6 @@ export const QuestionBox = ({
       </StyledQuestionContainer>
 
       <StyledButtonContainer>
-        {/* <Link to={String(String(id) + 1)} spy={true} smooth={true}> */}
         <SelectButton
           currentQuestionIndex={currentQuestionIndex}
           id="a"
