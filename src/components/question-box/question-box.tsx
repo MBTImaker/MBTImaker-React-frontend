@@ -14,8 +14,12 @@ const StyledBox = styled.li`
   border-radius: 40px;
   border: 6px solid ${PALETTE.DARK_GREEN};
   background: ${PALETTE.DARK_WHITE};
-  gap: 40px;
-  padding-top: 62px;
+  gap: 22px;
+  padding-top: 30px;
+
+  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
+    padding-top: 6.59%;
+  }
 `;
 
 const StyledId = styled.div<{ image: any }>`

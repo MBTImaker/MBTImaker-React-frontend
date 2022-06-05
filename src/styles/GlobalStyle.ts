@@ -17,15 +17,6 @@ const GlobalStyle = createGlobalStyle`
     background-repeat: repeat-y;
     background-size: cover;
     background-color: ${PALETTE.GREEN};
-
-    @media all and (min-width:768px) { 
-      width: 412px;
-      /* height: 100%; */
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%); 
-     }
   }
   #root{
     height: 100%;
