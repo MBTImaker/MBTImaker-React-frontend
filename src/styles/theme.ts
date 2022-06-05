@@ -15,11 +15,11 @@ export const themes = {
         name: "light",
         colors: {
             ...PALETTE,
-            text: PALETTE.BLACK,
+            text: PALETTE.BLACK_010,
             // textHint: PALETTE["gray-400"],
             // textDisabled: PALETTE["gray-600"],
             // textAlternative: PALETTE["black"],
-            icon: PALETTE.BLACK,
+            icon: PALETTE.BLACK_010,
         },
     },
 }

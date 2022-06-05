@@ -30,7 +30,7 @@ const GlobalStyle = createGlobalStyle`
   }
   a{
     text-decoration: none;
-    color:${PALETTE.BLACK}
+    color:${PALETTE.BLACK_010}
   }
   h1{
     margin: 0;
