@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { QuestionBox } from "../../components/question-box";
 import { QUESTION_LIST } from "../../constants";
@@ -34,6 +35,7 @@ const StyledMoveToNext = styled.div<{ remainQuestion: number }>`
   bottom: 20px;
   left: 50%;
   transform: translate(-50%, -50%);
+  cursor: ${(props) => (props.remainQuestion > 0 ? "default" : "pointer")};
 
   @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
     width: 200px;
@@ -78,17 +80,20 @@ const Check = () => {
         ))}
       </StyledBoxContainer>
 
-      <StyledMoveToNext remainQuestion={remainQuestion}>
-        <StyledMoveToNextSpan remainQuestion={remainQuestion}>
-          {remainQuestion > 0 && (
-            <>
-              {remainQuestion}개의 항목이 남았습니다. (총 {QUESTION_LIST_LENGTH}
-              문항)
-            </>
-          )}
-          {remainQuestion === 0 && <>나랑 비슷한 영화 캐릭터 결과 보기</>}
-        </StyledMoveToNextSpan>
-      </StyledMoveToNext>
+      <Link to={remainQuestion === 0 ? "/result" : "#"}>
+        <StyledMoveToNext remainQuestion={remainQuestion}>
+          <StyledMoveToNextSpan remainQuestion={remainQuestion}>
+            {remainQuestion > 0 && (
+              <>
+                {remainQuestion}개의 항목이 남았습니다. (총{" "}
+                {QUESTION_LIST_LENGTH}
+                문항)
+              </>
+            )}
+            {remainQuestion === 0 && <>나랑 비슷한 영화 캐릭터 결과 보기</>}
+          </StyledMoveToNextSpan>
+        </StyledMoveToNext>
+      </Link>
     </>
   );
 };
