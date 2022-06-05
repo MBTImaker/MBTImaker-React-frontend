@@ -45,10 +45,11 @@ export const AnswerButton = ({
   };
 
   const scrollToNextQuestion = () => {
-    window.scrollTo({
-      top: document.documentElement.scrollTop + 400,
-      behavior: "smooth",
-    });
+    // window.scrollTo({
+    //   top: document.documentElement.scrollTop + 400,
+    //   behavior: "smooth",
+    // });
+    console.log("scrollTo");
   };
 
   return (
