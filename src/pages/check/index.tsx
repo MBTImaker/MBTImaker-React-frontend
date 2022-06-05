@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { QuestionBox } from "../../components/question-box";
+import { Block } from "../../components/block";
 import { QUESTION_LIST } from "../../constants";
 import { PALETTE } from "../../styles/palette";
 import { Answer, Question, TestCode } from "../../types";
@@ -81,7 +81,7 @@ const Check = () => {
     <>
       <StyledBoxContainer>
         {QUESTION_LIST.map((q: Question) => (
-          <QuestionBox
+          <Block
             currentQuestionIndex={currentQuestionIndex}
             handleTestCode={handleTestCode}
             key={q.id}

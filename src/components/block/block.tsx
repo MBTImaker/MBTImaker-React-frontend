@@ -64,18 +64,18 @@ const StyledButtonContainer = styled.div`
   gap: 20px;
 `;
 
-type QuestionBoxProps = Question & {
+type BlockProps = Question & {
   currentQuestionIndex: number;
   handleTestCode: (id: number, userSelected: Answer) => void;
 };
 
-export const QuestionBox = ({
+export const Block = ({
   currentQuestionIndex,
   handleTestCode,
   id,
   question,
   answer,
-}: QuestionBoxProps) => {
+}: BlockProps) => {
   const { image } = useImage(id);
   const [userSelected, setUserSelected] = useState<Answer>();
 
