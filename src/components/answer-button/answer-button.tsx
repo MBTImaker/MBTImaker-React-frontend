@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
 import { Answer } from "../../types";
@@ -15,7 +14,7 @@ const StyledButton = styled.button<{ isClicked: boolean }>`
   color: ${(props) => (props.isClicked ? PALETTE.WHITE : PALETTE.GRAY)};
 `;
 
-type SelectButtonProps = {
+type AnswerButtonProps = {
   currentQuestionIndex: number;
   id: Answer;
   handleClick: (answer: Answer) => void;
@@ -23,13 +22,13 @@ type SelectButtonProps = {
   content: string;
 };
 
-export const SelectButton = ({
+export const AnswerButton = ({
   currentQuestionIndex,
   id,
   handleClick,
   isClicked,
   content,
-}: SelectButtonProps) => {
+}: AnswerButtonProps) => {
   return (
     <StyledButton
       onClick={() => {

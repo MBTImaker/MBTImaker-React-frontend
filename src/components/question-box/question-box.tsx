@@ -3,7 +3,7 @@ import styled from "styled-components";
 import useImage from "../../hooks/useImage";
 import { PALETTE } from "../../styles/palette";
 import { Answer, Question } from "../../types";
-import { SelectButton } from "../select-button";
+import { AnswerButton } from "../answer-button";
 
 const StyledBox = styled.li`
   width: 716px;
@@ -89,14 +89,14 @@ export const QuestionBox = ({
       </StyledQuestionContainer>
 
       <StyledButtonContainer>
-        <SelectButton
+        <AnswerButton
           currentQuestionIndex={currentQuestionIndex}
           id="a"
           handleClick={handleClick}
           content={answer.a}
           isClicked={userSelected === "a"}
         />
-        <SelectButton
+        <AnswerButton
           currentQuestionIndex={currentQuestionIndex}
           id="b"
           handleClick={handleClick}
