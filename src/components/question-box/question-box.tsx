@@ -65,16 +65,19 @@ export const QuestionBox = ({
   answer,
 }: QuestionBoxProps) => {
   const { loading, error, image } = useImage(id);
-  const [userSelected, setUserSelected] = useState<Answer>(null);
+  const [userSelected, setUserSelected] = useState<Answer>();
 
-  const HandleClick = useCallback((answer: Answer) => {
-    if (userSelected === answer) {
-      setUserSelected(null);
-    } else {
-      setUserSelected(answer);
-      handleTestCode(id, answer);
-    }
-  }, []);
+  const handleClick = useCallback(
+    (answer: Answer) => {
+      if (userSelected === answer) {
+        setUserSelected(null);
+      } else {
+        setUserSelected(answer);
+        handleTestCode(id, answer);
+      }
+    },
+    [userSelected]
+  );
 
   return (
     <StyledBox>
@@ -89,14 +92,14 @@ export const QuestionBox = ({
         <SelectButton
           currentQuestionIndex={currentQuestionIndex}
           id="a"
-          onClick={HandleClick}
+          handleClick={handleClick}
           content={answer.a}
           isClicked={userSelected === "a"}
         />
         <SelectButton
           currentQuestionIndex={currentQuestionIndex}
           id="b"
-          onClick={HandleClick}
+          handleClick={handleClick}
           content={answer.b}
           isClicked={userSelected === "b"}
         />

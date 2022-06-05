@@ -18,7 +18,7 @@ const StyledButton = styled.button<{ isClicked: boolean }>`
 type SelectButtonProps = {
   currentQuestionIndex: number;
   id: Answer;
-  onClick: (answer: Answer) => void;
+  handleClick: (answer: Answer) => void;
   isClicked: boolean;
   content: string;
 };
@@ -26,14 +26,14 @@ type SelectButtonProps = {
 export const SelectButton = ({
   currentQuestionIndex,
   id,
-  onClick,
+  handleClick,
   isClicked,
   content,
 }: SelectButtonProps) => {
   return (
     <StyledButton
       onClick={() => {
-        onClick(id);
+        handleClick(id);
       }}
       isClicked={isClicked}
     >
