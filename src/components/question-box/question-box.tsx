@@ -18,14 +18,22 @@ const StyledBox = styled.li`
   padding-top: 30px;
 
   @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
+    width: 100%;
+    height: 70vh;
     padding-top: 6.59%;
+    border-radius: 20px;
+    border-width: 2px;
   }
 `;
 
 const StyledId = styled.div<{ image: any }>`
   height: 70px;
   content: url(${(props) => props.image});
-  padding: 11px 0px;
+  padding: 11px 0;
+
+  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
+    padding: 15px 0;
+  }
 `;
 
 const StyledQuestionContainer = styled.div`
@@ -41,7 +49,11 @@ const StyledQuestionContainer = styled.div`
 const StyledQuestion = styled.h3`
   font-size: 2rem;
   white-space: pre;
-  font-weight: 100;
+
+  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
+    font-size: 1.125rem;
+    line-height: 30px;
+  }
 `;
 
 const StyledButtonContainer = styled.div`

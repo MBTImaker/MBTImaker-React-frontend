@@ -15,6 +15,13 @@ const StyledButton = styled.button<{ isClicked: boolean }>`
   white-space: pre;
   line-height: 30px;
   font-family: "SBAggroM";
+
+  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
+    width: 88%;
+    height: 10.76vh;
+    font-size: 0.875rem;
+    line-height: 30px;
+  }
 `;
 
 type AnswerButtonProps = {

@@ -13,6 +13,10 @@ const StyledBoxContainer = styled.ul`
   align-items: center;
   padding: 70px 0;
   gap: 20px;
+
+  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
+    padding: 70px 20px;
+  }
 `;
 
 const StyledMoveToNext = styled.div<{ remainQuestion: number }>`
@@ -38,7 +42,10 @@ const StyledMoveToNext = styled.div<{ remainQuestion: number }>`
   cursor: ${(props) => (props.remainQuestion > 0 ? "default" : "pointer")};
 
   @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
-    width: 200px;
+    width: 74.3%;
+    height: 10.76%;
+    font-size: 0.875rem;
+    line-height: 30px;
   }
 `;
 
@@ -46,7 +53,12 @@ const StyledMoveToNextSpan = styled.span<{ remainQuestion: number }>`
   color: ${(props) =>
     props.remainQuestion > 0 ? PALETTE.DARK_GRAY_01 : PALETTE.WHITE};
   font-size: 1.375rem;
-  line-height: 86px;
+  text-align: center;
+
+  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
+    font-size: 0.875rem;
+    line-height: 20px;
+  }
 `;
 
 const Check = () => {
@@ -85,8 +97,9 @@ const Check = () => {
           <StyledMoveToNextSpan remainQuestion={remainQuestion}>
             {remainQuestion > 0 && (
               <>
-                {remainQuestion}개의 항목이 남았습니다. (총{" "}
-                {QUESTION_LIST_LENGTH}
+                {remainQuestion}개의 항목이 남았습니다.
+                <br />
+                (총 {QUESTION_LIST_LENGTH}
                 문항)
               </>
             )}
