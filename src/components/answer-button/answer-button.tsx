@@ -12,6 +12,9 @@ const StyledButton = styled.button<{ isClicked: boolean }>`
   border-radius: 80px;
   font-size: 1.25rem;
   color: ${(props) => (props.isClicked ? PALETTE.WHITE : PALETTE.GRAY)};
+  white-space: pre;
+  line-height: 30px;
+  font-family: "SBAggroM";
 `;
 
 type AnswerButtonProps = {
@@ -29,13 +32,20 @@ export const AnswerButton = ({
   isClicked,
   content,
 }: AnswerButtonProps) => {
+  const onClick = () => {
+    handleClick(id);
+    scrollToNextQuestion();
+  };
+
+  const scrollToNextQuestion = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollTop + 400,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <StyledButton
-      onClick={() => {
-        handleClick(id);
-      }}
-      isClicked={isClicked}
-    >
+    <StyledButton onClick={onClick} isClicked={isClicked}>
       {content}
     </StyledButton>
   );

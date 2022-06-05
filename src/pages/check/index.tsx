@@ -46,14 +46,6 @@ const Check = () => {
   const [userTestCode, setUserTestCode] = useState<TestCode>({});
   const QUESTION_LIST_LENGTH = QUESTION_LIST.length;
 
-  const onClick = () => {
-    const nextQuestionIndex = Math.min(
-      currentQuestionIndex + 1,
-      QUESTION_LIST_LENGTH
-    );
-    setCurrentQuestionIndex(nextQuestionIndex);
-  };
-
   const handleTestCode = useCallback((id: number, userSelected: Answer) => {
     const userSelectedNumber = userSelected === "a" ? 0 : 1;
     setUserTestCode((userTestCode) => ({
@@ -79,7 +71,7 @@ const Check = () => {
 
       <StyledMoveToNext>
         <StyledMoveToNextSpan>
-          {QUESTION_LIST_LENGTH - Number(currentQuestionIndex)}개의 항목이
+          {QUESTION_LIST_LENGTH - Object.keys(userTestCode).length}개의 항목이
           남았습니다. (총 {QUESTION_LIST_LENGTH}문항)
         </StyledMoveToNextSpan>
       </StyledMoveToNext>
