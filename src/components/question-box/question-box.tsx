@@ -76,7 +76,7 @@ export const QuestionBox = ({
   question,
   answer,
 }: QuestionBoxProps) => {
-  const { loading, error, image } = useImage(id);
+  const { image } = useImage(id);
   const [userSelected, setUserSelected] = useState<Answer>();
 
   const handleClick = useCallback(
@@ -88,6 +88,7 @@ export const QuestionBox = ({
         handleTestCode(id, answer);
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [userSelected]
   );
 
