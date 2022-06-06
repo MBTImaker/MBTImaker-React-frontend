@@ -31,10 +31,10 @@ const StyledMoveToNext = styled.div<{ remainQuestion: number }>`
     props.remainQuestion > 0 ? PALETTE.GRAY_GRADIENT : PALETTE.RED_GRADIENT};
   border: 4px solid
     ${(props) =>
-      props.remainQuestion > 0 ? PALETTE.DARK_GRAY_01 : PALETTE.RED};
+      props.remainQuestion > 0 ? PALETTE.DARK_GRAY_01 : PALETTE.RED_010};
   box-shadow: 0px 8px 0px
     ${(props) =>
-      props.remainQuestion > 0 ? PALETTE.DART_GRAY_02 : PALETTE.DARK_RED};
+      props.remainQuestion > 0 ? PALETTE.DARK_GRAY_02 : PALETTE.DARK_RED};
   border-radius: 80px;
   position: fixed;
   bottom: 20px;
