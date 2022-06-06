@@ -65,7 +65,8 @@ const StyledMoveToNextSpan = styled.span<{ remainQuestion: number }>`
 const Check = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(1);
-  const { userTestCode, handleTestCode } = useContext(UserTestCode);
+  const { userTestCode, userTestResult, handleTestCode, getUserTestResult } =
+    useContext(UserTestCode);
   const QUESTION_LIST_LENGTH = QUESTION_LIST.length;
   const remainQuestion =
     QUESTION_LIST_LENGTH - Object.keys(userTestCode).length;
@@ -86,7 +87,12 @@ const Check = () => {
       </StyledBoxContainer>
 
       <Link to={remainQuestion === 0 ? "/result" : "#"}>
-        <StyledMoveToNext remainQuestion={remainQuestion}>
+        <StyledMoveToNext
+          remainQuestion={remainQuestion}
+          onClick={() => {
+            getUserTestResult(userTestCode);
+          }}
+        >
           <StyledMoveToNextSpan remainQuestion={remainQuestion}>
             {remainQuestion > 0 && (
               <>
