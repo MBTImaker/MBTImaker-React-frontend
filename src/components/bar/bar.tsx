@@ -6,6 +6,9 @@ const StyledBar = styled.div`
   height: 56px;
   background: ${PALETTE.WHITE};
   border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const StyledSpan = styled.span`

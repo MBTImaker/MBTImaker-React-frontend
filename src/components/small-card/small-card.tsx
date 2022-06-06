@@ -5,7 +5,13 @@ import { PALETTE } from "../../styles/palette";
 const StyledSmallCard = styled.li`
   width: 100%;
   height: 100%;
-  padding: 17.54%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: ${PALETTE.WHITE};
+  border: 2px solid ${PALETTE.LIGHT_GRAY_040};
+  border-radius: 16px;
 `;
 
 const StyledTitle = styled.h6`
@@ -17,6 +23,7 @@ const StyledImage = styled.img<{ image: string }>`
   width: 100%;
   content: url(${(props) => props.image});
   object-fit: contain;
+  border-radius: 16px;
 `;
 
 const StyledMovie = styled.span`
