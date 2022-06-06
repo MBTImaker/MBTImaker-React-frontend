@@ -65,7 +65,7 @@ const StyledMoveToNextSpan = styled.span<{ remainQuestion: number }>`
 const Check = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(1);
-  const { userTestCode, userTestResult, handleTestCode, getUserTestResult } =
+  const { userTestCode, handleTestCode, getUserTestResult } =
     useContext(UserTestCode);
   const QUESTION_LIST_LENGTH = QUESTION_LIST.length;
   const remainQuestion =
