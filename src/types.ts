@@ -128,5 +128,15 @@ export interface IComments {
     }
 };
 
+export interface ICommentSave {
+    "status": number;
+    "code": string;
+    "message": string;
+    "data": {
+        "result": string;
+        "clientIp": string;
+    }
+}
+
 export type SocialMedia = "band" | "facebook" | "instagram" | "kakaotalk" | "twitter";
 export type Image = string;

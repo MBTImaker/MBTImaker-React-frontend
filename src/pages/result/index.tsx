@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import styled from "styled-components";
 import { UserTestCode } from "../../contexts/userTestCode";
 import { PALETTE } from "../../styles/palette";
@@ -131,7 +131,10 @@ const StyledUserCommentWriteContainer = styled.div`
 
 const Result = () => {
   const { userTestResult } = useContext(UserTestCode);
-  const { savedComments } = useComment();
+  const { savedComments, writeComment } = useComment();
+  const nameRef = useRef(null);
+  const contentRef = useRef(null);
+  const passwordRef = useRef(null);
   const data = userTestResult.data;
 
   return (
@@ -204,15 +207,36 @@ const Result = () => {
 
       <BlockInner>
         <StyledUserCommentContainer>
-          <Input height="52px" placeholder="닉네임을 입력하세요" />
-          <Input height="216px" placeholder="댓글을 입력하세요" />
+          <Input
+            ref={nameRef}
+            height="52px"
+            placeholder="닉네임을 입력하세요"
+          />
+          <Input
+            ref={contentRef}
+            height="216px"
+            placeholder="댓글을 입력하세요"
+          />
           <StyledUserCommentWriteContainer>
             <Input
+              ref={passwordRef}
               width="70%"
               height="52px"
               placeholder="비밀번호를 입력하세요"
             />
-            <ButtonRed width="114px" height="52px" content="댓글 작성" />
+            <ButtonRed
+              width="114px"
+              height="52px"
+              content="댓글 작성"
+              onClick={() => {
+                writeComment(
+                  (contentRef.current as any).value,
+                  data.mbtiResult.mbti,
+                  (nameRef.current as any).value,
+                  (passwordRef.current as any).value
+                );
+              }}
+            />
           </StyledUserCommentWriteContainer>
         </StyledUserCommentContainer>
 

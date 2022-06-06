@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
 
@@ -23,16 +24,22 @@ type InputProps = {
   placeholder: string;
 };
 
-export const Input = ({
-  disabled = false,
-  width = "100%",
-  height = "100%",
-  placeholder,
-}: InputProps) => (
-  <StyledInput
-    disabled={disabled}
-    width={width}
-    height={height}
-    placeholder={placeholder}
-  />
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  (
+    {
+      disabled = false,
+      width = "100%",
+      height = "100%",
+      placeholder = "",
+    }: InputProps,
+    ref
+  ) => (
+    <StyledInput
+      ref={ref}
+      disabled={disabled}
+      width={width}
+      height={height}
+      placeholder={placeholder}
+    />
+  )
 );

@@ -37,6 +37,7 @@ type ButtonRedProps = {
   height?: string;
   content: string;
   fontSize?: string;
+  onClick?: () => void;
 };
 
 export const ButtonRed = ({
@@ -44,8 +45,17 @@ export const ButtonRed = ({
   height = "100%",
   content,
   fontSize = "1rem",
+  onClick,
 }: ButtonRedProps) => (
-  <StyledContainer width={width} height={height}>
+  <StyledContainer
+    width={width}
+    height={height}
+    onClick={() => {
+      if (onClick) {
+        onClick();
+      }
+    }}
+  >
     <StyledSpan fontSize={fontSize}>{content}</StyledSpan>
   </StyledContainer>
 );
