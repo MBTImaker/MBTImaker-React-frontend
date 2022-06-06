@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledDottedLine = styled.div`
+const StyledLineDotted = styled.div`
   width: 100%;
   height: 0.625rem;
   background: linear-gradient(to right, #ededed 50%, rgba(255, 255, 255, 0) 0%)
@@ -9,4 +9,4 @@ const StyledDottedLine = styled.div`
   margin-top: 2.3125rem;
 `;
 
-export const DottedLine = () => <StyledDottedLine />;
+export const LineDotted = () => <StyledLineDotted />;
