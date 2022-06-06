@@ -29,10 +29,13 @@ const StyledBiggerSpan = styled.span`
 const StyledMBTI = styled.span`
   font-family: "SBAggroL";
   font-size: 0.6875rem;
+  color: ${PALETTE.DARK_GRAY_05};
 `;
 
 const StyledDate = styled.span`
+  font-family: "SBAggroL";
   font-size: 0.875rem;
+  color: ${PALETTE.DARK_GRAY_05};
 `;
 
 const StyledCommnetContainer = styled.div`
