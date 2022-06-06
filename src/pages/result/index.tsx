@@ -104,6 +104,42 @@ const StyledShareIcon = styled.li<{ image: string }>`
   object-fit: contain;
 `;
 
+const StyledRecommendedMovie = styled.li<{ image: string }>`
+  border: 2px solid ${PALETTE.LIGHT_GRAY_040};
+  border-radius: 16px;
+`;
+
+const StyledMoveToHome = styled.div`
+  font-family: "SBAggroB", sans-serif;
+  width: 380px;
+  height: 102px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: ${PALETTE.RED_GRADIENT};
+  border: 4px solid ${PALETTE.RED_010};
+  box-shadow: 0px 8px 0px ${PALETTE.DARK_RED};
+  border-radius: 80px;
+
+  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
+    width: 74.3%;
+    height: 10.76%;
+    font-size: 0.875rem;
+    line-height: 30px;
+  }
+`;
+
+const StyledMoveToHomeSpan = styled.span`
+  color: ${PALETTE.WHITE};
+  font-size: 1.375rem;
+  text-align: center;
+
+  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
+    font-size: 0.875rem;
+    line-height: 20px;
+  }
+`;
+
 const Result = () => {
   const { userTestResult } = useContext(UserTestCode);
   const data = userTestResult.data;
@@ -153,6 +189,21 @@ const Result = () => {
           ))}
         </StyledFlexRow>
       </BlockInner>
+
+      <BlockInner>
+        <StyledShare>추천 영화</StyledShare>
+        <StyledFlexRow gap={20}>
+          {data.mbtiResult.recommendedMovies.map((recommendedMovie) => (
+            <StyledRecommendedMovie image={recommendedMovie.url} />
+          ))}
+        </StyledFlexRow>
+      </BlockInner>
+
+      <Link to="/">
+        <StyledMoveToHome>
+          <StyledMoveToHomeSpan>테스트 다시하기</StyledMoveToHomeSpan>
+        </StyledMoveToHome>
+      </Link>
     </StyledBox>
   );
 };
