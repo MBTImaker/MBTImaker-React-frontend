@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
 
-const StyledSmallCard = styled.li`
+const StyledCardChemistry = styled.li`
   width: 100%;
   height: 100%;
   padding: 40px;
@@ -51,25 +51,25 @@ const StyledCharacter = styled.span`
   }
 `;
 
-type SmallCardProps = {
+type CardChemistryProps = {
   title: string;
   image: string;
   movie: string;
   character: string;
 };
 
-export const SmallCard = ({
+export const CardChemistry = ({
   title,
   image,
   movie,
   character,
-}: SmallCardProps) => {
+}: CardChemistryProps) => {
   return (
-    <StyledSmallCard>
+    <StyledCardChemistry>
       <StyledTitle>{title}</StyledTitle>
       <StyledImage image={image} />
       <StyledMovie>{movie}</StyledMovie>
       <StyledCharacter>{character}</StyledCharacter>
-    </StyledSmallCard>
+    </StyledCardChemistry>
   );
 };

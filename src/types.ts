@@ -25,6 +25,13 @@ export interface Question {
 
 export type TestCode = Record<number, 0 | 1>;
 
+export type CardPercentageInfo = {
+    "movieName": string;
+    "characterName": string;
+    "imageUrl": string;
+    "percentage": number;
+};
+
 export interface TestResult {
     "status": number;
     "code": string;
@@ -67,18 +74,8 @@ export interface TestResult {
                 }
             ]
         },
-        "sameType": {
-            "movieName": string;
-            "characterName": string;
-            "imageUrl": string;
-            "percentage": number;
-        },
-        "mostPopularType": {
-            "movieName": string;
-            "characterName": string;
-            "imageUrl": string;
-            "percentage": number;
-        },
+        "sameType": CardPercentageInfo,
+        "mostPopularType": CardPercentageInfo,
         "kakao_JAVASCRIPT_KEY": string;
     }
 };

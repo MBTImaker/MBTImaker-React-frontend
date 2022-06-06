@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { UserTestCode } from "../../contexts/userTestCode";
 import { PALETTE } from "../../styles/palette";
 import { Bar } from "../../components/bar";
-import { SmallCard } from "../../components/small-card";
 import { BlockInner } from "../../components/block-inner";
 import { Link } from "react-router-dom";
 import { LineDotted } from "../../components/line-dotted";
@@ -13,6 +12,8 @@ import { Input } from "../../components/input";
 import { ButtonRed } from "../../components/button-red";
 import useComment from "../../hooks/useComment";
 import { Reply } from "../../components/reply";
+import { CardChemistry } from "../../components/card-chemistry";
+import { CardPercentage } from "../../components/card-percentage";
 
 const StyledBoxContainer = styled.ul`
   width: 100%;
@@ -204,19 +205,31 @@ const Result = () => {
           <LineDotted />
 
           <StyledChemistryContainer>
-            <SmallCard
+            <CardChemistry
               title="환상의 케미"
               image={data.mbtiResult.bestChemistry.imageUrl}
               movie={data.mbtiResult.bestChemistry.movieName}
               character={data.mbtiResult.bestChemistry.characterName}
             />
-            <SmallCard
+            <CardChemistry
               title="환장의 케미"
               image={data.mbtiResult.worstChemistry.imageUrl}
               movie={data.mbtiResult.worstChemistry.movieName}
               character={data.mbtiResult.worstChemistry.characterName}
             />
           </StyledChemistryContainer>
+        </BlockInner>
+
+        <BlockInner>
+          <StyledShareContainer>
+            <StyledShare>나와 같은 유형</StyledShare>
+            <CardPercentage
+              movieName={data.sameType.movieName}
+              characterName={data.sameType.characterName}
+              imageUrl={data.sameType.imageUrl}
+              percentage={data.sameType.percentage}
+            />
+          </StyledShareContainer>
         </BlockInner>
 
         <BlockInner>
