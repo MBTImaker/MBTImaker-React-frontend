@@ -15,7 +15,7 @@ const StyledCardPercentage = styled.li`
   border-radius: 16px;
 
   @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
-    padding: 24px 20px;
+    padding: 40px 42px;
   }
 `;
 
@@ -28,6 +28,10 @@ const StyledCharacterName = styled.span`
 const StyledImageContainer = styled.div`
   display: flex;
   gap: 40px;
+
+  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
+    flex-direction: column;
+  }
 `;
 
 const StyledImage = styled.img<{ image: string }>`
