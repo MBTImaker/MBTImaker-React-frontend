@@ -207,8 +207,12 @@ const Result = () => {
           <Input height="52px" placeholder="닉네임을 입력하세요" />
           <Input height="216px" placeholder="댓글을 입력하세요" />
           <StyledUserCommentWriteContainer>
-            <Input height="52px" placeholder="비밀번호를 입력하세요" />
-            <ButtonRed width="80px" height="52px" content="작성" />
+            <Input
+              width="70%"
+              height="52px"
+              placeholder="비밀번호를 입력하세요"
+            />
+            <ButtonRed width="114px" height="52px" content="댓글 작성" />
           </StyledUserCommentWriteContainer>
         </StyledUserCommentContainer>
 
