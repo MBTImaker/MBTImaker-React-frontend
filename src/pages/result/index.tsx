@@ -1,11 +1,19 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
 import { UserTestCode } from "../../contexts/userTestCode";
 import { PALETTE } from "../../styles/palette";
-import ResultComment from "../../assets/images/text/result-comment.png";
 import { Bar } from "../../components/bar";
 import { DottedLine } from "../../components/dotted-line";
 import { SmallCard } from "../../components/small-card";
+import { BlockInner } from "../../components/block-inner";
+import ResultComment from "../../assets/images/text/result-comment.png";
+import Band from "../../assets/images/share/band.png";
+import Facebook from "../../assets/images/share/facebook.png";
+import Instagram from "../../assets/images/share/instagram.png";
+import Kakaotalk from "../../assets/images/share/kakotalk.png";
+import Twitter from "../../assets/images/share/Twitter.png";
+import { SOCIAL_MEIDA } from "../../constants";
+import { Link } from "react-router-dom";
 
 const StyledBox = styled.div`
   width: 716px;
@@ -14,7 +22,7 @@ const StyledBox = styled.div`
   align-items: center;
   border-radius: 40px;
   border: 6px solid ${PALETTE.DARK_GREEN};
-  background: ${PALETTE.DARK_WHITE};
+  background: ${PALETTE.WHITE};
   gap: 22px;
   padding: 60px;
 
@@ -24,16 +32,6 @@ const StyledBox = styled.div`
     border-radius: 20px;
     border-width: 2px;
   }
-`;
-
-const StyledInnerBox = styled.div`
-  width: 100%;
-  background: ${PALETTE.LIGHT_GRAY_020};
-  border: 4px solid ${PALETTE.LIGHT_GRAY_030};
-  border-radius: 32px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 const StyledCharacterContainer = styled.section`
@@ -92,13 +90,27 @@ const StyledChemistryContainer = styled.section`
   gap: 20px;
 `;
 
+const StyledShare = styled.h4`
+  font-size: 1.75rem;
+`;
+
+const StyledFlexRow = styled.ul<{ gap: number }>`
+  display: flex;
+  gap: ${(props) => props.gap}px;
+`;
+
+const StyledShareIcon = styled.li<{ image: string }>`
+  content: url(${(props) => props.image});
+  object-fit: contain;
+`;
+
 const Result = () => {
   const { userTestResult } = useContext(UserTestCode);
   const data = userTestResult.data;
 
   return (
     <StyledBox>
-      <StyledInnerBox>
+      <BlockInner>
         <StyledCharacterContainer>
           <StyledComment />
           {/* <StyledMovie image={data.mbtiResult.character.movieName.url} />
@@ -131,7 +143,16 @@ const Result = () => {
             character={data.mbtiResult.worstChemistry.characterName}
           />
         </StyledChemistryContainer>
-      </StyledInnerBox>
+      </BlockInner>
+
+      <BlockInner>
+        <StyledShare>결과 공유하기</StyledShare>
+        <StyledFlexRow gap={26}>
+          {SOCIAL_MEIDA.map((media) => (
+            <StyledShareIcon image={media} />
+          ))}
+        </StyledFlexRow>
+      </BlockInner>
     </StyledBox>
   );
 };
