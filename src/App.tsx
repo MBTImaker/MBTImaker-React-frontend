@@ -3,17 +3,20 @@ import { ThemeProvider } from "styled-components";
 import { Home, Check } from "./pages";
 import { themes } from "../src/styles/theme";
 import GlobalStyle from "./styles/GlobalStyle";
+import UserTestCodeProvider from "./contexts/userTestCode";
 
 function App() {
   return (
     <ThemeProvider theme={themes.light}>
       <GlobalStyle />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/check" element={<Check />} />
-        </Routes>
-      </BrowserRouter>
+      <UserTestCodeProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/check" element={<Check />} />
+          </Routes>
+        </BrowserRouter>
+      </UserTestCodeProvider>
     </ThemeProvider>
   );
 }

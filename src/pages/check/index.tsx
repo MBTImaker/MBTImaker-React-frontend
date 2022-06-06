@@ -1,10 +1,11 @@
-import { useCallback, useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Block } from "../../components/block";
 import { QUESTION_LIST } from "../../constants";
+import { UserTestCode } from "../../contexts/userTestCode";
 import { PALETTE } from "../../styles/palette";
-import { Answer, Question, TestCode } from "../../types";
+import { Question } from "../../types";
 
 const StyledBoxContainer = styled.ul`
   width: 100%;
@@ -64,18 +65,10 @@ const StyledMoveToNextSpan = styled.span<{ remainQuestion: number }>`
 const Check = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(1);
-  const [userTestCode, setUserTestCode] = useState<TestCode>({});
+  const { userTestCode, handleTestCode } = useContext(UserTestCode);
   const QUESTION_LIST_LENGTH = QUESTION_LIST.length;
   const remainQuestion =
     QUESTION_LIST_LENGTH - Object.keys(userTestCode).length;
-
-  const handleTestCode = useCallback((id: number, userSelected: Answer) => {
-    const userSelectedNumber = userSelected === "a" ? 0 : 1;
-    setUserTestCode((userTestCode) => ({
-      ...userTestCode,
-      [id]: userSelectedNumber,
-    }));
-  }, []);
 
   return (
     <>
