@@ -1,3 +1,5 @@
+export type Children = React.ReactNode;
+
 export type TestCountResult = {
     "status": number,
     "code": string,

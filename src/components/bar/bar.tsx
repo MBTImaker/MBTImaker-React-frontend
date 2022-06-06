@@ -17,10 +17,8 @@ type BarProps = {
   content: string;
 };
 
-const Bar = ({ content }: BarProps) => (
+export const Bar = ({ content }: BarProps) => (
   <StyledBar>
     <StyledSpan>{content}</StyledSpan>
   </StyledBar>
 );
-
-export default Bar;

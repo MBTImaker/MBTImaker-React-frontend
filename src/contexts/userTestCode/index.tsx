@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { createContext, useCallback, useState } from "react";
-import { Answer, TestCode, TestResult } from "../../types";
+import { Answer, Children, TestCode, TestResult } from "../../types";
 
 const userTestResultDefaultValue: TestResult = {
   status: 200,
@@ -77,13 +77,13 @@ const userTestResultDefaultValue: TestResult = {
 
 export const UserTestCode = createContext({
   userTestCode: {},
-  userTestResult: {},
+  userTestResult: userTestResultDefaultValue,
   handleTestCode: (id: number, userSelected: Answer) => {},
   getUserTestResult: (testCode: TestCode) => {},
 });
 
 type UserTestCodeProviderProps = {
-  children: React.ReactNode;
+  children: Children;
 };
 
 const UserTestCodeProvider = ({ children }: UserTestCodeProviderProps) => {

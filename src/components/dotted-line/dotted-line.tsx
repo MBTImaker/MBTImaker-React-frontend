@@ -9,6 +9,4 @@ const StyledDottedLine = styled.div`
   margin-top: 2.3125rem;
 `;
 
-const DottedLine = () => <StyledDottedLine />;
-
-export default DottedLine;
+export const DottedLine = () => <StyledDottedLine />;
