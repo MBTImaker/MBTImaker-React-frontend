@@ -14,6 +14,10 @@ const StyledBar = styled.div`
 const StyledSpan = styled.span`
   font-family: "SBAggroL", sans-serif;
   font-size: 1.125rem;
+
+  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
+    font-size: 0.875rem;
+  }
 `;
 
 type BarProps = {

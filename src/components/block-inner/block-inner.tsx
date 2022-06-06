@@ -11,6 +11,13 @@ const StyledInnerBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    border-width: 2px;
+  }
 `;
 
 type BlockInnerProps = {

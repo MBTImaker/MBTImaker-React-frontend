@@ -15,6 +15,11 @@ const StyledInput = styled.input<{ width: string; height: string }>`
     font-family: "SBAggroM";
     color: ${PALETTE.DARK_GRAY_04};
   }
+
+  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
+    border-radius: 10px;
+    border-width: 2px;
+  }
 `;
 
 type InputProps = {
