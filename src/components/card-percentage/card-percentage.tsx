@@ -1,7 +1,7 @@
-import React from "react";
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
 import { CardPercentageInfo } from "../../types";
+import { PieChart } from "react-minimal-pie-chart";
 
 const StyledCardPercentage = styled.li`
   width: 100%;
@@ -36,17 +36,66 @@ const StyledImage = styled.img<{ image: string }>`
   object-fit: cover;
 `;
 
+const StyledPercentageContainer = styled.div``;
+
+const StyledTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transform: translate(0, -235%);
+`;
+
+const StyledNumber = styled.span`
+  font-size: 2rem;
+  color: ${PALETTE.BLACK_010};
+`;
+
+const StyledPercentage = styled.span`
+  font-size: 1.5rem;
+  color: ${PALETTE.BLACK_010};
+`;
+
+const StyledExplanation = styled.span`
+  font-size: 0.875rem;
+  color: ${PALETTE.BLACK_010};
+`;
+
+type CardPercentageProps = CardPercentageInfo & { explanation: string };
+
 export const CardPercentage = ({
+  explanation,
   movieName,
   characterName,
   imageUrl,
   percentage,
-}: CardPercentageInfo) => (
+}: CardPercentageProps) => (
   <StyledCardPercentage>
     <StyledMovieName>{movieName}</StyledMovieName>
     <StyledCharacterName>{characterName}</StyledCharacterName>
     <StyledImageContainer>
       <StyledImage image="" />
+
+      <StyledPercentageContainer>
+        <PieChart
+          data={[{ title: "", value: percentage, color: PALETTE.GREEN }]}
+          animate={true}
+          animationEasing="ease-out"
+          lineWidth={15}
+          startAngle={-90}
+          totalValue={100}
+          rounded
+          background={PALETTE.LIGHT_GRAY_040}
+        />
+
+        <StyledTextContainer>
+          <StyledNumber>
+            {percentage}
+            <StyledPercentage>%</StyledPercentage>
+          </StyledNumber>
+          <StyledExplanation>{explanation}</StyledExplanation>
+        </StyledTextContainer>
+      </StyledPercentageContainer>
     </StyledImageContainer>
   </StyledCardPercentage>
 );

@@ -224,10 +224,23 @@ const Result = () => {
           <StyledShareContainer>
             <StyledShare>나와 같은 유형</StyledShare>
             <CardPercentage
+              explanation="나와 같은 유형"
               movieName={data.sameType.movieName}
               characterName={data.sameType.characterName}
               imageUrl={data.sameType.imageUrl}
               percentage={data.sameType.percentage}
+            />
+          </StyledShareContainer>
+        </BlockInner>
+        <BlockInner>
+          <StyledShareContainer>
+            <StyledShare>가장 많이 나온 유형</StyledShare>
+            <CardPercentage
+              explanation="현재 1위 유형"
+              movieName={data.mostPopularType.movieName}
+              characterName={data.mostPopularType.characterName}
+              imageUrl={data.mostPopularType.imageUrl}
+              percentage={data.mostPopularType.percentage}
             />
           </StyledShareContainer>
         </BlockInner>
