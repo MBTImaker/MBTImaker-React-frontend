@@ -106,6 +106,7 @@ const StyledShare = styled.h4`
 const StyledFlexRow = styled.ul<{ gap: number }>`
   width: 100%;
   display: flex;
+  justify-content: space-between;
   gap: ${(props) => props.gap}px;
 `;
 
@@ -177,7 +178,7 @@ const Result = () => {
       <BlockInner>
         <StyledShareContainer>
           <StyledShare>결과 공유하기</StyledShare>
-          <StyledFlexRow gap={26}>
+          <StyledFlexRow gap={0}>
             <IconShare media={"kakaotalk"} />
             <IconShare media={"facebook"} />
             <IconShare media={"twitter"} />

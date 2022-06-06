@@ -3,9 +3,12 @@ import styled from "styled-components";
 import useImage from "../../hooks/useImage";
 import { SocialMedia } from "../../types";
 
-const StyledIconShare = styled.li<{ image: string }>`
-  content: url(${(props) => props.image});
-  object-fit: contain;
+const StyledIconShare = styled.button<{ image: string }>`
+  width: 64px;
+  height: 64px;
+  background-image: url(${(props) => props.image});
+  background-size: contain;
+  background-repeat: no-repeat;
 `;
 
 type IconShareProps = {
