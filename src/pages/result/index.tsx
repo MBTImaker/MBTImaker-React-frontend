@@ -11,6 +11,8 @@ import ResultComment from "../../assets/images/text/result-comment.png";
 import { IconShare } from "../../components/icon-share";
 import { Input } from "../../components/input";
 import { ButtonRed } from "../../components/button-red";
+import useComment from "../../hooks/useComment";
+import { Reply } from "../../components/reply";
 
 const StyledBox = styled.div`
   width: 716px;
@@ -129,6 +131,7 @@ const StyledUserCommentWriteContainer = styled.div`
 
 const Result = () => {
   const { userTestResult } = useContext(UserTestCode);
+  const { savedComments } = useComment();
   const data = userTestResult.data;
 
   return (
@@ -208,7 +211,19 @@ const Result = () => {
             <ButtonRed width="80px" height="52px" content="작성" />
           </StyledUserCommentWriteContainer>
         </StyledUserCommentContainer>
+
         <LineDotted />
+
+        <StyledUserCommentContainer>
+          {savedComments?.map((comment) => (
+            <Reply
+              createdDate={comment.createdDate}
+              name={comment.name}
+              mbti={comment.mbti}
+              content={comment.content}
+            />
+          ))}
+        </StyledUserCommentContainer>
       </BlockInner>
     </StyledBox>
   );

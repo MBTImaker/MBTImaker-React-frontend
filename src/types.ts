@@ -7,7 +7,7 @@ export type TestCountResult = {
     "data": {
         "testCount": number
     }
-}
+};
 
 export type Answer = "a" | "b" | null;
 
@@ -21,9 +21,10 @@ export interface Question {
         a: string;
         b: string;
     };
-}
+};
 
 export type TestCode = Record<number, 0 | 1>;
+
 export interface TestResult {
     "status": number;
     "code": string;
@@ -80,7 +81,52 @@ export interface TestResult {
         },
         "kakao_JAVASCRIPT_KEY": string;
     }
-}
+};
+
+export interface IComment {
+    "id": number,
+    "createdDate": string;
+    "mbti": string;
+    "name": string;
+    "password": string;
+    "content": string;
+    "childSize": number,
+    "state": string;
+};
+
+export interface IComments {
+    "status": number;
+    "code": string;
+    "message": string;
+    "data": {
+        "content": IComment[];
+        "pageable": {
+            "sort": {
+                "sorted": true,
+                "unsorted": false,
+                "empty": false
+            },
+            "pageNumber": number;
+            "pageSize": number;
+            "offset": number;
+            "paged": boolean;
+            "unpaged": boolean;
+        },
+        "last": boolean;
+        "totalPages": number;
+        "totalElements": number;
+        "sort": {
+            "sorted": boolean;
+            "unsorted": boolean;
+            "empty": boolean;
+        },
+        "first": boolean;
+        "number": number;
+        "numberOfElements": number;
+        "size": number;
+        "empty": boolean;
+    }
+};
 
 export type SocialMedia = "band" | "facebook" | "instagram" | "kakaotalk" | "twitter";
 export type Image = string;
