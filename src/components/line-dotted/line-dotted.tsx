@@ -6,7 +6,6 @@ const StyledLineDotted = styled.div`
   background: linear-gradient(to right, #ededed 50%, rgba(255, 255, 255, 0) 0%)
     repeat-x bottom;
   background-size: 16px 2px;
-  margin-top: 2.3125rem;
 `;
 
 export const LineDotted = () => <StyledLineDotted />;

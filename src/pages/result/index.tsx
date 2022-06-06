@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import { LineDotted } from "../../components/line-dotted";
 import ResultComment from "../../assets/images/text/result-comment.png";
 import { IconShare } from "../../components/icon-share";
+import { Input } from "../../components/input";
+import { ButtonRed } from "../../components/button-red";
 
 const StyledBox = styled.div`
   width: 716px;
@@ -110,35 +112,19 @@ const StyledRecommendedMovie = styled.li<{ image: string }>`
   border-radius: 16px;
 `;
 
-const StyledMoveToHome = styled.div`
-  font-family: "SBAggroB", sans-serif;
-  width: 380px;
-  height: 102px;
+const StyledUserCommentContainer = styled.article`
+  width: 100%;
+  padding: 50px 60px 62px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  background: ${PALETTE.RED_GRADIENT};
-  border: 4px solid ${PALETTE.RED_010};
-  box-shadow: 0px 8px 0px ${PALETTE.DARK_RED};
-  border-radius: 80px;
-
-  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
-    width: 74.3%;
-    height: 10.76%;
-    font-size: 0.875rem;
-    line-height: 30px;
-  }
+  gap: 20px;
 `;
 
-const StyledMoveToHomeSpan = styled.span`
-  color: ${PALETTE.WHITE};
-  font-size: 1.375rem;
-  text-align: center;
-
-  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
-    font-size: 0.875rem;
-    line-height: 20px;
-  }
+const StyledUserCommentWriteContainer = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 20px;
 `;
 
 const Result = () => {
@@ -150,9 +136,9 @@ const Result = () => {
       <BlockInner>
         <StyledCharacterContainer>
           <StyledComment />
-          {/* <StyledMovie image={data.mbtiResult.character.movieName.url} />
+          <StyledMovie image={data.mbtiResult.character.movieName.url} />
           <StyledName image={data.mbtiResult.character.name.url} />
-          <StyledCharacter image={data.mbtiResult.character.image.url} /> */}
+          <StyledCharacter image={data.mbtiResult.character.image.url} />
           <StyledRepresentativePersonality>
             {data.mbtiResult.character.representativePersonality}
           </StyledRepresentativePersonality>
@@ -205,10 +191,25 @@ const Result = () => {
       </BlockInner>
 
       <Link to="/">
-        <StyledMoveToHome>
-          <StyledMoveToHomeSpan>테스트 다시하기</StyledMoveToHomeSpan>
-        </StyledMoveToHome>
+        <ButtonRed
+          width="380px"
+          height="102px"
+          fontSize="1.375rem"
+          content="테스트 다시하기"
+        />
       </Link>
+
+      <BlockInner>
+        <StyledUserCommentContainer>
+          <Input height="52px" placeholder="닉네임을 입력하세요" />
+          <Input height="216px" placeholder="댓글을 입력하세요" />
+          <StyledUserCommentWriteContainer>
+            <Input height="52px" placeholder="비밀번호를 입력하세요" />
+            <ButtonRed width="80px" height="52px" content="작성" />
+          </StyledUserCommentWriteContainer>
+        </StyledUserCommentContainer>
+        <LineDotted />
+      </BlockInner>
     </StyledBox>
   );
 };
