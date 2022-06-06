@@ -3,7 +3,7 @@ import styled from "styled-components";
 import useImage from "../../hooks/useImage";
 import { PALETTE } from "../../styles/palette";
 import { Answer, Question } from "../../types";
-import { AnswerButton } from "../answer-button";
+import { ButtonAnswer } from "../button-answer";
 
 const StyledBox = styled.li`
   width: 716px;
@@ -102,14 +102,14 @@ export const Block = ({
       </StyledQuestionContainer>
 
       <StyledButtonContainer>
-        <AnswerButton
+        <ButtonAnswer
           currentQuestionIndex={currentQuestionIndex}
           id="a"
           handleClick={handleClick}
           content={answer.a}
           isClicked={userSelected === "a"}
         />
-        <AnswerButton
+        <ButtonAnswer
           currentQuestionIndex={currentQuestionIndex}
           id="b"
           handleClick={handleClick}

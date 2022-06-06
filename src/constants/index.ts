@@ -134,5 +134,3 @@ export const QUESTION_LIST: Question[] = [
         }
     }
 ];
-
-export const SOCIAL_MEIDA = ["Band", "facebook", "instgram", "kakaotalk", "twitter"];

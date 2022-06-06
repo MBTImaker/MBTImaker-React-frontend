@@ -81,3 +81,6 @@ export interface TestResult {
         "kakao_JAVASCRIPT_KEY": string;
     }
 }
+
+export type SocialMedia = "band" | "facebook" | "instagram" | "kakaotalk" | "twitter";
+export type Image = string;

@@ -3,17 +3,12 @@ import styled from "styled-components";
 import { UserTestCode } from "../../contexts/userTestCode";
 import { PALETTE } from "../../styles/palette";
 import { Bar } from "../../components/bar";
-import { DottedLine } from "../../components/dotted-line";
 import { SmallCard } from "../../components/small-card";
 import { BlockInner } from "../../components/block-inner";
-import ResultComment from "../../assets/images/text/result-comment.png";
-import Band from "../../assets/images/share/band.png";
-import Facebook from "../../assets/images/share/facebook.png";
-import Instagram from "../../assets/images/share/instagram.png";
-import Kakaotalk from "../../assets/images/share/kakotalk.png";
-import Twitter from "../../assets/images/share/Twitter.png";
-import { SOCIAL_MEIDA } from "../../constants";
 import { Link } from "react-router-dom";
+import { LineDotted } from "../../components/line-dotted";
+import ResultComment from "../../assets/images/text/result-comment.png";
+import { IconShare } from "../../components/icon-share";
 
 const StyledBox = styled.div`
   width: 716px;
@@ -83,11 +78,21 @@ const StyledBarContainer = styled.div`
 
 const StyledChemistryContainer = styled.section`
   width: 100%;
-  padding: 66px 60px 60px;
+  padding: 48px 82px 68px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
+`;
+
+const StyledShareContainer = styled.section`
+  width: 100%;
+  padding: 66px 60px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
 `;
 
 const StyledShare = styled.h4`
@@ -95,13 +100,9 @@ const StyledShare = styled.h4`
 `;
 
 const StyledFlexRow = styled.ul<{ gap: number }>`
+  width: 100%;
   display: flex;
   gap: ${(props) => props.gap}px;
-`;
-
-const StyledShareIcon = styled.li<{ image: string }>`
-  content: url(${(props) => props.image});
-  object-fit: contain;
 `;
 
 const StyledRecommendedMovie = styled.li<{ image: string }>`
@@ -163,7 +164,7 @@ const Result = () => {
           </StyledBarContainer>
         </StyledCharacterContainer>
 
-        <DottedLine />
+        <LineDotted />
 
         <StyledChemistryContainer>
           <SmallCard
@@ -182,12 +183,16 @@ const Result = () => {
       </BlockInner>
 
       <BlockInner>
-        <StyledShare>결과 공유하기</StyledShare>
-        <StyledFlexRow gap={26}>
-          {SOCIAL_MEIDA.map((media) => (
-            <StyledShareIcon image={media} />
-          ))}
-        </StyledFlexRow>
+        <StyledShareContainer>
+          <StyledShare>결과 공유하기</StyledShare>
+          <StyledFlexRow gap={26}>
+            <IconShare media={"kakaotalk"} />
+            <IconShare media={"facebook"} />
+            <IconShare media={"twitter"} />
+            <IconShare media={"band"} />
+            <IconShare media={"instagram"} />
+          </StyledFlexRow>
+        </StyledShareContainer>
       </BlockInner>
 
       <BlockInner>

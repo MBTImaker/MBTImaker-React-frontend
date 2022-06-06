@@ -1,20 +1,24 @@
 import { useEffect, useState } from 'react'
+import { SocialMedia, Image } from '../types';
 
-const useImage = (id: number) => {
-    const [image, setImage] = useState(null);
+
+const useImage = (id?: number, media?: SocialMedia) => {
+    const [image, setImage] = useState<Image>("");
 
     useEffect(() => {
         const fetchImage = async () => {
             try {
-                const response = await import(`../assets/images/text/id/${id}.png`);
+                if (id == null && media == null) throw new Error("There is no properties in useImage.");
+                const response = id ? await import(`../assets/images/text/id/${id}.png`) : await import(`../assets/images/share/${media}.png`);
                 setImage(response.default);
+                console.log(typeof response.default);
             } catch (e) {
                 console.error(e);
             }
         }
 
         fetchImage();
-    }, [id])
+    }, [id, media]);
 
     return { image }
 }
