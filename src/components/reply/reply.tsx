@@ -1,6 +1,6 @@
-import React from "react";
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
+import { ReactComponent as Siren } from "../../assets/images/siren.svg";
 
 const DESKTOP_BORDER_RADIUS = "20px";
 
@@ -15,10 +15,16 @@ const StyledReplayContainer = styled.li`
 
 const StyledUserInfo = styled.div`
   display: flex;
-  flex-direction: column;
   border-radius: ${DESKTOP_BORDER_RADIUS} ${DESKTOP_BORDER_RADIUS} 0 0;
   background: ${PALETTE.DARK_WHITE};
   padding: 22px 29px;
+  gap: 10px;
+`;
+
+const StyledSpanContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
 `;
 
@@ -46,6 +52,8 @@ const StyledCommnetContainer = styled.div`
   gap: 12px;
 `;
 
+const StyledSirenContainer = styled.div``;
+
 type ReplyProps = {
   createdDate: string;
   name: string;
@@ -57,8 +65,14 @@ export const Reply = ({ createdDate, name, content, mbti }: ReplyProps) => {
   return (
     <StyledReplayContainer>
       <StyledUserInfo>
-        <StyledBiggerSpan>{name}</StyledBiggerSpan>
-        <StyledMBTI>{mbti}</StyledMBTI>
+        <StyledSpanContainer>
+          <StyledBiggerSpan>{name}</StyledBiggerSpan>
+          <StyledMBTI>{mbti}</StyledMBTI>
+        </StyledSpanContainer>
+
+        <StyledSirenContainer>
+          <Siren />
+        </StyledSirenContainer>
       </StyledUserInfo>
 
       <StyledCommnetContainer>
