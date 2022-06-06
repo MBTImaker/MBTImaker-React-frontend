@@ -6,7 +6,7 @@ const StyledButton = styled.button<{ isClicked: boolean }>`
   width: 74.3%;
   height: 12.76vh;
   background: ${(props) =>
-    props.isClicked ? PALETTE.DARK_GREEN_GRADIENT : PALETTE.LIGHT_GRAY};
+    props.isClicked ? PALETTE.DARK_GREEN_GRADIENT : PALETTE.LIGHT_GRAY_010};
   border: ${(props) =>
     props.isClicked ? `4px ${PALETTE.DARK_GREEN} solid` : 0};
   border-radius: 80px;
@@ -32,7 +32,7 @@ type AnswerButtonProps = {
   content: string;
 };
 
-export const AnswerButton = ({
+export const ButtonAnswer = ({
   currentQuestionIndex,
   id,
   handleClick,

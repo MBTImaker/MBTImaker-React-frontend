@@ -1,10 +1,11 @@
-import { useCallback, useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { QuestionBox } from "../../components/question-box";
+import { Block } from "../../components/block";
 import { QUESTION_LIST } from "../../constants";
+import { UserTestCode } from "../../contexts/userTestCode";
 import { PALETTE } from "../../styles/palette";
-import { Answer, Question, TestCode } from "../../types";
+import { Question } from "../../types";
 
 const StyledBoxContainer = styled.ul`
   width: 100%;
@@ -30,10 +31,10 @@ const StyledMoveToNext = styled.div<{ remainQuestion: number }>`
     props.remainQuestion > 0 ? PALETTE.GRAY_GRADIENT : PALETTE.RED_GRADIENT};
   border: 4px solid
     ${(props) =>
-      props.remainQuestion > 0 ? PALETTE.DARK_GRAY_01 : PALETTE.RED};
+      props.remainQuestion > 0 ? PALETTE.DARK_GRAY_01 : PALETTE.RED_010};
   box-shadow: 0px 8px 0px
     ${(props) =>
-      props.remainQuestion > 0 ? PALETTE.DART_GRAY_02 : PALETTE.DARK_RED};
+      props.remainQuestion > 0 ? PALETTE.DARK_GRAY_02 : PALETTE.DARK_RED};
   border-radius: 80px;
   position: fixed;
   bottom: 20px;
@@ -64,24 +65,17 @@ const StyledMoveToNextSpan = styled.span<{ remainQuestion: number }>`
 const Check = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(1);
-  const [userTestCode, setUserTestCode] = useState<TestCode>({});
+  const { userTestCode, handleTestCode, getUserTestResult } =
+    useContext(UserTestCode);
   const QUESTION_LIST_LENGTH = QUESTION_LIST.length;
   const remainQuestion =
     QUESTION_LIST_LENGTH - Object.keys(userTestCode).length;
-
-  const handleTestCode = useCallback((id: number, userSelected: Answer) => {
-    const userSelectedNumber = userSelected === "a" ? 0 : 1;
-    setUserTestCode((userTestCode) => ({
-      ...userTestCode,
-      [id]: userSelectedNumber,
-    }));
-  }, []);
 
   return (
     <>
       <StyledBoxContainer>
         {QUESTION_LIST.map((q: Question) => (
-          <QuestionBox
+          <Block
             currentQuestionIndex={currentQuestionIndex}
             handleTestCode={handleTestCode}
             key={q.id}
@@ -93,7 +87,12 @@ const Check = () => {
       </StyledBoxContainer>
 
       <Link to={remainQuestion === 0 ? "/result" : "#"}>
-        <StyledMoveToNext remainQuestion={remainQuestion}>
+        <StyledMoveToNext
+          remainQuestion={remainQuestion}
+          onClick={() => {
+            getUserTestResult(userTestCode);
+          }}
+        >
           <StyledMoveToNextSpan remainQuestion={remainQuestion}>
             {remainQuestion > 0 && (
               <>

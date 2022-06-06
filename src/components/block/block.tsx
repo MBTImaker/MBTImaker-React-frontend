@@ -3,7 +3,7 @@ import styled from "styled-components";
 import useImage from "../../hooks/useImage";
 import { PALETTE } from "../../styles/palette";
 import { Answer, Question } from "../../types";
-import { AnswerButton } from "../answer-button";
+import { ButtonAnswer } from "../button-answer";
 
 const StyledBox = styled.li`
   width: 716px;
@@ -64,18 +64,18 @@ const StyledButtonContainer = styled.div`
   gap: 20px;
 `;
 
-type QuestionBoxProps = Question & {
+type BlockProps = Question & {
   currentQuestionIndex: number;
   handleTestCode: (id: number, userSelected: Answer) => void;
 };
 
-export const QuestionBox = ({
+export const Block = ({
   currentQuestionIndex,
   handleTestCode,
   id,
   question,
   answer,
-}: QuestionBoxProps) => {
+}: BlockProps) => {
   const { image } = useImage(id);
   const [userSelected, setUserSelected] = useState<Answer>();
 
@@ -102,14 +102,14 @@ export const QuestionBox = ({
       </StyledQuestionContainer>
 
       <StyledButtonContainer>
-        <AnswerButton
+        <ButtonAnswer
           currentQuestionIndex={currentQuestionIndex}
           id="a"
           handleClick={handleClick}
           content={answer.a}
           isClicked={userSelected === "a"}
         />
-        <AnswerButton
+        <ButtonAnswer
           currentQuestionIndex={currentQuestionIndex}
           id="b"
           handleClick={handleClick}
