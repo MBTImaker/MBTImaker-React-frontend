@@ -32,7 +32,7 @@ type AnswerButtonProps = {
   content: string;
 };
 
-export const AnswerButton = ({
+export const ButtonAnswer = ({
   currentQuestionIndex,
   id,
   handleClick,
