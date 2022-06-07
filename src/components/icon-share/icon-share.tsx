@@ -11,12 +11,28 @@ const StyledIconShare = styled.button<{ image: string }>`
 `;
 
 type IconShareProps = {
+  handleClick?: () => void;
   media: SocialMedia;
-  onClick: () => void;
+  url?: string;
 };
 
-export const IconShare = ({ media, onClick }: IconShareProps) => {
+export const IconShare = ({
+  handleClick = () => {},
+  media,
+  url = "https://christmas-movie.netlify.app",
+}: IconShareProps) => {
   const { image } = useImage(undefined, media);
+
+  const onClick = () => {
+    switch (media) {
+      case "facebook":
+        window.open("http://www.facebook.com/sharer/sharer.php?u=" + url);
+        break;
+
+      default:
+        handleClick();
+    }
+  };
 
   return <StyledIconShare image={image} onClick={onClick} />;
 };

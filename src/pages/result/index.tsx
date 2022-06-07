@@ -14,6 +14,7 @@ import { Reply } from "../../components/reply";
 import { CardChemistry } from "../../components/card-chemistry";
 import { CardPercentage } from "../../components/card-percentage";
 import { ShareKaKao } from "../../components/share-kakao";
+import { IconShare } from "../../components/icon-share";
 
 const StyledBoxContainer = styled.ul`
   width: 100%;
@@ -250,8 +251,8 @@ const Result = () => {
             <StyledShare>결과 공유하기</StyledShare>
             <StyledFlexRow gap={0}>
               <ShareKaKao />
-              {/* <IconShare media={"facebook"} />
-              <IconShare media={"twitter"} />
+              <IconShare media={"facebook"} />
+              {/* <IconShare media={"twitter"} />
               <IconShare media={"band"} />
               <IconShare media={"instagram"} /> */}
             </StyledFlexRow>

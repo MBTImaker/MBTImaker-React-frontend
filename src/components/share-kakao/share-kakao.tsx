@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { IconShare } from "../icon-share";
 
 type ShareKaKaoProps = {
@@ -44,5 +44,5 @@ export const ShareKaKao = ({
     }
   };
 
-  return <IconShare media="kakaotalk" onClick={shareKakao} />;
+  return <IconShare media="kakaotalk" handleClick={shareKakao} />;
 };
