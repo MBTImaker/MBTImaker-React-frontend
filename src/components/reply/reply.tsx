@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
-import { ReactComponent as Siren } from "../../assets/images/siren.svg";
+import Siren from "../../assets/images/siren.svg";
 
 const DESKTOP_BORDER_RADIUS = "20px";
 
@@ -54,6 +54,11 @@ const StyledCommnetContainer = styled.div`
 
 const StyledSirenContainer = styled.div``;
 
+const StyledSiren = styled.img`
+  content: url(${Siren});
+  object-fit: contain;
+`;
+
 type ReplyProps = {
   createdDate: string;
   name: string;
@@ -71,7 +76,7 @@ export const Reply = ({ createdDate, name, content, mbti }: ReplyProps) => {
         </StyledSpanContainer>
 
         <StyledSirenContainer>
-          <Siren />
+          <StyledSiren />
         </StyledSirenContainer>
       </StyledUserInfo>
 

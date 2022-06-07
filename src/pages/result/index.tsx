@@ -7,13 +7,13 @@ import { BlockInner } from "../../components/block-inner";
 import { Link } from "react-router-dom";
 import { LineDotted } from "../../components/line-dotted";
 import ResultComment from "../../assets/images/text/result-comment.png";
-import { IconShare } from "../../components/icon-share";
 import { Input } from "../../components/input";
 import { ButtonRed } from "../../components/button-red";
 import useComment from "../../hooks/useComment";
 import { Reply } from "../../components/reply";
 import { CardChemistry } from "../../components/card-chemistry";
 import { CardPercentage } from "../../components/card-percentage";
+import { ShareKaKao } from "../../components/share-kakao";
 
 const StyledBoxContainer = styled.ul`
   width: 100%;
@@ -249,11 +249,11 @@ const Result = () => {
           <StyledShareContainer>
             <StyledShare>결과 공유하기</StyledShare>
             <StyledFlexRow gap={0}>
-              <IconShare media={"kakaotalk"} />
-              <IconShare media={"facebook"} />
+              <ShareKaKao />
+              {/* <IconShare media={"facebook"} />
               <IconShare media={"twitter"} />
               <IconShare media={"band"} />
-              <IconShare media={"instagram"} />
+              <IconShare media={"instagram"} /> */}
             </StyledFlexRow>
           </StyledShareContainer>
         </BlockInner>
@@ -262,7 +262,10 @@ const Result = () => {
           <StyledShare>추천 영화</StyledShare>
           <StyledFlexRow gap={20}>
             {data.mbtiResult.recommendedMovies.map((recommendedMovie) => (
-              <StyledRecommendedMovie image={recommendedMovie.url} />
+              <StyledRecommendedMovie
+                key={recommendedMovie.url}
+                image={recommendedMovie.url}
+              />
             ))}
           </StyledFlexRow>
         </BlockInner>
@@ -320,6 +323,7 @@ const Result = () => {
           <StyledUserCommentContainer>
             {savedComments?.map((comment) => (
               <Reply
+                key={comment.id}
                 createdDate={comment.createdDate}
                 name={comment.name}
                 mbti={comment.mbti}

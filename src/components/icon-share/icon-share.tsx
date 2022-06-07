@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import useImage from "../../hooks/useImage";
 import { SocialMedia } from "../../types";
@@ -13,10 +12,11 @@ const StyledIconShare = styled.button<{ image: string }>`
 
 type IconShareProps = {
   media: SocialMedia;
+  onClick: () => void;
 };
 
-export const IconShare = ({ media }: IconShareProps) => {
+export const IconShare = ({ media, onClick }: IconShareProps) => {
   const { image } = useImage(undefined, media);
 
-  return <StyledIconShare image={image} />;
+  return <StyledIconShare image={image} onClick={onClick} />;
 };
