@@ -26,9 +26,20 @@ export const IconShare = ({
   const onClick = () => {
     switch (media) {
       case "facebook":
-        window.open("http://www.facebook.com/sharer/sharer.php?u=" + url);
+        window.open(`http://www.facebook.com/sharer/sharer.php?u=${url}`);
         break;
-
+      case "twitter":
+        window.open(
+          `https://twitter.com/intent/tweet?text=나의 영화 캐릭터 유형은? &url=${url}`
+        );
+        break;
+      case "band":
+        window.open(
+          `http://band.us/plugin/share?body=나의 영화 캐릭터 유형은? 여기서 확인 ➡️ ${url}&route=${url}`,
+          "share",
+          "width=500, height=500"
+        );
+        break;
       default:
         handleClick();
     }

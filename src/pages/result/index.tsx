@@ -252,9 +252,9 @@ const Result = () => {
             <StyledFlexRow gap={0}>
               <ShareKaKao />
               <IconShare media={"facebook"} />
-              {/* <IconShare media={"twitter"} />
+              <IconShare media={"twitter"} />
               <IconShare media={"band"} />
-              <IconShare media={"instagram"} /> */}
+              {/*<IconShare media={"instagram"} /> */}
             </StyledFlexRow>
           </StyledShareContainer>
         </BlockInner>
