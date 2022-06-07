@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import styled from "styled-components";
 import { UserTestCode } from "../../contexts/userTestCode";
 import { PALETTE } from "../../styles/palette";
@@ -15,6 +15,8 @@ import { CardChemistry } from "../../components/card-chemistry";
 import { CardPercentage } from "../../components/card-percentage";
 import { ShareKaKao } from "../../components/share-kakao";
 import { IconShare } from "../../components/icon-share";
+import { IComment } from "../../types";
+import { Pagination } from "../../components/pagination";
 
 const StyledBoxContainer = styled.ul`
   width: 100%;
@@ -178,10 +180,18 @@ const StyledUserCommentWriteContainer = styled.div`
 const Result = () => {
   const { userTestResult } = useContext(UserTestCode);
   const { savedComments, writeComment } = useComment();
+  const [currentPageIndex, setCurrentPageIndex] = useState(1);
+  const [commentsPerPage, setCommentsPerPage] = useState(3);
   const nameRef = useRef(null);
   const contentRef = useRef(null);
   const passwordRef = useRef(null);
   const data = userTestResult.data;
+
+  const indexOfLast = currentPageIndex * commentsPerPage;
+  const indexOfFirst = indexOfLast - commentsPerPage;
+  const getCurrentPageComments = (savedComments: IComment[]) => {
+    return savedComments.slice(indexOfFirst, indexOfLast);
+  };
 
   return (
     <StyledBoxContainer>
@@ -322,15 +332,23 @@ const Result = () => {
           <LineDotted />
 
           <StyledUserCommentContainer>
-            {savedComments?.map((comment) => (
-              <Reply
-                key={comment.id}
-                createdDate={comment.createdDate}
-                name={comment.name}
-                mbti={comment.mbti}
-                content={comment.content}
-              />
-            ))}
+            {savedComments &&
+              getCurrentPageComments(savedComments).map((comment) => (
+                <Reply
+                  key={comment.id}
+                  createdDate={comment.createdDate}
+                  name={comment.name}
+                  mbti={comment.mbti}
+                  content={comment.content}
+                />
+              ))}
+
+            <Pagination
+              currentPageIndex={currentPageIndex}
+              commentsPerPage={commentsPerPage}
+              totalCommentLength={savedComments?.length || 0}
+              handleCurrentPageIndex={setCurrentPageIndex}
+            />
           </StyledUserCommentContainer>
         </BlockInner>
       </StyledBox>

@@ -3,6 +3,7 @@ export const PALETTE = {
     BLACK_010: '#222222',
     BLACK_020: '#0D111D',
     BLACK_030: '#000000',
+    NAVY: "#2A2A2A",
     GREEN: '#08623E',
     RED_010: '#AF1A24',
     RED_020: '#E10017',
