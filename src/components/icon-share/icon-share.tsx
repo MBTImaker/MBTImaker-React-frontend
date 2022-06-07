@@ -40,6 +40,9 @@ export const IconShare = ({
           "width=500, height=500"
         );
         break;
+      case "instagram":
+        alert("테스트 결과를 이미지로 다운로드했어요.");
+        break;
       default:
         handleClick();
     }

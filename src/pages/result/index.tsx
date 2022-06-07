@@ -254,7 +254,7 @@ const Result = () => {
               <IconShare media={"facebook"} />
               <IconShare media={"twitter"} />
               <IconShare media={"band"} />
-              {/*<IconShare media={"instagram"} /> */}
+              <IconShare media={"instagram"} />
             </StyledFlexRow>
           </StyledShareContainer>
         </BlockInner>
