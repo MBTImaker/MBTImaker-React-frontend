@@ -1,30 +1,36 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
 import { BlockInner } from "../block-inner";
 import { ButtonRed } from "../button-red";
-import Select from "../select/select";
-import Textarea from "../textarea/textarea";
 import Report from "../../assets/images/text/report.png";
+import { Textarea } from "../textarea";
+import { Select } from "../select";
 
 const StyledContainer = styled.div<{ isModalActive: boolean }>`
   position: absolute;
+  bottom: -460%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: ${(props) => (props.isModalActive ? "flex" : "none")};
   width: 100%;
   height: 100%;
   justify-content: center;
   align-items: center;
+  padding: 0 20px;
 `;
 
 const StyledBlock = styled.section`
   width: 100%;
-  max-width: 716px;
+  max-width: 604px;
   background-color: ${PALETTE.WHITE};
   border: 6px solid ${PALETTE.DARK_GREEN};
   border-radius: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 34px 32px 32px;
+  gap: 26px;
 `;
 
 const StyledTitle = styled.img<{ image: string }>`
@@ -54,11 +60,16 @@ export const Modal = ({
   handleModalActive,
 }: ModalProps) => {
   const modalRef = useRef(null);
+  const [description, setDescription] = useState<string>();
 
   const onClickOutside = (event: any) => {
     if (modalRef.current && !(modalRef.current as any).contains(event.target)) {
       return handleModalActive(false);
     }
+  };
+
+  const handleDescription = (contents: string) => {
+    setDescription(contents);
   };
 
   useEffect(() => {
@@ -72,9 +83,18 @@ export const Modal = ({
     <StyledContainer isModalActive={isModalActive}>
       <StyledBlock ref={modalRef}>
         <StyledTitle image={titleImage} />
-        <BlockInner backgroundColor={PALETTE.DARK_WHITE} borderWidth="2px">
-          <Select />
-          <Textarea></Textarea>
+        <BlockInner
+          backgroundColor={PALETTE.DARK_WHITE}
+          borderWidth="2px"
+          padding={32}
+          gap={18}
+        >
+          <Select isModalActive={isModalActive} />
+          <Textarea
+            height="216px"
+            placeholder="신고 내용을 적어주세요"
+            handleDescription={setDescription}
+          ></Textarea>
           <StyledButtonContainer>
             <ButtonRed content="제출"></ButtonRed>
             <ButtonRed content="제출"></ButtonRed>

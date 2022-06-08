@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
 import DownArrow from "../../assets/images/arrow/down-arrow.svg";
+
+const DEAULT_TEXT = "유형 선택";
 
 const StyledContainer = styled.div`
   position: relative;
@@ -64,8 +66,12 @@ const StyledArrow = styled.img<{ isOpen: boolean }>`
   transform: ${(props) => (props.isOpen ? "rotate(0.5turn)" : "none")};
 `;
 
-export const Select = () => {
-  const [buttonText, setButtonText] = useState("유형 선택");
+type SelectProps = {
+  isModalActive: boolean;
+};
+
+export const Select = ({ isModalActive }: SelectProps) => {
+  const [buttonText, setButtonText] = useState(DEAULT_TEXT);
   const [isOpen, setIsOpen] = useState(false);
 
   const onSelectClick = () => {
@@ -74,9 +80,12 @@ export const Select = () => {
 
   const onTypeItemClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     setIsOpen(false);
-    // setButtonText();
-    console.log(e.currentTarget.value);
+    setButtonText((e.target as Element).innerHTML);
   };
+
+  useEffect(() => {
+    if (!isModalActive) setButtonText(DEAULT_TEXT);
+  }, [isModalActive]);
 
   return (
     <StyledContainer>

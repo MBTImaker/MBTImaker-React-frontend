@@ -17,6 +17,7 @@ import { ShareKaKao } from "../../components/share-kakao";
 import { IconShare } from "../../components/icon-share";
 import { Comment } from "../../types";
 import { Pagination } from "../../components/pagination";
+import { Textarea } from "../../components/textarea";
 
 const StyledBoxContainer = styled.ul`
   width: 100%;
@@ -181,6 +182,7 @@ const Result = () => {
   const { userTestResult } = useContext(UserTestCode);
   const { savedComments, writeComment } = useComment();
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
+  const [newComments, setNewComments] = useState<string>();
   const nameRef = useRef(null);
   const contentRef = useRef(null);
   const passwordRef = useRef(null);
@@ -299,11 +301,11 @@ const Result = () => {
               height="52px"
               placeholder="닉네임을 입력하세요"
             />
-            <Input
-              ref={contentRef}
+            <Textarea
               height="216px"
               placeholder="댓글을 입력하세요"
-            />
+              handleDescription={setNewComments}
+            ></Textarea>
             <StyledUserCommentWriteContainer>
               <Input
                 ref={passwordRef}
