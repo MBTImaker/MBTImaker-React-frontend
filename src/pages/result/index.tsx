@@ -181,11 +181,11 @@ const Result = () => {
   const { userTestResult } = useContext(UserTestCode);
   const { savedComments, writeComment } = useComment();
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
-  const [commentsPerPage, setCommentsPerPage] = useState(3);
   const nameRef = useRef(null);
   const contentRef = useRef(null);
   const passwordRef = useRef(null);
   const data = userTestResult.data;
+  const commentsPerPage = 3;
 
   const indexOfLast = currentPageIndex * commentsPerPage;
   const indexOfFirst = indexOfLast - commentsPerPage;
