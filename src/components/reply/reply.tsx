@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
-import Siren from "../../assets/images/siren.svg";
+import Siren from "../../assets/images/button/siren.svg";
+import Delete from "../../assets/images/button/delete.svg";
+import useComment from "../../hooks/useComment";
 
 const DESKTOP_BORDER_RADIUS = "20px";
 
@@ -52,21 +54,32 @@ const StyledCommnetContainer = styled.div`
   gap: 12px;
 `;
 
-const StyledSirenContainer = styled.div``;
-
 const StyledSiren = styled.img`
   content: url(${Siren});
   object-fit: contain;
 `;
 
+const StyledDelete = styled.img`
+  content: url(${Delete});
+  object-fit: contain;
+`;
+
 type ReplyProps = {
+  id: number;
   createdDate: string;
   name: string;
   content: string;
   mbti: string;
 };
 
-export const Reply = ({ createdDate, name, content, mbti }: ReplyProps) => {
+export const Reply = ({ id, createdDate, name, content, mbti }: ReplyProps) => {
+  const { deleteComment } = useComment();
+
+  const onDelete = () => {
+    const promptPassword = prompt("비밀번호를 입력해 주세요.") || "";
+    deleteComment(id, name, promptPassword);
+  };
+
   return (
     <StyledReplayContainer>
       <StyledUserInfo>
@@ -75,9 +88,8 @@ export const Reply = ({ createdDate, name, content, mbti }: ReplyProps) => {
           <StyledMBTI>{mbti}</StyledMBTI>
         </StyledSpanContainer>
 
-        <StyledSirenContainer>
-          <StyledSiren />
-        </StyledSirenContainer>
+        <StyledSiren />
+        <StyledDelete onClick={onDelete} />
       </StyledUserInfo>
 
       <StyledCommnetContainer>

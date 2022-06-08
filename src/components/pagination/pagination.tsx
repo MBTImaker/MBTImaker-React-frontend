@@ -23,17 +23,17 @@ const StyledNumber = styled.button<{ isCurrentPageIndex: boolean }>`
 const StyledLeftArrow = styled.button<{ isBlocked: boolean }>`
   width: ${BUTTON_SIZE};
   height: ${BUTTON_SIZE};
+  background-size: contain;
   background-image: url(${(props) =>
     props.isBlocked ? LeftArrowBlocked : LeftArrow});
-  background-size: contain;
 `;
 
 const StyledRightArrow = styled.button<{ isBlocked: boolean }>`
   width: ${BUTTON_SIZE};
   height: ${BUTTON_SIZE};
+  background-size: contain;
   background-image: url(${(props) =>
     props.isBlocked ? RightArrowBlocked : RightArrow});
-  background-size: contain;
 `;
 
 type PaginationProps = {

@@ -15,7 +15,7 @@ import { CardChemistry } from "../../components/card-chemistry";
 import { CardPercentage } from "../../components/card-percentage";
 import { ShareKaKao } from "../../components/share-kakao";
 import { IconShare } from "../../components/icon-share";
-import { IComment } from "../../types";
+import { Comment } from "../../types";
 import { Pagination } from "../../components/pagination";
 
 const StyledBoxContainer = styled.ul`
@@ -181,15 +181,15 @@ const Result = () => {
   const { userTestResult } = useContext(UserTestCode);
   const { savedComments, writeComment } = useComment();
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
-  const [commentsPerPage, setCommentsPerPage] = useState(3);
   const nameRef = useRef(null);
   const contentRef = useRef(null);
   const passwordRef = useRef(null);
   const data = userTestResult.data;
+  const commentsPerPage = 3;
 
   const indexOfLast = currentPageIndex * commentsPerPage;
   const indexOfFirst = indexOfLast - commentsPerPage;
-  const getCurrentPageComments = (savedComments: IComment[]) => {
+  const getCurrentPageComments = (savedComments: Comment[]) => {
     return savedComments.slice(indexOfFirst, indexOfLast);
   };
 
@@ -336,6 +336,7 @@ const Result = () => {
               getCurrentPageComments(savedComments).map((comment) => (
                 <Reply
                   key={comment.id}
+                  id={comment.id}
                   createdDate={comment.createdDate}
                   name={comment.name}
                   mbti={comment.mbti}

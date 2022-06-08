@@ -1,4 +1,8 @@
+export type SocialMedia = "band" | "facebook" | "instagram" | "kakaotalk" | "twitter";
+export type TestCode = Record<number, 0 | 1>;
 export type Children = React.ReactNode;
+export type Answer = "a" | "b" | null;
+export type Image = string;
 
 export type TestCountResult = {
     "status": number,
@@ -9,9 +13,7 @@ export type TestCountResult = {
     }
 };
 
-export type Answer = "a" | "b" | null;
-
-export interface Question {
+export type Question = {
     id: number;
     question: {
         situation: string;
@@ -23,8 +25,6 @@ export interface Question {
     };
 };
 
-export type TestCode = Record<number, 0 | 1>;
-
 export type CardPercentageInfo = {
     "movieName": string;
     "characterName": string;
@@ -32,7 +32,7 @@ export type CardPercentageInfo = {
     "percentage": number;
 };
 
-export interface TestResult {
+export type TestResult = {
     "status": number;
     "code": string;
     "message": string;
@@ -80,7 +80,7 @@ export interface TestResult {
     }
 };
 
-export interface IComment {
+export type Comment = {
     "id": number,
     "createdDate": string;
     "mbti": string;
@@ -91,12 +91,12 @@ export interface IComment {
     "state": string;
 };
 
-export interface IComments {
+export type Comments = {
     "status": number;
     "code": string;
     "message": string;
     "data": {
-        "content": IComment[];
+        "content": Comment[];
         "pageable": {
             "sort": {
                 "sorted": true,
@@ -125,7 +125,7 @@ export interface IComments {
     }
 };
 
-export interface ICommentSave {
+export type CommentSave = {
     "status": number;
     "code": string;
     "message": string;
@@ -134,6 +134,9 @@ export interface ICommentSave {
         "clientIp": string;
     }
 }
-
-export type SocialMedia = "band" | "facebook" | "instagram" | "kakaotalk" | "twitter";
-export type Image = string;
+export type CommentDelete = {
+    "code": "string",
+    "data": {},
+    "message": "string",
+    "status": 0
+}
