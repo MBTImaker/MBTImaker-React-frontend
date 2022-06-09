@@ -78,9 +78,6 @@ const useComment = (page: number = 1, size: number = 5) => {
             alert("신고되었어요 🚨");
         } catch (e) {
             alert("신고되지 않았어요. 다시 입력해 주세요 🚨");
-            console.log(e, commentId,
-                description,
-                subject);
         }
     };
 

@@ -107,6 +107,7 @@ export const Select = ({
       <StyledReportTypeList isOpen={isOpen}>
         {contents.map((content) => (
           <StyledReportTypeItem
+            key={content.value}
             onClick={(e) => {
               handleReportType(content.value);
               onTypeItemClick(e);
