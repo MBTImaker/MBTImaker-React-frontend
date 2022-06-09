@@ -116,6 +116,9 @@ export const Reply = ({ id, createdDate, name, content, mbti }: ReplyProps) => {
       </StyledReplayContainer>
 
       <Modal
+        textareaPlaceholder="신고 내용을 적어주세요"
+        cancleButtonText="취소"
+        submitButtonText="제출"
         isModalActive={isModalActive}
         handleModalActive={handleModalActive}
       />

@@ -50,12 +50,18 @@ const StyledButtonContainer = styled.div`
 
 type ModalProps = {
   titleImage?: string;
+  textareaPlaceholder: string;
+  cancleButtonText: string;
+  submitButtonText: string;
   isModalActive: boolean;
   handleModalActive: (isActive: boolean) => void;
 };
 
 export const Modal = ({
   titleImage = Report,
+  textareaPlaceholder,
+  cancleButtonText,
+  submitButtonText,
   isModalActive,
   handleModalActive,
 }: ModalProps) => {
@@ -89,15 +95,15 @@ export const Modal = ({
           padding={32}
           gap={18}
         >
-          <Select isModalActive={isModalActive} />
+          <Select selectType="신고" isModalActive={isModalActive} />
           <Textarea
             height="216px"
-            placeholder="신고 내용을 적어주세요"
+            placeholder={textareaPlaceholder}
             handleDescription={setDescription}
           ></Textarea>
           <StyledButtonContainer>
-            <Button content="취소" color="gray" />
-            <Button content="제출" />
+            <Button content={cancleButtonText} color="gray" />
+            <Button content={submitButtonText} />
           </StyledButtonContainer>
         </BlockInner>
       </StyledBlock>
