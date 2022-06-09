@@ -3,6 +3,16 @@ export type TestCode = Record<number, 0 | 1>;
 export type Children = React.ReactNode;
 export type Answer = "a" | "b" | null;
 export type Image = string;
+export type ButtonColor = "red" | "gray";
+
+export type ButtonSize = {
+    width?: string;
+    height?: string;
+    widthMobile?: string;
+    heightMobile?: string;
+    fontSize?: string;
+    fontSizeMobile?: string;
+}
 
 export type TestCountResult = {
     "status": number,

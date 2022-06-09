@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
 import { BlockInner } from "../block-inner";
-import { ButtonRed } from "../button-red";
 import Report from "../../assets/images/text/report.png";
 import { Textarea } from "../textarea";
 import { Select } from "../select";
+import { Button } from "../button";
 
 const StyledContainer = styled.div<{ isModalActive: boolean }>`
   position: absolute;
@@ -96,8 +96,8 @@ export const Modal = ({
             handleDescription={setDescription}
           ></Textarea>
           <StyledButtonContainer>
-            <ButtonRed content="제출"></ButtonRed>
-            <ButtonRed content="제출"></ButtonRed>
+            <Button content="취소" color="gray" />
+            <Button content="제출" />
           </StyledButtonContainer>
         </BlockInner>
       </StyledBlock>

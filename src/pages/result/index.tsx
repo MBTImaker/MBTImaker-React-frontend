@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import { LineDotted } from "../../components/line-dotted";
 import ResultComment from "../../assets/images/text/result-comment.png";
 import { Input } from "../../components/input";
-import { ButtonRed } from "../../components/button-red";
 import useComment from "../../hooks/useComment";
 import { Reply } from "../../components/reply";
 import { CardChemistry } from "../../components/card-chemistry";
@@ -18,6 +17,7 @@ import { IconShare } from "../../components/icon-share";
 import { Comment } from "../../types";
 import { Pagination } from "../../components/pagination";
 import { Textarea } from "../../components/textarea";
+import { Button } from "../../components/button";
 
 const StyledBoxContainer = styled.ul`
   width: 100%;
@@ -284,7 +284,7 @@ const Result = () => {
         </BlockInner>
 
         <Link to="/">
-          <ButtonRed
+          <Button
             width="380px"
             height="102px"
             widthMobile="84vw"
@@ -313,7 +313,7 @@ const Result = () => {
                 height="52px"
                 placeholder="비밀번호를 입력하세요"
               />
-              <ButtonRed
+              <Button
                 width="114px"
                 height="52px"
                 heightMobile="40px"

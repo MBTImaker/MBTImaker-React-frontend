@@ -19,6 +19,7 @@ const StyledReplayContainer = styled.li`
 
 const StyledUserInfo = styled.div`
   display: flex;
+  align-items: center;
   border-radius: ${DESKTOP_BORDER_RADIUS} ${DESKTOP_BORDER_RADIUS} 0 0;
   background: ${PALETTE.DARK_WHITE};
   padding: 22px 29px;
@@ -56,14 +57,20 @@ const StyledCommnetContainer = styled.div`
   gap: 12px;
 `;
 
-const StyledSiren = styled.img`
-  content: url(${Siren});
-  object-fit: contain;
+const StyledSiren = styled.button`
+  width: 24px;
+  height: 24px;
+  background-image: url(${Siren});
+  background-size: contain;
+  background-repeat: no-repeat;
 `;
 
-const StyledDelete = styled.img`
-  content: url(${Delete});
-  object-fit: contain;
+const StyledDelete = styled.button`
+  width: 28px;
+  height: 28px;
+  background-image: url(${Delete});
+  background-size: contain;
+  background-repeat: no-repeat;
 `;
 
 type ReplyProps = {

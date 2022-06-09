@@ -50,6 +50,7 @@ const StyledReportTypeItem = styled.li`
   border-bottom: 1px dashed ${PALETTE.LIGHT_GRAY_010};
   padding: 12px 32px;
   font-size: 1.125rem;
+  cursor: pointer;
 
   :hover {
     background: ${PALETTE.LIGHT_GRAY_010};
