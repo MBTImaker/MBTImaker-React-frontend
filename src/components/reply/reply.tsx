@@ -82,11 +82,69 @@ type ReplyProps = {
 };
 
 export const Reply = ({ id, createdDate, name, content, mbti }: ReplyProps) => {
+  const getNamebyMbti = () => {
+    switch (mbti) {
+      case "ISTJ": {
+        return "킹스맨의 해리 하트";
+      }
+      case "ISFJ": {
+        return "셜록홈즈의 왓슨";
+      }
+      case "ISTP": {
+        return "007의 제임스 본드";
+      }
+      case "ISFP": {
+        return "타이타닉의 로즈";
+      }
+      case "INTJ": {
+        return "닥터 스트레인지의 닥터 스트레인지";
+      }
+      case "INTP": {
+        return "이미테이션 게임의 앨런 튜링";
+      }
+      case "INFJ": {
+        return "위대한 개츠비의 개츠비";
+      }
+      case "INFP": {
+        return "신비한 동물사전의 뉴트 스캐맨더";
+      }
+      case "ESTJ": {
+        return "해리포터의 헤르미온느";
+      }
+      case "ESFJ": {
+        return "분노의 질주의 돔";
+      }
+      case "ESTP": {
+        return "라푼젤의 플린 라이더";
+      }
+      case "ESFP": {
+        return "수어사이드 스쿼드의 할리퀸";
+      }
+      case "ENTJ": {
+        return "악마는 프라다를 입는다의 미란다";
+      }
+      case "ENTP": {
+        return "크리스마스의 악몽의 잭 스켈레톤";
+      }
+      case "ENFJ": {
+        return "금발이 너무해의 엘 우즈";
+      }
+      case "ENFP": {
+        return "사운드 오브 뮤직의 마리아";
+      }
+      default: {
+        break;
+      }
+    }
+  };
+
   const { deleteComment } = useComment();
   const [isModalActive, setIsModalActive] = useState(false);
+  const nameByMbti = getNamebyMbti();
 
   const onDelete = () => {
-    const promptPassword = prompt("비밀번호를 입력해 주세요.") || "";
+    const promptPassword = prompt("비밀번호를 입력해 주세요.");
+    if (promptPassword === "" || promptPassword == null) return;
     deleteComment(id, name, promptPassword);
   };
 
@@ -100,7 +158,7 @@ export const Reply = ({ id, createdDate, name, content, mbti }: ReplyProps) => {
         <StyledUserInfo>
           <StyledSpanContainer>
             <StyledBiggerSpan>{name}</StyledBiggerSpan>
-            <StyledMBTI>{mbti}</StyledMBTI>
+            <StyledMBTI>{nameByMbti}</StyledMBTI>
           </StyledSpanContainer>
 
           <StyledSiren onClick={() => setIsModalActive(true)} />
