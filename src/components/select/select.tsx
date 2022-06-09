@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
 import DownArrow from "../../assets/images/arrow/down-arrow.svg";
+import { SelectType } from "../../types";
+import { REPORT_TYPE } from "../../constants";
 
 const DEAULT_TEXT = "유형 선택";
 
@@ -11,17 +13,6 @@ const StyledContainer = styled.div`
   height: 56px;
   background: ${PALETTE.WHITE};
   border-radius: 16px;
-
-  /* ::after {
-    content: "";
-    display: block;
-    width: 2px;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    right: 35px;
-    background: lightcoral;
-  } */
 `;
 
 const StyledButton = styled.button`
@@ -69,9 +60,10 @@ const StyledArrow = styled.img<{ isOpen: boolean }>`
 
 type SelectProps = {
   isModalActive: boolean;
+  selectType: SelectType;
 };
 
-export const Select = ({ isModalActive }: SelectProps) => {
+export const Select = ({ isModalActive, selectType }: SelectProps) => {
   const [buttonText, setButtonText] = useState(DEAULT_TEXT);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -84,36 +76,36 @@ export const Select = ({ isModalActive }: SelectProps) => {
     setButtonText((e.target as Element).innerHTML);
   };
 
+  const getContents = () => {
+    switch (selectType) {
+      case "신고":
+        return REPORT_TYPE;
+      default:
+        return REPORT_TYPE;
+    }
+  };
+
   useEffect(() => {
     if (!isModalActive) setButtonText(DEAULT_TEXT);
   }, [isModalActive]);
+
+  const contents = getContents();
 
   return (
     <StyledContainer>
       <StyledButton onClick={onSelectClick}>
         {buttonText}
-
         <StyledArrow isOpen={isOpen} />
       </StyledButton>
       <StyledReportTypeList isOpen={isOpen}>
-        <StyledReportTypeItem onClick={(e) => onTypeItemClick(e)} value="ABUSE">
-          욕설 / 비하
-        </StyledReportTypeItem>
-        <StyledReportTypeItem onClick={onTypeItemClick} value="PORNOGRAPHY">
-          음란물 / 불건전한 대화
-        </StyledReportTypeItem>
-        <StyledReportTypeItem onClick={onTypeItemClick} value="COMMERCIAL">
-          상업적 광고 / 판매
-        </StyledReportTypeItem>
-        <StyledReportTypeItem onClick={onTypeItemClick} value="PAPERING">
-          낚시 / 도배
-        </StyledReportTypeItem>
-        <StyledReportTypeItem onClick={onTypeItemClick} value="DISPUTE">
-          지나친 정치 / 종교 논쟁
-        </StyledReportTypeItem>
-        <StyledReportTypeItem onClick={onTypeItemClick} value="PROMOTION">
-          불법 홍보
-        </StyledReportTypeItem>
+        {contents.map((report_type_value) => (
+          <StyledReportTypeItem
+            onClick={(e) => onTypeItemClick(e)}
+            value={report_type_value.value}
+          >
+            {report_type_value.korean}
+          </StyledReportTypeItem>
+        ))}
       </StyledReportTypeList>
     </StyledContainer>
   );

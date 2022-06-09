@@ -4,6 +4,7 @@ export type Children = React.ReactNode;
 export type Answer = "a" | "b" | null;
 export type Image = string;
 export type ButtonColor = "red" | "gray";
+export type SelectType = "신고";
 
 export type ButtonSize = {
     width?: string;
@@ -143,10 +144,16 @@ export type CommentSave = {
         "result": string;
         "clientIp": string;
     }
-}
+};
+
 export type CommentDelete = {
     "code": "string",
     "data": {},
     "message": "string",
     "status": 0
+}
+
+export type ReportType = {
+    "value": "ABUSE" | "PORNOGRAPHY" | "COMMERCIAL" | "PAPERING" | "DISPUTE" | "PROMOTION",
+    "korean": string,
 }
