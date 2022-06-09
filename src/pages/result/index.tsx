@@ -187,10 +187,11 @@ const Result = () => {
   const nameRef = useRef(null);
   const passwordRef = useRef(null);
   const data = userTestResult.data;
-  const { savedComments, totalComments, writeComment } = useComment({
-    page: 1,
-    size: commentsPerPage,
-  });
+  const { savedComments, totalComments, getCommentsFromServer, writeComment } =
+    useComment({
+      page: 1,
+      size: commentsPerPage,
+    });
 
   const onWriteButtonClick = () => {
     if ((nameRef.current as any).value === "") {
@@ -216,6 +217,10 @@ const Result = () => {
       page: 1,
       size: commentsPerPage,
     });
+  };
+
+  const onCommentsIndexChange = (page: number, size: number) => {
+    getCommentsFromServer({ page, size });
   };
 
   return (
@@ -368,6 +373,7 @@ const Result = () => {
               commentsPerPage={commentsPerPage}
               totalCommentLength={totalComments || 0}
               handleCurrentPageIndex={setCurrentPageIndex}
+              handleCommnetsFromServer={onCommentsIndexChange}
             />
           </StyledUserCommentContainer>
         </BlockInner>

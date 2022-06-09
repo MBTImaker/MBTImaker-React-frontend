@@ -4,6 +4,7 @@ import LeftArrowBlocked from "../../assets/images/arrow/left-arrow-blocked.svg";
 import RightArrowBlocked from "../../assets/images/arrow/right-arrow-blocked.svg";
 import LeftArrow from "../../assets/images/arrow/left-arrow.svg";
 import RightArrow from "../../assets/images/arrow/right-arrow.svg";
+import { useEffect } from "react";
 
 const BUTTON_SIZE = "32px";
 
@@ -41,6 +42,7 @@ type PaginationProps = {
   commentsPerPage: number;
   totalCommentLength: number;
   handleCurrentPageIndex: (index: number) => void;
+  handleCommnetsFromServer?: (page: number, size: number) => void;
 };
 
 export const Pagination = ({
@@ -48,8 +50,15 @@ export const Pagination = ({
   commentsPerPage,
   totalCommentLength,
   handleCurrentPageIndex,
+  handleCommnetsFromServer,
 }: PaginationProps) => {
   const pageNumbers: number[] = [];
+
+  useEffect(() => {
+    if (handleCommnetsFromServer)
+      handleCommnetsFromServer(currentPageIndex, commentsPerPage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPageIndex, commentsPerPage]);
 
   const getFirstIndex = () => {
     if (currentPageIndex % 3 === 0) return currentPageIndex - 2;
