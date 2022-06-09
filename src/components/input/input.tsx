@@ -1,5 +1,11 @@
-import { forwardRef } from "react";
+/**
+ * url: /result
+ * purpose: It used to receive short words.
+ *          짧은 단어를 입력받을 때 사용됩니다.
+ */
+
 import styled from "styled-components";
+import { forwardRef } from "react";
 import { PALETTE } from "../../styles/palette";
 
 const StyledInput = styled.input<{ width: string; height: string }>`

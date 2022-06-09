@@ -1,13 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+/**
+ * url: /result
+ * purpose: It used to report unhealthy comments.
+ *          불건전한 댓글을 신고할 때 사용됩니다.
+ */
+
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import useComment from "../../hooks/useComment";
 import { PALETTE } from "../../styles/palette";
 import { BlockInner } from "../block-inner";
-import Report from "../../assets/images/text/report.png";
 import { Textarea } from "../textarea";
 import { Select } from "../select";
 import { Button } from "../button";
-import useComment from "../../hooks/useComment";
 import { ReportType } from "../../types";
+import Report from "../../assets/images/text/report.png";
 
 const StyledContainer = styled.div<{ isModalActive: boolean }>`
   position: absolute;

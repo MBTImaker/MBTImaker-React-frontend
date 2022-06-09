@@ -1,3 +1,9 @@
+/**
+ * url: /check
+ * purpose: It indicates one option within the question. If it pressed, the background changes from gray to green.
+ *          문제 안에 있는 하나의 선택을 나타냅니다. 누르면 배경이 회색에서 초록색으로 변경됩니다.
+ */
+
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
 import { Answer } from "../../types";

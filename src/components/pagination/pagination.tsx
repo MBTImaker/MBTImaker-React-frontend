@@ -1,10 +1,16 @@
+/**
+ * url: /result
+ * purpose: It used to show multiple comments.
+ *          댓글을 여러 개 보여줄 때 사용됩니다.
+ */
+
 import styled from "styled-components";
+import { useEffect } from "react";
 import { PALETTE } from "../../styles/palette";
 import LeftArrowBlocked from "../../assets/images/arrow/left-arrow-blocked.svg";
 import RightArrowBlocked from "../../assets/images/arrow/right-arrow-blocked.svg";
 import LeftArrow from "../../assets/images/arrow/left-arrow.svg";
 import RightArrow from "../../assets/images/arrow/right-arrow.svg";
-import { useEffect } from "react";
 
 const BUTTON_SIZE = "32px";
 

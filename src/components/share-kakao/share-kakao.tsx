@@ -1,13 +1,18 @@
+/**
+ * url: /result
+ * purpose: It is the KakaoTalk sharing button.
+ *          카카오톡 공유 버튼입니다.
+ */
+
 import { useEffect } from "react";
+import { DISTRIBUTED_URL } from "../../constants";
 import { IconShare } from "../icon-share";
 
 type ShareKaKaoProps = {
   url?: string;
 };
 
-export const ShareKaKao = ({
-  url = "https://christmas-movie.netlify.app",
-}: ShareKaKaoProps) => {
+export const ShareKaKao = ({ url = DISTRIBUTED_URL }: ShareKaKaoProps) => {
   useEffect(() => {
     initKakao();
   }, []);

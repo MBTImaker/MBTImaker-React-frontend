@@ -1,4 +1,9 @@
-import React from "react";
+/**
+ * url: /result
+ * purpose: It shows camestries.
+ *          환상의 케미와 환장의 케미를 보여줍니다.
+ */
+
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
 

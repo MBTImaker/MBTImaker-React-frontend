@@ -1,23 +1,22 @@
 import { useContext, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { UserTestCode } from "../../contexts/userTestCode";
+import useComment from "../../hooks/useComment";
 import { PALETTE } from "../../styles/palette";
+import { UserTestCode } from "../../contexts/userTestCode";
 import { Bar } from "../../components/bar";
 import { BlockInner } from "../../components/block-inner";
-import { Link } from "react-router-dom";
 import { LineDotted } from "../../components/line-dotted";
-import ResultComment from "../../assets/images/text/result-comment.png";
 import { Input } from "../../components/input";
-import useComment from "../../hooks/useComment";
-import { Reply } from "../../components/reply";
 import { CardChemistry } from "../../components/card-chemistry";
 import { CardPercentage } from "../../components/card-percentage";
 import { ShareKaKao } from "../../components/share-kakao";
 import { IconShare } from "../../components/icon-share";
-import { Comment } from "../../types";
 import { Pagination } from "../../components/pagination";
 import { Textarea } from "../../components/textarea";
 import { Button } from "../../components/button";
+import { ReplySaved } from "../../components/reply-saved";
+import ResultComment from "../../assets/images/text/result-comment.png";
 
 const StyledBoxContainer = styled.ul`
   width: 100%;
@@ -356,7 +355,7 @@ const Result = () => {
 
           <StyledUserCommentContainer>
             {savedComments.map((comment) => (
-              <Reply
+              <ReplySaved
                 key={comment.id}
                 id={comment.id}
                 createdDate={comment.createdDate}

@@ -1,3 +1,9 @@
+/**
+ * url: /result
+ * purpose: It shows the ratio.
+ *          나와 같은 유형과 가장 많이 나온 유형의 비율을 보여줍니다.
+ */
+
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
 import { CardPercentageInfo } from "../../types";
@@ -40,8 +46,6 @@ const StyledImage = styled.img<{ image: string }>`
   object-fit: cover;
 `;
 
-const StyledPercentageContainer = styled.div``;
-
 const StyledTextContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -80,7 +84,7 @@ export const CardPercentage = ({
     <StyledImageContainer>
       <StyledImage image="" />
 
-      <StyledPercentageContainer>
+      <div>
         <PieChart
           data={[{ title: "", value: percentage, color: PALETTE.GREEN }]}
           animate={true}
@@ -99,7 +103,7 @@ export const CardPercentage = ({
           </StyledNumber>
           <StyledExplanation>{explanation}</StyledExplanation>
         </StyledTextContainer>
-      </StyledPercentageContainer>
+      </div>
     </StyledImageContainer>
   </StyledCardPercentage>
 );

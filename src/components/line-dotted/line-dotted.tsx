@@ -1,3 +1,9 @@
+/**
+ * url: /result
+ * purpose: It's a dotted line.
+ *          점선입니다. 줄간격을 조정하기 위해 만들었습니다.
+ */
+
 import styled from "styled-components";
 
 const StyledLineDotted = styled.div`

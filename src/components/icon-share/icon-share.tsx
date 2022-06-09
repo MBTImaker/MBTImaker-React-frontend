@@ -1,3 +1,9 @@
+/**
+ * url: /result
+ * purpose: It displays a different icon for each SNS.
+ *          sns별로 공유 아이콘을 다르게 보여줍니다.
+ */
+
 import styled from "styled-components";
 import useImage from "../../hooks/useImage";
 import { SocialMedia } from "../../types";

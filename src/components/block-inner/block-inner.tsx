@@ -1,3 +1,9 @@
+/**
+ * url: /result
+ * purpose: It divides the areas within the results page. It's a gray background.
+ *          결과 페이지 내에 있는 영역(성격, 결과 공유하기, 추천 영화 등)을 나눕니다. 회색 배경입니다.
+ */
+
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
 import { Children } from "../../types";

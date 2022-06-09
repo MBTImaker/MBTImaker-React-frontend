@@ -1,3 +1,9 @@
+/**
+ * url: /result
+ * purpose: It is used to show 12 personalities one by one.
+ *          12가지 성격을 하나씩 보여줄 때 사용됩니다.
+ */
+
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
 

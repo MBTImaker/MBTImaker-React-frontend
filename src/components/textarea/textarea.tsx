@@ -1,3 +1,10 @@
+/**
+ * url: /result
+ * component: modal
+ * purpose: It used to receive long sentences.
+ *          긴 문장을 입력받을 때 사용됩니다.
+ */
+
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
 

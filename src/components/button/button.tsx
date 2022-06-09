@@ -1,5 +1,5 @@
 /**
- * url: /result
+ * url: /check, /result
  * component: modal
  * purpose: Red and gray buttons with shadows.
  *          그림자가 있는 빨간색과 회색 버튼입니다.

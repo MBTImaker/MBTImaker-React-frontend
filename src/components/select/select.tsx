@@ -1,9 +1,15 @@
+/**
+ * component: modal
+ * purpose: <select> made it for the design.
+ *          모달 안에 있는 <select>입니다. 디자인을 위해 직접 만들었습니다.
+ */
+
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
-import DownArrow from "../../assets/images/arrow/down-arrow.svg";
 import { ReportType, SelectType } from "../../types";
 import { REPORT_TYPE } from "../../constants";
+import DownArrow from "../../assets/images/arrow/down-arrow.svg";
 
 const DEAULT_TEXT = "유형 선택";
 
@@ -70,7 +76,6 @@ export const Select = ({
   handleReportType,
 }: SelectProps) => {
   const [buttonText, setButtonText] = useState(DEAULT_TEXT);
-
   const [isOpen, setIsOpen] = useState(false);
 
   const onSelectClick = () => {

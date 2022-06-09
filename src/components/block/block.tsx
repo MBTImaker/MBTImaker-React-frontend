@@ -1,9 +1,15 @@
+/**
+ * url: /check
+ * purpose: It indicates the area of the problem. It's a white background.
+ *          문제 하나의 영역을 나타냅니다. 하얀색 배경입니다.
+ */
+
 import { useCallback, useState } from "react";
 import styled from "styled-components";
 import useImage from "../../hooks/useImage";
 import { PALETTE } from "../../styles/palette";
-import { Answer, Question } from "../../types";
 import { ButtonAnswer } from "../button-answer";
+import { Answer, Question } from "../../types";
 
 const StyledBox = styled.li`
   width: 716px;
