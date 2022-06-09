@@ -185,6 +185,7 @@ const Result = () => {
   const { loading, userTestCode, userTestResult } = useContext(UserTestCode);
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
   const [newComments, setNewComments] = useState<string>();
+  const [isWriteCommentClick, setIsWriteCommentClick] = useState(false);
   const nameRef = useRef(null);
   const passwordRef = useRef(null);
   const data = userTestResult.data;
@@ -210,6 +211,8 @@ const Result = () => {
       return;
     }
 
+    setIsWriteCommentClick(true);
+
     writeComment({
       content: newComments,
       mbti: data.mbtiResult.mbti,
@@ -217,6 +220,8 @@ const Result = () => {
       password: (passwordRef.current as any).value,
       page: 1,
       size: commentsPerPage,
+    }).then(() => {
+      setIsWriteCommentClick(false);
     });
   };
 
@@ -337,6 +342,7 @@ const Result = () => {
             />
             <Textarea
               height="216px"
+              isSubmit={isWriteCommentClick}
               placeholder="댓글을 입력하세요"
               handleDescription={setNewComments}
             ></Textarea>

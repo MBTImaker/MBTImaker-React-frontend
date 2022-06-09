@@ -177,3 +177,5 @@ export type WriteCommentProperties = GetCommetsProperties & {
 }
 
 export type DeleteCommentProperties = GetCommetsProperties & { id: number, name: string, password: string }
+
+export type ReportCommentProperties = { commentId: number, description: string, subject: string }

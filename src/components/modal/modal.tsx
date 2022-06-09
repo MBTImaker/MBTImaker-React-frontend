@@ -85,6 +85,7 @@ export const Modal = ({
   });
   const [description, setDescription] = useState<string>("");
   const [reportType, setReportType] = useState<ReportType>("ABUSE");
+  const [isSubmitClick, setIsSubmitClick] = useState(false);
   const modalRef = useRef(null);
 
   const onClickOutside = (event: any) => {
@@ -94,7 +95,11 @@ export const Modal = ({
   };
 
   const onSubmit = () => {
-    reportComment(commentId, description, reportType);
+    reportComment({
+      commentId,
+      description,
+      subject: reportType,
+    });
   };
 
   useEffect(() => {
@@ -121,6 +126,7 @@ export const Modal = ({
           />
           <Textarea
             height="216px"
+            isSubmit={isSubmitClick}
             placeholder={textareaPlaceholder}
             handleDescription={setDescription}
           />
