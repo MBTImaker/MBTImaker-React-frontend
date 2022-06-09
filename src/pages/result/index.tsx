@@ -1,5 +1,5 @@
-import { useContext, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import useComment from "../../hooks/useComment";
 import { PALETTE } from "../../styles/palette";
@@ -180,6 +180,7 @@ const StyledUserCommentWriteContainer = styled.div`
 const Result = () => {
   const currentCommentsIndex = 1;
   const commentsPerPage = 3;
+  const navigate = useNavigate();
   const { userTestResult } = useContext(UserTestCode);
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
   const [newComments, setNewComments] = useState<string>();
@@ -221,6 +222,13 @@ const Result = () => {
   const onCommentsIndexChange = (page: number, size: number) => {
     getCommentsFromServer({ page, size });
   };
+
+  useEffect(() => {
+    if (userTestResult.code === "") {
+      alert("검사하지 않으셨네요! 12개의 문항에 답하시면 결과를 보여드릴게요.");
+      navigate(-1);
+    }
+  }, [userTestResult]);
 
   return (
     <StyledBoxContainer>

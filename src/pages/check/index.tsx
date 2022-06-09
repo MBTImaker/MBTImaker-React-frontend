@@ -29,7 +29,8 @@ const StyledBoxContainer = styled.ul`
 const Check = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(1);
-  const { userTestCode, handleTestCode } = useContext(UserTestCode);
+  const { userTestCode, handleTestCode, getUserTestResult } =
+    useContext(UserTestCode);
   const QUESTION_LIST_LENGTH = QUESTION_LIST.length;
   const remainQuestion =
     QUESTION_LIST_LENGTH - Object.keys(userTestCode).length;
@@ -63,7 +64,16 @@ const Check = () => {
           fontSizeMobile="0.875rem"
           color={remainQuestion > 0 ? "gray" : "red"}
           cursor={remainQuestion > 0 ? "default" : "pointer"}
-          content={`${remainQuestion}개의 항목이 남았습니다. \n(총 ${QUESTION_LIST_LENGTH}문항)`}
+          content={
+            remainQuestion > 0
+              ? `${remainQuestion}개의 항목이 남았습니다. \n(총 ${QUESTION_LIST_LENGTH}문항)`
+              : `나랑 비슷한 영화 캐릭터 결과 보기`
+          }
+          onClick={() => {
+            if (remainQuestion === 0) {
+              getUserTestResult();
+            }
+          }}
         />
       </Link>
     </>
