@@ -5,7 +5,7 @@
  *          긴 문장을 입력받을 때 사용됩니다.
  */
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
 
@@ -32,25 +32,27 @@ const StyledTextarea = styled.textarea<{ width: string; height: string }>`
 
 type TextareaProps = {
   disabled?: boolean;
-  // onSave: boolean;
+  isSubmitClick: boolean;
+  isSavedInServer: boolean;
+  handleIsSavedInServer: (isSavedInServer: boolean) => void;
   width?: string;
   height?: string;
   placeholder: string;
+  value?: string;
   handleDescription: (contents: string) => void;
 };
 
 export const Textarea = ({
   disabled = false,
-  // onSave = false,
+  isSubmitClick = false,
+  isSavedInServer = false,
+  handleIsSavedInServer,
   width = "100%",
   height = "100%",
   placeholder = "",
   handleDescription,
 }: TextareaProps) => {
   const textareaRef = useRef(null);
-
-  // useEffect(() => {}, [onSave]);
-
   return (
     <StyledTextarea
       ref={textareaRef}
@@ -58,8 +60,9 @@ export const Textarea = ({
       width={width}
       height={height}
       placeholder={placeholder}
-      onChange={(e) => {
-        console.log((textareaRef.current as any).value);
+      value={isSavedInServer ? "" : undefined}
+      onMouseOut={() => {
+        handleDescription((textareaRef.current as any).value);
       }}
     />
   );
