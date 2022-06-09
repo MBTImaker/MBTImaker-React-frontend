@@ -2,9 +2,9 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Block } from "../../components/block";
+import { Button } from "../../components/button";
 import { QUESTION_LIST } from "../../constants";
 import { UserTestCode } from "../../contexts/userTestCode";
-import { PALETTE } from "../../styles/palette";
 import { Question } from "../../types";
 
 const StyledBoxContainer = styled.ul`
@@ -20,53 +20,10 @@ const StyledBoxContainer = styled.ul`
   }
 `;
 
-const StyledMoveToNext = styled.div<{ remainQuestion: number }>`
-  font-family: "SBAggroB", sans-serif;
-  width: 532px;
-  height: 12.76%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: ${(props) =>
-    props.remainQuestion > 0 ? PALETTE.GRAY_GRADIENT : PALETTE.RED_GRADIENT};
-  border: 4px solid
-    ${(props) =>
-      props.remainQuestion > 0 ? PALETTE.DARK_GRAY_01 : PALETTE.RED_010};
-  box-shadow: 0px 8px 0px
-    ${(props) =>
-      props.remainQuestion > 0 ? PALETTE.DARK_GRAY_02 : PALETTE.DARK_RED};
-  border-radius: 80px;
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  cursor: ${(props) => (props.remainQuestion > 0 ? "default" : "pointer")};
-
-  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
-    width: 74.3%;
-    height: 10.76%;
-    font-size: 0.875rem;
-    line-height: 30px;
-  }
-`;
-
-const StyledMoveToNextSpan = styled.span<{ remainQuestion: number }>`
-  color: ${(props) =>
-    props.remainQuestion > 0 ? PALETTE.DARK_GRAY_01 : PALETTE.WHITE};
-  font-size: 1.375rem;
-  text-align: center;
-
-  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
-    font-size: 0.875rem;
-    line-height: 20px;
-  }
-`;
-
 const Check = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(1);
-  const { userTestCode, handleTestCode, getUserTestResult } =
-    useContext(UserTestCode);
+  const { userTestCode, handleTestCode } = useContext(UserTestCode);
   const QUESTION_LIST_LENGTH = QUESTION_LIST.length;
   const remainQuestion =
     QUESTION_LIST_LENGTH - Object.keys(userTestCode).length;
@@ -87,24 +44,21 @@ const Check = () => {
       </StyledBoxContainer>
 
       <Link to={remainQuestion === 0 ? "/result" : "#"}>
-        <StyledMoveToNext
-          remainQuestion={remainQuestion}
-          onClick={() => {
-            getUserTestResult(userTestCode);
-          }}
-        >
-          <StyledMoveToNextSpan remainQuestion={remainQuestion}>
-            {remainQuestion > 0 && (
-              <>
-                {remainQuestion}개의 항목이 남았습니다.
-                <br />
-                (총 {QUESTION_LIST_LENGTH}
-                문항)
-              </>
-            )}
-            {remainQuestion === 0 && <>나랑 비슷한 영화 캐릭터 결과 보기</>}
-          </StyledMoveToNextSpan>
-        </StyledMoveToNext>
+        <Button
+          position="fixed"
+          bottom="20px"
+          left="50%"
+          width="532px"
+          height="12.76%"
+          widthMobile="74.3%"
+          heightMobile="10.76%"
+          boxShadowSize={8}
+          fontSize="1.375rem"
+          fontSizeMobile="0.875rem"
+          color={remainQuestion > 0 ? "gray" : "red"}
+          cursor={remainQuestion > 0 ? "default" : "pointer"}
+          content={`${remainQuestion}개의 항목이 남았습니다. \n(총 ${QUESTION_LIST_LENGTH}문항)`}
+        />
       </Link>
     </>
   );
