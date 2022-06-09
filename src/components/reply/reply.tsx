@@ -142,7 +142,7 @@ export const Reply = ({
         return "사운드 오브 뮤직의 마리아";
       }
       default: {
-        break;
+        return;
       }
     }
   };
