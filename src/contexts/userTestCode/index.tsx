@@ -61,8 +61,10 @@ const userTestResultDefaultValue: TestResult = {
 };
 
 export const UserTestCode = createContext({
+  loading: false,
   userTestCode: {},
   userTestResult: userTestResultDefaultValue,
+  resetTestCode: () => {},
   handleTestCode: (id: number, userSelected: Answer) => {},
   getUserTestResult: () => {},
 });
@@ -72,10 +74,15 @@ type UserTestCodeProviderProps = {
 };
 
 const UserTestCodeProvider = ({ children }: UserTestCodeProviderProps) => {
+  const [loading, setLoading] = useState(false);
   const [userTestCode, setUserTestCode] = useState<TestCode>({});
   const [userTestResult, setUserTestResult] = useState<TestResult>(
     userTestResultDefaultValue
   );
+
+  const resetTestCode = () => {
+    setUserTestCode({});
+  };
 
   const handleTestCode = useCallback((id: number, userSelected: Answer) => {
     const userSelectedNumber = userSelected === "a" ? 0 : 1;
@@ -93,6 +100,8 @@ const UserTestCodeProvider = ({ children }: UserTestCodeProviderProps) => {
   };
 
   const getUserTestResult = async () => {
+    setLoading(true);
+
     try {
       const response: AxiosResponse<TestResult> = await axios({
         method: "post",
@@ -103,18 +112,22 @@ const UserTestCodeProvider = ({ children }: UserTestCodeProviderProps) => {
       });
       if (response.status !== 200)
         throw new Error("검사 결과를 가져오지 못했어요. 다시 접속해 주세요.");
+
       setUserTestResult(response.data);
-      setUserTestCode({});
     } catch (e) {
       console.error(e);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <UserTestCode.Provider
       value={{
+        loading,
         userTestCode,
         userTestResult,
+        resetTestCode,
         handleTestCode,
         getUserTestResult,
       }}

@@ -17,6 +17,7 @@ import { Textarea } from "../../components/textarea";
 import { Button } from "../../components/button";
 import { ReplySaved } from "../../components/reply-saved";
 import ResultComment from "../../assets/images/text/result-comment.png";
+import { QUESTION_LIST } from "../../constants";
 
 const StyledBoxContainer = styled.ul`
   width: 100%;
@@ -181,7 +182,7 @@ const Result = () => {
   const currentCommentsIndex = 1;
   const commentsPerPage = 3;
   const navigate = useNavigate();
-  const { userTestResult } = useContext(UserTestCode);
+  const { loading, userTestCode, userTestResult } = useContext(UserTestCode);
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
   const [newComments, setNewComments] = useState<string>();
   const nameRef = useRef(null);
@@ -224,12 +225,12 @@ const Result = () => {
   };
 
   useEffect(() => {
-    if (userTestResult.code === "") {
-      alert("검사하지 않으셨네요! 12개의 문항에 답하시면 결과를 보여드릴게요.");
+    if (!loading && Object.keys(userTestCode).length !== QUESTION_LIST.length) {
+      alert("12개의 모든 문항에 답하시면 결과를 보여드릴게요.");
       navigate(-1);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userTestResult.code]);
+  }, [loading, userTestCode]);
 
   return (
     <StyledBoxContainer>
@@ -311,10 +312,7 @@ const Result = () => {
           <StyledShare>추천 영화</StyledShare>
           <StyledFlexRow gap={20}>
             {data.mbtiResult.recommendedMovies.map((recommendedMovie) => (
-              <StyledRecommendedMovie
-                key={recommendedMovie.url}
-                image={recommendedMovie.url}
-              />
+              <StyledRecommendedMovie image={recommendedMovie.url} /> // TODO: add key
             ))}
           </StyledFlexRow>
         </BlockInner>
