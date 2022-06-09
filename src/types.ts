@@ -102,6 +102,8 @@ export type Comment = {
     "state": string;
 };
 
+export type TotalComments = number;
+
 export type Comments = {
     "status": number;
     "code": string;
@@ -165,3 +167,13 @@ export type CommentReport = {
     "description": string,
     "subject": ReportType,
 }
+
+export type GetCommetsProperties = {
+    page: number, size: number
+}
+
+export type WriteCommentProperties = GetCommetsProperties & {
+    content: string; mbti: string, name: string, password: string
+}
+
+export type DeleteCommentProperties = GetCommetsProperties & { id: number, name: string, password: string }

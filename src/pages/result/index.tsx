@@ -179,20 +179,19 @@ const StyledUserCommentWriteContainer = styled.div`
 `;
 
 const Result = () => {
+  const currentCommentsIndex = 1;
+  const commentsPerPage = 3;
   const { userTestResult } = useContext(UserTestCode);
-  const { savedComments, writeComment } = useComment();
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
   const [newComments, setNewComments] = useState<string>();
   const nameRef = useRef(null);
   const passwordRef = useRef(null);
   const data = userTestResult.data;
-  const commentsPerPage = 3;
-
-  const indexOfLast = currentPageIndex * commentsPerPage;
-  const indexOfFirst = indexOfLast - commentsPerPage;
-  const getCurrentPageComments = (savedComments: Comment[]) => {
-    return savedComments.slice(indexOfFirst, indexOfLast);
-  };
+  const { savedComments, totalComments, getCommentsFromServer, writeComment } =
+    useComment({
+      page: 1,
+      size: commentsPerPage,
+    });
 
   const onWriteButtonClick = () => {
     if ((nameRef.current as any).value === "") {
@@ -210,12 +209,18 @@ const Result = () => {
       return;
     }
 
-    writeComment(
-      newComments,
-      data.mbtiResult.mbti,
-      (nameRef.current as any).value,
-      (passwordRef.current as any).value
-    );
+    writeComment({
+      content: newComments,
+      mbti: data.mbtiResult.mbti,
+      name: (nameRef.current as any).value,
+      password: (passwordRef.current as any).value,
+      page: 1,
+      size: commentsPerPage,
+    });
+  };
+
+  const onCommentsIndexChange = (page: number, size: number) => {
+    getCommentsFromServer({ page, size });
   };
 
   return (
@@ -350,23 +355,25 @@ const Result = () => {
           <LineDotted />
 
           <StyledUserCommentContainer>
-            {savedComments &&
-              getCurrentPageComments(savedComments).map((comment) => (
-                <Reply
-                  key={comment.id}
-                  id={comment.id}
-                  createdDate={comment.createdDate}
-                  name={comment.name}
-                  mbti={comment.mbti}
-                  content={comment.content}
-                />
-              ))}
+            {savedComments.map((comment) => (
+              <Reply
+                key={comment.id}
+                id={comment.id}
+                createdDate={comment.createdDate}
+                name={comment.name}
+                mbti={comment.mbti}
+                content={comment.content}
+                page={currentCommentsIndex}
+                size={commentsPerPage}
+              />
+            ))}
 
             <Pagination
               currentPageIndex={currentPageIndex}
               commentsPerPage={commentsPerPage}
-              totalCommentLength={savedComments?.length || 0}
+              totalCommentLength={totalComments || 0}
               handleCurrentPageIndex={setCurrentPageIndex}
+              handleCommnetsFromServer={onCommentsIndexChange}
             />
           </StyledUserCommentContainer>
         </BlockInner>

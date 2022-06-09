@@ -4,6 +4,7 @@ import LeftArrowBlocked from "../../assets/images/arrow/left-arrow-blocked.svg";
 import RightArrowBlocked from "../../assets/images/arrow/right-arrow-blocked.svg";
 import LeftArrow from "../../assets/images/arrow/left-arrow.svg";
 import RightArrow from "../../assets/images/arrow/right-arrow.svg";
+import { useEffect } from "react";
 
 const BUTTON_SIZE = "32px";
 
@@ -41,6 +42,7 @@ type PaginationProps = {
   commentsPerPage: number;
   totalCommentLength: number;
   handleCurrentPageIndex: (index: number) => void;
+  handleCommnetsFromServer?: (page: number, size: number) => void;
 };
 
 export const Pagination = ({
@@ -48,11 +50,33 @@ export const Pagination = ({
   commentsPerPage,
   totalCommentLength,
   handleCurrentPageIndex,
+  handleCommnetsFromServer,
 }: PaginationProps) => {
   const pageNumbers: number[] = [];
-  for (let i = 1; i <= Math.ceil(totalCommentLength / commentsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+
+  useEffect(() => {
+    if (handleCommnetsFromServer)
+      handleCommnetsFromServer(currentPageIndex, commentsPerPage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPageIndex, commentsPerPage]);
+
+  const getFirstIndex = () => {
+    if (currentPageIndex % 3 === 0) return currentPageIndex - 2;
+    else if (currentPageIndex % 3 === 1) return currentPageIndex;
+    else return currentPageIndex - 1;
+  };
+
+  const setPageNumbers = () => {
+    let index = firstIndex;
+    while (index < firstIndex + 3) {
+      pageNumbers.push(index);
+      index += 1;
+      if (index > totalCommentLength) break;
+    }
+  };
+
+  const firstIndex = getFirstIndex();
+  setPageNumbers();
 
   const onPageIndexClick = (index: number) => {
     handleCurrentPageIndex(index);
@@ -63,7 +87,7 @@ export const Pagination = ({
   };
 
   const onRightArrowClick = () => {
-    if (currentPageIndex < pageNumbers[pageNumbers.length - 1])
+    if (currentPageIndex < totalCommentLength)
       handleCurrentPageIndex(currentPageIndex + 1);
   };
 
@@ -86,7 +110,7 @@ export const Pagination = ({
           </StyledNumber>
         ))}
         <StyledRightArrow
-          isBlocked={currentPageIndex === pageNumbers[pageNumbers.length - 1]}
+          isBlocked={currentPageIndex === totalCommentLength}
           onClick={onRightArrowClick}
         />
       </StyledUl>

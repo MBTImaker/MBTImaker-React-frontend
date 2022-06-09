@@ -58,6 +58,8 @@ type ModalProps = {
   isModalActive: boolean;
   handleModalActive: (isActive: boolean) => void;
   commentId: number;
+  currentCommentPage: number;
+  currentCommentSize: number;
 };
 
 export const Modal = ({
@@ -68,8 +70,13 @@ export const Modal = ({
   isModalActive,
   handleModalActive,
   commentId,
+  currentCommentPage,
+  currentCommentSize,
 }: ModalProps) => {
-  const { reportComment } = useComment();
+  const { reportComment } = useComment({
+    page: currentCommentPage,
+    size: currentCommentSize,
+  });
   const [description, setDescription] = useState<string>("");
   const [reportType, setReportType] = useState<ReportType>("ABUSE");
   const modalRef = useRef(null);
