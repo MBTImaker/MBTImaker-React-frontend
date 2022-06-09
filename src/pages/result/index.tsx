@@ -184,7 +184,6 @@ const Result = () => {
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
   const [newComments, setNewComments] = useState<string>();
   const nameRef = useRef(null);
-  const contentRef = useRef(null);
   const passwordRef = useRef(null);
   const data = userTestResult.data;
   const commentsPerPage = 3;
@@ -193,6 +192,30 @@ const Result = () => {
   const indexOfFirst = indexOfLast - commentsPerPage;
   const getCurrentPageComments = (savedComments: Comment[]) => {
     return savedComments.slice(indexOfFirst, indexOfLast);
+  };
+
+  const onWriteButtonClick = () => {
+    if ((nameRef.current as any).value === "") {
+      alert("닉네임을 입력해 주세요.");
+      return;
+    }
+
+    if (newComments == null) {
+      alert("작성된 댓글이 없어요. 확인해 주세요.");
+      return;
+    }
+
+    if ((passwordRef.current as any).value === "") {
+      alert("비밀번호를 입력해 주세요.");
+      return;
+    }
+
+    writeComment(
+      newComments,
+      data.mbtiResult.mbti,
+      (nameRef.current as any).value,
+      (passwordRef.current as any).value
+    );
   };
 
   return (
@@ -319,14 +342,7 @@ const Result = () => {
                 heightMobile="40px"
                 fontSizeMobile="0.875rem"
                 content="댓글 작성"
-                onClick={() => {
-                  writeComment(
-                    (contentRef.current as any).value,
-                    data.mbtiResult.mbti,
-                    (nameRef.current as any).value,
-                    (passwordRef.current as any).value
-                  );
-                }}
+                onClick={onWriteButtonClick}
               />
             </StyledUserCommentWriteContainer>
           </StyledUserCommentContainer>

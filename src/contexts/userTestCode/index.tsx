@@ -104,7 +104,6 @@ const UserTestCodeProvider = ({ children }: UserTestCodeProviderProps) => {
     let result: String = Object.keys(userTestCode).reduce((res, key) => {
       return res + userTestCode[Number(key)];
     }, "");
-    console.log(result.replace(/(.{3})/g, "$1-").replace(/-$/, ""));
     return result.replace(/(.{3})/g, "$1-").replace(/-$/, "");
   };
 
