@@ -3,6 +3,17 @@ export type TestCode = Record<number, 0 | 1>;
 export type Children = React.ReactNode;
 export type Answer = "a" | "b" | null;
 export type Image = string;
+export type ButtonColor = "red" | "gray";
+export type SelectType = "신고";
+
+export type ButtonSize = {
+    width?: string;
+    height?: string;
+    widthMobile?: string;
+    heightMobile?: string;
+    fontSize?: string;
+    fontSizeMobile?: string;
+}
 
 export type TestCountResult = {
     "status": number,
@@ -133,10 +144,24 @@ export type CommentSave = {
         "result": string;
         "clientIp": string;
     }
-}
+};
+
 export type CommentDelete = {
     "code": "string",
     "data": {},
     "message": "string",
     "status": 0
+}
+
+export type ReportType = "ABUSE" | "PORNOGRAPHY" | "COMMERCIAL" | "PAPERING" | "DISPUTE" | "PROMOTION";
+
+export type ReportKoreanType = {
+    "value": ReportType,
+    "korean": string,
+}
+
+export type CommentReport = {
+    "commentId": number,
+    "description": string,
+    "subject": ReportType,
 }

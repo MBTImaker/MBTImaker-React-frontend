@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import { LineDotted } from "../../components/line-dotted";
 import ResultComment from "../../assets/images/text/result-comment.png";
 import { Input } from "../../components/input";
-import { ButtonRed } from "../../components/button-red";
 import useComment from "../../hooks/useComment";
 import { Reply } from "../../components/reply";
 import { CardChemistry } from "../../components/card-chemistry";
@@ -17,6 +16,8 @@ import { ShareKaKao } from "../../components/share-kakao";
 import { IconShare } from "../../components/icon-share";
 import { Comment } from "../../types";
 import { Pagination } from "../../components/pagination";
+import { Textarea } from "../../components/textarea";
+import { Button } from "../../components/button";
 
 const StyledBoxContainer = styled.ul`
   width: 100%;
@@ -181,8 +182,8 @@ const Result = () => {
   const { userTestResult } = useContext(UserTestCode);
   const { savedComments, writeComment } = useComment();
   const [currentPageIndex, setCurrentPageIndex] = useState(1);
+  const [newComments, setNewComments] = useState<string>();
   const nameRef = useRef(null);
-  const contentRef = useRef(null);
   const passwordRef = useRef(null);
   const data = userTestResult.data;
   const commentsPerPage = 3;
@@ -191,6 +192,30 @@ const Result = () => {
   const indexOfFirst = indexOfLast - commentsPerPage;
   const getCurrentPageComments = (savedComments: Comment[]) => {
     return savedComments.slice(indexOfFirst, indexOfLast);
+  };
+
+  const onWriteButtonClick = () => {
+    if ((nameRef.current as any).value === "") {
+      alert("닉네임을 입력해 주세요.");
+      return;
+    }
+
+    if (newComments == null) {
+      alert("작성된 댓글이 없어요. 확인해 주세요.");
+      return;
+    }
+
+    if ((passwordRef.current as any).value === "") {
+      alert("비밀번호를 입력해 주세요.");
+      return;
+    }
+
+    writeComment(
+      newComments,
+      data.mbtiResult.mbti,
+      (nameRef.current as any).value,
+      (passwordRef.current as any).value
+    );
   };
 
   return (
@@ -282,7 +307,7 @@ const Result = () => {
         </BlockInner>
 
         <Link to="/">
-          <ButtonRed
+          <Button
             width="380px"
             height="102px"
             widthMobile="84vw"
@@ -299,11 +324,11 @@ const Result = () => {
               height="52px"
               placeholder="닉네임을 입력하세요"
             />
-            <Input
-              ref={contentRef}
+            <Textarea
               height="216px"
               placeholder="댓글을 입력하세요"
-            />
+              handleDescription={setNewComments}
+            ></Textarea>
             <StyledUserCommentWriteContainer>
               <Input
                 ref={passwordRef}
@@ -311,20 +336,13 @@ const Result = () => {
                 height="52px"
                 placeholder="비밀번호를 입력하세요"
               />
-              <ButtonRed
+              <Button
                 width="114px"
                 height="52px"
                 heightMobile="40px"
                 fontSizeMobile="0.875rem"
                 content="댓글 작성"
-                onClick={() => {
-                  writeComment(
-                    (contentRef.current as any).value,
-                    data.mbtiResult.mbti,
-                    (nameRef.current as any).value,
-                    (passwordRef.current as any).value
-                  );
-                }}
+                onClick={onWriteButtonClick}
               />
             </StyledUserCommentWriteContainer>
           </StyledUserCommentContainer>

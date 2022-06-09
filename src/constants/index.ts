@@ -1,4 +1,4 @@
-import { Question } from './../types';
+import { Question, ReportKoreanType } from './../types';
 
 export const QUESTION_LIST: Question[] = [
     {
@@ -134,3 +134,30 @@ export const QUESTION_LIST: Question[] = [
         }
     }
 ];
+
+export const REPORT_TYPE: ReportKoreanType[] = [
+    {
+        value: "ABUSE",
+        korean: "욕설 / 비하",
+    },
+    {
+        value: "PORNOGRAPHY",
+        korean: "음란물 / 불건전한 대화",
+    },
+    {
+        value: "COMMERCIAL",
+        korean: "상업적 광고 / 판매",
+    },
+    {
+        value: "PAPERING",
+        korean: " 낚시 / 도배",
+    },
+    {
+        value: "DISPUTE",
+        korean: "지나친 정치 / 종교 논쟁",
+    },
+    {
+        value: "PROMOTION",
+        korean: "불법 홍보",
+    },
+]

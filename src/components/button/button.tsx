@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
+import { ButtonColor, ButtonSize } from "../../types";
 
 const StyledContainer = styled.div<{
   width: string;
   height: string;
   widthMobile: string;
   heightMobile: string;
+  color: ButtonColor;
 }>`
   font-family: "SBAggroB", sans-serif;
   width: ${(props) => props.width};
@@ -13,10 +15,18 @@ const StyledContainer = styled.div<{
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${PALETTE.RED_GRADIENT};
-  border: 4px solid ${PALETTE.RED_010};
-  box-shadow: 0px 8px 0px ${PALETTE.DARK_RED};
+  background: ${(props) =>
+    props.color === "red" ? PALETTE.RED_GRADIENT : PALETTE.GRAY_GRADIENT};
+  border: solid
+    ${(props) =>
+      props.color === "red"
+        ? `${PALETTE.RED_010} 4px`
+        : `${PALETTE.DARK_GRAY_01} 3px`};
+  box-shadow: 0px 5px 0px
+    ${(props) =>
+      props.color === "red" ? PALETTE.DARK_RED : PALETTE.DARK_GRAY_02};
   border-radius: 80px;
+  cursor: pointer;
 
   @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
     width: ${(props) => props.widthMobile}; //74.3%;
@@ -36,24 +46,20 @@ const StyledSpan = styled.span<{ fontSize: string; fontSizeMobile: string }>`
   }
 `;
 
-type ButtonRedProps = {
-  width?: string;
-  height?: string;
-  widthMobile?: string;
-  heightMobile?: string;
-  fontSize?: string;
-  fontSizeMobile?: string;
+type ButtonRedProps = ButtonSize & {
+  color?: ButtonColor;
   content: string;
   onClick?: () => void;
 };
 
-export const ButtonRed = ({
+export const Button = ({
   width = "100%",
   height = "100%",
   widthMobile = "100%",
   heightMobile = "100%",
   fontSize = "1rem",
   fontSizeMobile = "1rem",
+  color = "red",
   content,
   onClick,
 }: ButtonRedProps) => (
@@ -62,6 +68,7 @@ export const ButtonRed = ({
     height={height}
     widthMobile={widthMobile}
     heightMobile={heightMobile}
+    color={color}
     onClick={() => {
       if (onClick) {
         onClick();

@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { useEffect, useState } from 'react'
-import { Comment, CommentDelete, Comments, CommentSave } from '../types';
+import { Comment, CommentDelete, CommentReport, Comments, CommentSave } from '../types';
 
 const useComment = (page: number = 1, size: number = 5) => {
     const [savedComments, setSavedComments] = useState<Comment[]>([]);
@@ -62,7 +62,26 @@ const useComment = (page: number = 1, size: number = 5) => {
         }
     };
 
-    return { savedComments, writeComment, deleteComment }
+    const reportComment = async (commentId: number, description: string, subject: string) => {
+        try {
+            const response: AxiosResponse<CommentReport> = await axios({
+                method: "post",
+                url: `https://mbti-test.herokuapp.com/report`,
+                data: {
+                    commentId,
+                    description,
+                    subject,
+                },
+            });
+
+            if (response.status !== 200) throw new Error("신고되지 않았어요. 다시 입력해 주세요 🚨");
+            alert("신고되었어요 🚨");
+        } catch (e) {
+            alert("신고되지 않았어요. 다시 입력해 주세요 🚨");
+        }
+    };
+
+    return { savedComments, writeComment, deleteComment, reportComment }
 }
 
 export default useComment;
