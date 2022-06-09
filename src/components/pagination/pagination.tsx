@@ -50,9 +50,24 @@ export const Pagination = ({
   handleCurrentPageIndex,
 }: PaginationProps) => {
   const pageNumbers: number[] = [];
-  for (let i = 1; i <= Math.ceil(totalCommentLength / commentsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+
+  const getFirstIndex = () => {
+    if (currentPageIndex % 3 === 0) return currentPageIndex - 2;
+    else if (currentPageIndex % 3 === 1) return currentPageIndex;
+    else return currentPageIndex - 1;
+  };
+
+  const setPageNumbers = () => {
+    let index = firstIndex;
+    while (index < firstIndex + 3) {
+      pageNumbers.push(index);
+      index += 1;
+      if (index > totalCommentLength) break;
+    }
+  };
+
+  const firstIndex = getFirstIndex();
+  setPageNumbers();
 
   const onPageIndexClick = (index: number) => {
     handleCurrentPageIndex(index);
@@ -63,7 +78,7 @@ export const Pagination = ({
   };
 
   const onRightArrowClick = () => {
-    if (currentPageIndex < pageNumbers[pageNumbers.length - 1])
+    if (currentPageIndex < totalCommentLength)
       handleCurrentPageIndex(currentPageIndex + 1);
   };
 
@@ -86,7 +101,7 @@ export const Pagination = ({
           </StyledNumber>
         ))}
         <StyledRightArrow
-          isBlocked={currentPageIndex === pageNumbers[pageNumbers.length - 1]}
+          isBlocked={currentPageIndex === totalCommentLength}
           onClick={onRightArrowClick}
         />
       </StyledUl>

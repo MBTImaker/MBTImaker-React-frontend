@@ -5,6 +5,7 @@ import Delete from "../../assets/images/button/delete.svg";
 import useComment from "../../hooks/useComment";
 import { useState } from "react";
 import { Modal } from "../modal";
+import { GetCommetsProperties } from "../../types";
 
 const DESKTOP_BORDER_RADIUS = "20px";
 
@@ -73,7 +74,7 @@ const StyledDelete = styled.button`
   background-repeat: no-repeat;
 `;
 
-type ReplyProps = {
+type ReplyProps = GetCommetsProperties & {
   id: number;
   createdDate: string;
   name: string;
@@ -81,7 +82,15 @@ type ReplyProps = {
   mbti: string;
 };
 
-export const Reply = ({ id, createdDate, name, content, mbti }: ReplyProps) => {
+export const Reply = ({
+  id,
+  createdDate,
+  name,
+  content,
+  mbti,
+  page,
+  size,
+}: ReplyProps) => {
   const getNamebyMbti = () => {
     switch (mbti) {
       case "ISTJ": {
@@ -138,14 +147,14 @@ export const Reply = ({ id, createdDate, name, content, mbti }: ReplyProps) => {
     }
   };
 
-  const { deleteComment } = useComment();
+  const { deleteComment } = useComment({ page, size });
   const [isModalActive, setIsModalActive] = useState(false);
   const nameByMbti = getNamebyMbti();
 
   const onDelete = () => {
     const promptPassword = prompt("비밀번호를 입력해 주세요.");
     if (promptPassword === "" || promptPassword == null) return;
-    deleteComment(id, name, promptPassword);
+    deleteComment({ id, name, password: promptPassword, page, size });
   };
 
   const handleModalActive = (isActive: boolean) => {
@@ -180,6 +189,8 @@ export const Reply = ({ id, createdDate, name, content, mbti }: ReplyProps) => {
         submitButtonText="제출"
         isModalActive={isModalActive}
         handleModalActive={handleModalActive}
+        currentCommentPage={page}
+        currentCommentSize={size}
       />
     </>
   );
