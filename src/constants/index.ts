@@ -1,4 +1,4 @@
-import { Question, ReportType } from './../types';
+import { Question, ReportKoreanType } from './../types';
 
 export const QUESTION_LIST: Question[] = [
     {
@@ -135,7 +135,7 @@ export const QUESTION_LIST: Question[] = [
     }
 ];
 
-export const REPORT_TYPE: ReportType[] = [
+export const REPORT_TYPE: ReportKoreanType[] = [
     {
         value: "ABUSE",
         korean: "욕설 / 비하",

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
 import DownArrow from "../../assets/images/arrow/down-arrow.svg";
-import { SelectType } from "../../types";
+import { ReportType, SelectType } from "../../types";
 import { REPORT_TYPE } from "../../constants";
 
 const DEAULT_TEXT = "유형 선택";
@@ -61,10 +61,16 @@ const StyledArrow = styled.img<{ isOpen: boolean }>`
 type SelectProps = {
   isModalActive: boolean;
   selectType: SelectType;
+  handleReportType: (reportType: ReportType) => void;
 };
 
-export const Select = ({ isModalActive, selectType }: SelectProps) => {
+export const Select = ({
+  isModalActive,
+  selectType,
+  handleReportType,
+}: SelectProps) => {
   const [buttonText, setButtonText] = useState(DEAULT_TEXT);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const onSelectClick = () => {
@@ -72,8 +78,9 @@ export const Select = ({ isModalActive, selectType }: SelectProps) => {
   };
 
   const onTypeItemClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+    const selectedReportType = (e.target as Element).innerHTML;
     setIsOpen(false);
-    setButtonText((e.target as Element).innerHTML);
+    setButtonText(selectedReportType);
   };
 
   const getContents = () => {
@@ -98,12 +105,14 @@ export const Select = ({ isModalActive, selectType }: SelectProps) => {
         <StyledArrow isOpen={isOpen} />
       </StyledButton>
       <StyledReportTypeList isOpen={isOpen}>
-        {contents.map((report_type_value) => (
+        {contents.map((content) => (
           <StyledReportTypeItem
-            onClick={(e) => onTypeItemClick(e)}
-            value={report_type_value.value}
+            onClick={(e) => {
+              handleReportType(content.value);
+              onTypeItemClick(e);
+            }}
           >
-            {report_type_value.korean}
+            {content.korean}
           </StyledReportTypeItem>
         ))}
       </StyledReportTypeList>

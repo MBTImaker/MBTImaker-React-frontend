@@ -6,6 +6,8 @@ import Report from "../../assets/images/text/report.png";
 import { Textarea } from "../textarea";
 import { Select } from "../select";
 import { Button } from "../button";
+import useComment from "../../hooks/useComment";
+import { ReportType } from "../../types";
 
 const StyledContainer = styled.div<{ isModalActive: boolean }>`
   position: absolute;
@@ -55,6 +57,7 @@ type ModalProps = {
   submitButtonText: string;
   isModalActive: boolean;
   handleModalActive: (isActive: boolean) => void;
+  commentId: number;
 };
 
 export const Modal = ({
@@ -64,9 +67,12 @@ export const Modal = ({
   submitButtonText,
   isModalActive,
   handleModalActive,
+  commentId,
 }: ModalProps) => {
+  const { reportComment } = useComment();
+  const [description, setDescription] = useState<string>("");
+  const [reportType, setReportType] = useState<ReportType>("ABUSE");
   const modalRef = useRef(null);
-  const [description, setDescription] = useState<string>();
 
   const onClickOutside = (event: any) => {
     if (modalRef.current && !(modalRef.current as any).contains(event.target)) {
@@ -74,8 +80,8 @@ export const Modal = ({
     }
   };
 
-  const handleDescription = (contents: string) => {
-    setDescription(contents);
+  const onSubmit = () => {
+    reportComment(commentId, description, reportType);
   };
 
   useEffect(() => {
@@ -95,15 +101,23 @@ export const Modal = ({
           padding={32}
           gap={18}
         >
-          <Select selectType="신고" isModalActive={isModalActive} />
+          <Select
+            selectType="신고"
+            isModalActive={isModalActive}
+            handleReportType={setReportType}
+          />
           <Textarea
             height="216px"
             placeholder={textareaPlaceholder}
             handleDescription={setDescription}
-          ></Textarea>
+          />
           <StyledButtonContainer>
-            <Button content={cancleButtonText} color="gray" />
-            <Button content={submitButtonText} />
+            <Button
+              content={cancleButtonText}
+              color="gray"
+              onClick={() => handleModalActive(false)}
+            />
+            <Button content={submitButtonText} onClick={() => onSubmit()} />
           </StyledButtonContainer>
         </BlockInner>
       </StyledBlock>

@@ -153,7 +153,15 @@ export type CommentDelete = {
     "status": 0
 }
 
-export type ReportType = {
-    "value": "ABUSE" | "PORNOGRAPHY" | "COMMERCIAL" | "PAPERING" | "DISPUTE" | "PROMOTION",
+export type ReportType = "ABUSE" | "PORNOGRAPHY" | "COMMERCIAL" | "PAPERING" | "DISPUTE" | "PROMOTION";
+
+export type ReportKoreanType = {
+    "value": ReportType,
     "korean": string,
+}
+
+export type CommentReport = {
+    "commentId": number,
+    "description": string,
+    "subject": ReportType,
 }

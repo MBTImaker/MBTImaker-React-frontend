@@ -42,8 +42,8 @@ export const Textarea = ({
     width={width}
     height={height}
     placeholder={placeholder}
-    onChange={(event) => {
-      handleDescription(event.target.value);
+    onChange={(e) => {
+      handleDescription(e.target.value);
     }}
   />
 );
