@@ -42,45 +42,49 @@ const Check = () => {
 
   return (
     <>
-      <StyledBoxContainer>
-        {QUESTION_LIST.map((q: Question) => (
-          <Block
-            currentQuestionIndex={currentQuestionIndex}
-            handleTestCode={handleTestCode}
-            key={q.id}
-            id={q.id}
-            question={q.question}
-            answer={q.answer}
-          />
-        ))}
-      </StyledBoxContainer>
+      {loading && <Loading />}
+      {!loading && (
+        <>
+          <StyledBoxContainer>
+            {QUESTION_LIST.map((q: Question) => (
+              <Block
+                currentQuestionIndex={currentQuestionIndex}
+                handleTestCode={handleTestCode}
+                key={q.id}
+                id={q.id}
+                question={q.question}
+                answer={q.answer}
+              />
+            ))}
+          </StyledBoxContainer>
 
-      <Button
-        position="fixed"
-        bottom="20px"
-        left="50%"
-        width="532px"
-        height="12.76%"
-        widthMobile="74.3%"
-        heightMobile="10.76%"
-        boxShadowSize={8}
-        fontSize="1.375rem"
-        fontSizeMobile="0.875rem"
-        color={remainQuestion > 0 ? "gray" : "red"}
-        cursor={remainQuestion > 0 ? "default" : "pointer"}
-        content={
-          remainQuestion > 0
-            ? `${remainQuestion}개의 항목이 남았습니다. \n(총 ${QUESTION_LIST_LENGTH}문항)`
-            : `나랑 비슷한 영화 캐릭터 결과 보기`
-        }
-        onClick={() => {
-          if (remainQuestion === 0) {
-            getUserTestResult();
-            if (loading) <Loading />;
-            else navigate("/result");
-          }
-        }}
-      />
+          <Button
+            position="fixed"
+            bottom="20px"
+            left="50%"
+            width="532px"
+            height="12.76%"
+            widthMobile="74.3%"
+            heightMobile="10.76%"
+            boxShadowSize={8}
+            fontSize="1.375rem"
+            fontSizeMobile="0.875rem"
+            color={remainQuestion > 0 ? "gray" : "red"}
+            cursor={remainQuestion > 0 ? "default" : "pointer"}
+            content={
+              remainQuestion > 0
+                ? `${remainQuestion}개의 항목이 남았습니다. \n(총 ${QUESTION_LIST_LENGTH}문항)`
+                : `나랑 비슷한 영화 캐릭터 결과 보기`
+            }
+            onClick={() => {
+              if (remainQuestion === 0) {
+                getUserTestResult();
+                if (!loading) navigate("/result");
+              }
+            }}
+          />
+        </>
+      )}
     </>
   );
 };

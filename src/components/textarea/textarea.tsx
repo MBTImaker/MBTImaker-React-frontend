@@ -5,6 +5,7 @@
  *          긴 문장을 입력받을 때 사용됩니다.
  */
 
+import { useRef } from "react";
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
 
@@ -31,6 +32,7 @@ const StyledTextarea = styled.textarea<{ width: string; height: string }>`
 
 type TextareaProps = {
   disabled?: boolean;
+  // onSave: boolean;
   width?: string;
   height?: string;
   placeholder: string;
@@ -39,18 +41,27 @@ type TextareaProps = {
 
 export const Textarea = ({
   disabled = false,
+  // onSave = false,
   width = "100%",
   height = "100%",
   placeholder = "",
   handleDescription,
-}: TextareaProps) => (
-  <StyledTextarea
-    disabled={disabled}
-    width={width}
-    height={height}
-    placeholder={placeholder}
-    onChange={(e) => {
-      handleDescription(e.target.value);
-    }}
-  />
-);
+}: TextareaProps) => {
+  const textareaRef = useRef(null);
+
+  // useEffect(() => {}, [onSave]);
+
+  return (
+    <StyledTextarea
+      ref={textareaRef}
+      disabled={disabled}
+      width={width}
+      height={height}
+      placeholder={placeholder}
+      onChange={(e) => {
+        console.log((textareaRef.current as any).value);
+      }}
+    />
+  );
+}; // submit되면 지워지는 거
+// 비밀번호 숫자만. 이모티콘 안돼. 글자 수 세는 거.
