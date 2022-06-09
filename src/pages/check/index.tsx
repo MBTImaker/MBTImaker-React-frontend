@@ -1,9 +1,3 @@
-/**
- * url: /check
- * purpose: It indicates the area of the problem. It's a white background.
- *          문제 하나의 영역을 나타냅니다. 하얀색 배경입니다.
- */
-
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
