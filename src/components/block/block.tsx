@@ -1,15 +1,89 @@
-/**
- * url: /check
- * purpose: It indicates the area of the problem. It's a white background.
- *          문제 하나의 영역을 나타냅니다. 하얀색 배경입니다.
- */
-
 import { useCallback, useState } from "react";
 import styled from "styled-components";
 import useImage from "../../hooks/useImage";
 import { PALETTE } from "../../styles/palette";
 import { ButtonAnswer } from "../button-answer";
 import { Answer, Question } from "../../types";
+
+type BlockProps = Question & {
+  currentQuestionIndex: number;
+  handleTestCode: (id: number, userSelected: Answer) => void;
+};
+
+/**
+ * Indicate the area of the problem. It's a white background.
+ * 문제 하나의 영역을 나타냅니다. 하얀색 배경입니다.
+ */
+export const Block = ({
+  /**
+   * 문제의 번호 (삭제 예정)
+   */
+  currentQuestionIndex,
+  /**
+   * 사용자가 버튼을 눌렀을 때 선택한 값을 저장하는 함수
+   */
+  handleTestCode,
+  /**
+   * 문제의 번호
+   */
+  id,
+  /**
+   * 문제
+   */
+  question,
+  /**
+   * 선택지 문항 2개 (이름 변경 예정)
+   */
+  answer,
+}: BlockProps) => {
+  const { image } = useImage(id);
+  const [userSelected, setUserSelected] = useState<Answer>();
+
+  const handleClick = useCallback(
+    (answer: Answer) => {
+      if (userSelected === answer) {
+        setUserSelected(null);
+      } else {
+        setUserSelected(answer);
+        handleTestCode(id, answer);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [userSelected]
+  );
+
+  return (
+    <StyledBox>
+      <StyledId image={image} />
+
+      <StyledQuestionContainer>
+        <StyledQuestion>{question.situation}</StyledQuestion>
+        <StyledQuestion>{question.ask}</StyledQuestion>
+      </StyledQuestionContainer>
+
+      <StyledButtonContainer>
+        <ButtonAnswer
+          currentQuestionIndex={currentQuestionIndex}
+          id="a"
+          handleClick={handleClick}
+          content={answer.a}
+          isClicked={userSelected === "a"}
+        />
+        <ButtonAnswer
+          currentQuestionIndex={currentQuestionIndex}
+          id="b"
+          handleClick={handleClick}
+          content={answer.b}
+          isClicked={userSelected === "b"}
+        />
+      </StyledButtonContainer>
+    </StyledBox>
+  );
+};
+
+/////////////////////////////
+/// Styles
+/////////////////////////////
 
 const StyledBox = styled.li`
   width: 716px;
@@ -69,60 +143,3 @@ const StyledButtonContainer = styled.div`
   align-items: center;
   gap: 20px;
 `;
-
-type BlockProps = Question & {
-  currentQuestionIndex: number;
-  handleTestCode: (id: number, userSelected: Answer) => void;
-};
-
-export const Block = ({
-  currentQuestionIndex,
-  handleTestCode,
-  id,
-  question,
-  answer,
-}: BlockProps) => {
-  const { image } = useImage(id);
-  const [userSelected, setUserSelected] = useState<Answer>();
-
-  const handleClick = useCallback(
-    (answer: Answer) => {
-      if (userSelected === answer) {
-        setUserSelected(null);
-      } else {
-        setUserSelected(answer);
-        handleTestCode(id, answer);
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [userSelected]
-  );
-
-  return (
-    <StyledBox>
-      <StyledId image={image} />
-
-      <StyledQuestionContainer>
-        <StyledQuestion>{question.situation}</StyledQuestion>
-        <StyledQuestion>{question.ask}</StyledQuestion>
-      </StyledQuestionContainer>
-
-      <StyledButtonContainer>
-        <ButtonAnswer
-          currentQuestionIndex={currentQuestionIndex}
-          id="a"
-          handleClick={handleClick}
-          content={answer.a}
-          isClicked={userSelected === "a"}
-        />
-        <ButtonAnswer
-          currentQuestionIndex={currentQuestionIndex}
-          id="b"
-          handleClick={handleClick}
-          content={answer.b}
-          isClicked={userSelected === "b"}
-        />
-      </StyledButtonContainer>
-    </StyledBox>
-  );
-};

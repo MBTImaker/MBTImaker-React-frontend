@@ -1,9 +1,3 @@
-/**
- * url: /result
- * purpose: It used to show comments registered on the server.
- *          서버에 등록된 댓글 하나를 보여줄 때 사용됩니다.
- */
-
 import styled from "styled-components";
 import useComment from "../../hooks/useComment";
 import { useState } from "react";
@@ -13,73 +7,6 @@ import { GetCommetsProperties } from "../../types";
 import Siren from "../../assets/images/button/siren.svg";
 import Delete from "../../assets/images/button/delete.svg";
 
-const DESKTOP_BORDER_RADIUS = "20px";
-
-const StyledReplayContainer = styled.li`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  background: ${PALETTE.WHITE};
-  border: 3px solid ${PALETTE.LIGHT_GRAY_030};
-  border-radius: ${DESKTOP_BORDER_RADIUS};
-`;
-
-const StyledUserInfo = styled.div`
-  display: flex;
-  align-items: center;
-  border-radius: ${DESKTOP_BORDER_RADIUS} ${DESKTOP_BORDER_RADIUS} 0 0;
-  background: ${PALETTE.DARK_WHITE};
-  padding: 22px 29px;
-  gap: 10px;
-`;
-
-const StyledSpanContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;
-
-const StyledBiggerSpan = styled.span`
-  font-size: 1.125rem;
-`;
-
-const StyledMBTI = styled.span`
-  font-family: "SBAggroL";
-  font-size: 0.6875rem;
-  color: ${PALETTE.DARK_GRAY_05};
-`;
-
-const StyledDate = styled.span`
-  font-family: "SBAggroL";
-  font-size: 0.875rem;
-  color: ${PALETTE.DARK_GRAY_05};
-`;
-
-const StyledCommnetContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  border-radius: 0 0 ${DESKTOP_BORDER_RADIUS} ${DESKTOP_BORDER_RADIUS};
-  padding: 22px 29px;
-  gap: 12px;
-`;
-
-const StyledSiren = styled.button`
-  width: 24px;
-  height: 24px;
-  background-image: url(${Siren});
-  background-size: contain;
-  background-repeat: no-repeat;
-`;
-
-const StyledDelete = styled.button`
-  width: 28px;
-  height: 28px;
-  background-image: url(${Delete});
-  background-size: contain;
-  background-repeat: no-repeat;
-`;
-
 type ReplyProps = GetCommetsProperties & {
   id: number;
   createdDate: string;
@@ -88,13 +15,38 @@ type ReplyProps = GetCommetsProperties & {
   mbti: string;
 };
 
+/**
+ * Used to show comments registered on the server.
+ * 서버에 등록된 댓글 하나를 보여줄 때 사용됩니다.
+ */
 export const ReplySaved = ({
+  /**
+   * 댓글의 아이디
+   */
   id,
+  /**
+   * 댓글이 생성된 날짜
+   */
   createdDate,
+  /**
+   * 사용자의 닉네임
+   */
   name,
+  /**
+   * 댓글 내용
+   */
   content,
+  /**
+   * MBTI (16가지 성격유형 중 하나)
+   */
   mbti,
+  /**
+   * 댓글 페이지 번호
+   */
   page,
+  /**
+   * 댓글 한 페이지에 있는 댓글의 개수
+   */
   size,
 }: ReplyProps) => {
   const getNamebyMbti = () => {
@@ -202,3 +154,74 @@ export const ReplySaved = ({
     </>
   );
 };
+
+/////////////////////////////
+/// Styles
+/////////////////////////////
+
+const DESKTOP_BORDER_RADIUS = "20px";
+
+const StyledReplayContainer = styled.li`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: ${PALETTE.WHITE};
+  border: 3px solid ${PALETTE.LIGHT_GRAY_030};
+  border-radius: ${DESKTOP_BORDER_RADIUS};
+`;
+
+const StyledUserInfo = styled.div`
+  display: flex;
+  align-items: center;
+  border-radius: ${DESKTOP_BORDER_RADIUS} ${DESKTOP_BORDER_RADIUS} 0 0;
+  background: ${PALETTE.DARK_WHITE};
+  padding: 22px 29px;
+  gap: 10px;
+`;
+
+const StyledSpanContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+const StyledBiggerSpan = styled.span`
+  font-size: 1.125rem;
+`;
+
+const StyledMBTI = styled.span`
+  font-family: "SBAggroL";
+  font-size: 0.6875rem;
+  color: ${PALETTE.DARK_GRAY_05};
+`;
+
+const StyledDate = styled.span`
+  font-family: "SBAggroL";
+  font-size: 0.875rem;
+  color: ${PALETTE.DARK_GRAY_05};
+`;
+
+const StyledCommnetContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  border-radius: 0 0 ${DESKTOP_BORDER_RADIUS} ${DESKTOP_BORDER_RADIUS};
+  padding: 22px 29px;
+  gap: 12px;
+`;
+
+const StyledSiren = styled.button`
+  width: 24px;
+  height: 24px;
+  background-image: url(${Siren});
+  background-size: contain;
+  background-repeat: no-repeat;
+`;
+
+const StyledDelete = styled.button`
+  width: 28px;
+  height: 28px;
+  background-image: url(${Delete});
+  background-size: contain;
+  background-repeat: no-repeat;
+`;

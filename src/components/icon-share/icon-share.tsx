@@ -1,20 +1,6 @@
-/**
- * url: /result
- * purpose: It displays a different icon for each SNS.
- *          sns별로 공유 아이콘을 다르게 보여줍니다.
- */
-
 import styled from "styled-components";
 import useImage from "../../hooks/useImage";
 import { SocialMedia } from "../../types";
-
-const StyledIconShare = styled.button<{ image: string }>`
-  width: 64px;
-  height: 64px;
-  background-image: url(${(props) => props.image});
-  background-size: contain;
-  background-repeat: no-repeat;
-`;
 
 type IconShareProps = {
   handleClick?: () => void;
@@ -22,9 +8,23 @@ type IconShareProps = {
   url?: string;
 };
 
+/**
+ * Display a different icon for each SNS.
+ * sns별로 공유 아이콘을 다르게 보여줍니다.
+ */
+
 export const IconShare = ({
+  /**
+   * 버튼이 눌렸을 때 실행되는 함수
+   */
   handleClick = () => {},
+  /**
+   * 공유가능한 매체
+   */
   media,
+  /**
+   * SNS에 공유되는 링크 (배포된 주소)
+   */
   url = "https://christmas-movie.netlify.app",
 }: IconShareProps) => {
   const { image } = useImage(undefined, media);
@@ -56,3 +56,15 @@ export const IconShare = ({
 
   return <StyledIconShare image={image} onClick={onClick} />;
 };
+
+/////////////////////////////
+/// Styles
+/////////////////////////////
+
+const StyledIconShare = styled.button<{ image: string }>`
+  width: 64px;
+  height: 64px;
+  background-image: url(${(props) => props.image});
+  background-size: contain;
+  background-repeat: no-repeat;
+`;

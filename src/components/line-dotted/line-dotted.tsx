@@ -1,10 +1,14 @@
-/**
- * url: /result
- * purpose: It's a dotted line.
- *          점선입니다. 줄간격을 조정하기 위해 만들었습니다.
- */
-
 import styled from "styled-components";
+
+/**
+ * A dotted line.
+ * 점선입니다. 줄간격을 조정하기 위해 만들었습니다.
+ */
+export const LineDotted = () => <StyledLineDotted />;
+
+/////////////////////////////
+/// Styles
+/////////////////////////////
 
 const StyledLineDotted = styled.div`
   width: 100%;
@@ -13,5 +17,3 @@ const StyledLineDotted = styled.div`
     repeat-x bottom;
   background-size: 16px 2px;
 `;
-
-export const LineDotted = () => <StyledLineDotted />;

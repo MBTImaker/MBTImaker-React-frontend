@@ -1,13 +1,67 @@
-/**
- * url: /result
- * component: modal
- * purpose: It used to receive long sentences.
- *          긴 문장을 입력받을 때 사용됩니다.
- */
-
-import { useRef } from "react";
 import styled from "styled-components";
+import { useRef } from "react";
 import { PALETTE } from "../../styles/palette";
+
+// 비밀번호 숫자만. 이모티콘 안돼. 글자 수 세는 거.
+type TextareaProps = {
+  disabled?: boolean;
+  isSubmit: boolean;
+  width?: string;
+  height?: string;
+  placeholder: string;
+  value?: string;
+  handleDescription: (contents: string) => void;
+};
+
+/**
+ * Used to receive long sentences.
+ * 긴 문장을 입력받을 때 사용됩니다.
+ */
+export const Textarea = ({
+  /**
+   * 활성화 여부
+   */
+  disabled = false,
+  /**
+   * 컴포넌트에 저장된 값이 사용되었는지 여부
+   */
+  isSubmit,
+  /**
+   * 요소의 너비
+   */
+  width = "100%",
+  /**
+   * 요소의 높이
+   */
+  height = "100%",
+  /**
+   * 입력된 값이 없을 때 보이는 문구
+   */
+  placeholder,
+  /**
+   * 입력된 값을 state에 저장하는 함수
+   */
+  handleDescription,
+}: TextareaProps) => {
+  const textareaRef = useRef(null);
+  return (
+    <StyledTextarea
+      ref={textareaRef}
+      disabled={disabled}
+      width={width}
+      height={height}
+      placeholder={placeholder}
+      value={isSubmit ? "" : undefined}
+      onMouseOut={() => {
+        handleDescription((textareaRef.current as any).value);
+      }}
+    />
+  );
+};
+
+/////////////////////////////
+/// Styles
+/////////////////////////////
 
 const StyledTextarea = styled.textarea<{ width: string; height: string }>`
   width: ${(props) => props.width};
@@ -29,38 +83,3 @@ const StyledTextarea = styled.textarea<{ width: string; height: string }>`
     border-width: 2px;
   }
 `;
-
-type TextareaProps = {
-  disabled?: boolean;
-  isSubmit: boolean;
-  width?: string;
-  height?: string;
-  placeholder: string;
-  value?: string;
-  handleDescription: (contents: string) => void;
-};
-
-export const Textarea = ({
-  disabled = false,
-  isSubmit,
-  width = "100%",
-  height = "100%",
-  placeholder,
-  handleDescription,
-}: TextareaProps) => {
-  const textareaRef = useRef(null);
-  return (
-    <StyledTextarea
-      ref={textareaRef}
-      disabled={disabled}
-      width={width}
-      height={height}
-      placeholder={placeholder}
-      value={isSubmit ? "" : undefined}
-      onMouseOut={() => {
-        handleDescription((textareaRef.current as any).value);
-      }}
-    />
-  );
-};
-// 비밀번호 숫자만. 이모티콘 안돼. 글자 수 세는 거.

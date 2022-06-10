@@ -1,11 +1,28 @@
-/**
- * url: /result
- * purpose: It is used to show 12 personalities one by one.
- *          12가지 성격을 하나씩 보여줄 때 사용됩니다.
- */
-
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
+
+type BarProps = {
+  content: string;
+};
+
+/**
+ * Used to show 12 personalities one by one.
+ * 12가지 성격을 하나씩 보여줄 때 사용됩니다.
+ */
+export const Bar = ({
+  /**
+   * 바 안에 들어가는 글자
+   */
+  content,
+}: BarProps) => (
+  <StyledBar>
+    <StyledSpan>{content}</StyledSpan>
+  </StyledBar>
+);
+
+/////////////////////////////
+/// Styles
+/////////////////////////////
 
 const StyledBar = styled.div`
   width: 100%;
@@ -25,13 +42,3 @@ const StyledSpan = styled.span`
     font-size: 0.875rem;
   }
 `;
-
-type BarProps = {
-  content: string;
-};
-
-export const Bar = ({ content }: BarProps) => (
-  <StyledBar>
-    <StyledSpan>{content}</StyledSpan>
-  </StyledBar>
-);

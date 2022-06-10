@@ -1,12 +1,64 @@
-/**
- * url: /check
- * purpose: It indicates one option within the question. If it pressed, the background changes from gray to green.
- *          문제 안에 있는 하나의 선택을 나타냅니다. 누르면 배경이 회색에서 초록색으로 변경됩니다.
- */
-
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
 import { Answer } from "../../types";
+
+type AnswerButtonProps = {
+  currentQuestionIndex: number;
+  id: Answer;
+  handleClick: (answer: Answer) => void;
+  isClicked: boolean;
+  content: string;
+};
+
+/**
+ * Indicate one option within the question. If it pressed, the background changes from gray to green.
+ * 문제 안에 있는 하나의 선택을 나타냅니다. 누르면 배경이 회색에서 초록색으로 변경됩니다.
+ */
+export const ButtonAnswer = ({
+  /**
+   * 문제의 번호 (삭제 예정)
+   */
+  currentQuestionIndex,
+  /**
+   * 유형 ("a" | "b")
+   */
+  id,
+  /**
+   * 유형 설정하는 함수
+   */
+  handleClick,
+  /**
+   * 버튼이 눌렸을 때 True
+   */
+  isClicked,
+  /**
+   * 버튼 안에 들어가는 글자
+   */
+  content,
+}: AnswerButtonProps) => {
+  const onClick = () => {
+    handleClick(id);
+    scrollToNextQuestion();
+  };
+
+  const scrollToNextQuestion = () => {
+    // window.scrollTo({
+    //   top: document.documentElement.scrollTop + 400,
+    //   behavior: "smooth",
+    // });
+    console.log("scrollTo");
+  };
+
+  return (
+    <StyledButton onClick={onClick} isClicked={isClicked}>
+      {content}
+    </StyledButton>
+  );
+};
+
+/////////////////////////////
+/// Styles
+/////////////////////////////
 
 const StyledButton = styled.button<{ isClicked: boolean }>`
   width: 74.3%;
@@ -29,38 +81,3 @@ const StyledButton = styled.button<{ isClicked: boolean }>`
     line-height: 30px;
   }
 `;
-
-type AnswerButtonProps = {
-  currentQuestionIndex: number;
-  id: Answer;
-  handleClick: (answer: Answer) => void;
-  isClicked: boolean;
-  content: string;
-};
-
-export const ButtonAnswer = ({
-  currentQuestionIndex,
-  id,
-  handleClick,
-  isClicked,
-  content,
-}: AnswerButtonProps) => {
-  const onClick = () => {
-    handleClick(id);
-    scrollToNextQuestion();
-  };
-
-  const scrollToNextQuestion = () => {
-    // window.scrollTo({
-    //   top: document.documentElement.scrollTop + 400,
-    //   behavior: "smooth",
-    // });
-    console.log("scrollTo");
-  };
-
-  return (
-    <StyledButton onClick={onClick} isClicked={isClicked}>
-      {content}
-    </StyledButton>
-  );
-};

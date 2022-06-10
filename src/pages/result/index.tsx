@@ -344,7 +344,7 @@ const Result = () => {
             <Textarea
               height="216px"
               isSubmit={isWriteCommentClick}
-              placeholder="댓글을 입력하세요"
+              placeholder="댓글을 입력하세요 (이모티콘 사용 불가)"
               handleDescription={setNewComments}
             ></Textarea>
             <StyledUserCommentWriteContainer>
@@ -353,7 +353,7 @@ const Result = () => {
                 isSubmit={isWriteCommentClick}
                 width="100%"
                 height="52px"
-                placeholder="비밀번호를 입력하세요"
+                placeholder="비밀번호를 입력하세요 (숫자만 가능)"
               />
               <Button
                 width="114px"
