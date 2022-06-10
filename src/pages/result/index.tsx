@@ -201,7 +201,7 @@ const Result = () => {
       return;
     }
 
-    if (newComments == null) {
+    if (newComments == null || newComments === "") {
       alert("작성된 댓글이 없어요. 확인해 주세요.");
       return;
     }
@@ -220,7 +220,7 @@ const Result = () => {
       password: (passwordRef.current as any).value,
       page: 1,
       size: commentsPerPage,
-    }).then(() => {
+    }).finally(() => {
       setIsWriteCommentClick(false);
     });
   };
