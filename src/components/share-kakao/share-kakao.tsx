@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { DISTRIBUTED_URL } from "../../constants";
-import { IconShare } from "../icon-share";
+import { ShareIcon } from "../share-icon";
 
 type ShareKaKaoProps = {
   url?: string;
@@ -52,5 +52,5 @@ export const ShareKaKao = ({
     }
   };
 
-  return <IconShare media="kakaotalk" handleClick={shareKakao} />;
+  return <ShareIcon media="kakaotalk" handleClick={shareKakao} />;
 };
