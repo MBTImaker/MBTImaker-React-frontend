@@ -337,6 +337,7 @@ const Result = () => {
           <StyledUserCommentContainer>
             <Input
               ref={nameRef}
+              isSubmit={isWriteCommentClick}
               height="52px"
               placeholder="닉네임을 입력하세요"
             />
@@ -349,6 +350,7 @@ const Result = () => {
             <StyledUserCommentWriteContainer>
               <Input
                 ref={passwordRef}
+                isSubmit={isWriteCommentClick}
                 width="100%"
                 height="52px"
                 placeholder="비밀번호를 입력하세요"

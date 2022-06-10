@@ -30,6 +30,7 @@ const StyledInput = styled.input<{ width: string; height: string }>`
 
 type InputProps = {
   disabled?: boolean;
+  isSubmit: boolean;
   width?: string;
   height?: string;
   placeholder: string;
@@ -39,6 +40,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       disabled = false,
+      isSubmit,
       width = "100%",
       height = "100%",
       placeholder = "",
@@ -51,6 +53,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       width={width}
       height={height}
       placeholder={placeholder}
+      value={isSubmit ? "" : undefined}
     />
   )
 );
