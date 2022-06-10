@@ -8,19 +8,10 @@ import { QUESTION_LIST } from "../../constants";
 import { UserTestCode } from "../../contexts/userTestCode";
 import { Question } from "../../types";
 
-const StyledBoxContainer = styled.ul`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 70px 0;
-  gap: 20px;
-
-  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
-    padding: 70px 20px;
-  }
-`;
-
+/**
+ * Test page.
+ * MBTI 검사 페이지입니다.
+ */
 const Check = () => {
   const navigate = useNavigate();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -38,6 +29,7 @@ const Check = () => {
 
   useEffect(() => {
     resetTestCode();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -90,3 +82,20 @@ const Check = () => {
 };
 
 export default Check;
+
+/////////////////////////////
+/// Styles
+/////////////////////////////
+
+const StyledBoxContainer = styled.ul`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 70px 0;
+  gap: 20px;
+
+  @media screen and (max-width: ${(props) => props.theme.media.sm}px) {
+    padding: 70px 20px;
+  }
+`;

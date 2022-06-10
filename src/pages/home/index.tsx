@@ -8,6 +8,45 @@ import Title from "../../assets/images/text/title.png";
 import TestStart from "../../assets/images/button/test-start.png";
 import { Link } from "react-router-dom";
 
+/**
+ * The First screen. There are the number of MBTI results stored on the server and button that allow users to navigate to the test page.
+ * 첫 화면입니다. 서버에 저장된 MBTI 결과 횟수와 테스트 페이지로 이동할 수 있는 버튼이 있습니다.
+ */
+const Home = () => {
+  const [testCount, setTestCount] = useState(0);
+
+  useEffect(() => {
+    axios
+      .get<TestCountResult>(`https://mbti-test.herokuapp.com/test`)
+      .then((response) => {
+        setTestCount(response.data.data.testCount);
+      })
+      .catch((e) => console.error(e));
+  });
+
+  return (
+    <StyledMainPage>
+      <StyledTop>
+        <StyleSubtitle />
+        <SytleTitle />
+      </StyledTop>
+
+      <StyledBottom>
+        <Link to="/check">
+          <StyledMoveToTest />
+        </Link>
+        <StyledTestCount>현재 총 {testCount}명이 참여했어요.</StyledTestCount>
+      </StyledBottom>
+    </StyledMainPage>
+  );
+};
+
+export default Home;
+
+/////////////////////////////
+/// Styles
+/////////////////////////////
+
 const DESKTOP_WIDTH = "37.29vw";
 const MOBILE_WIDTH = "100%";
 
@@ -83,34 +122,3 @@ const StyledTestCount = styled.span`
     font-size: 1rem;
   }
 `;
-
-const Home = () => {
-  const [testCount, setTestCount] = useState(0);
-
-  useEffect(() => {
-    axios
-      .get<TestCountResult>(`https://mbti-test.herokuapp.com/test`)
-      .then((response) => {
-        setTestCount(response.data.data.testCount);
-      })
-      .catch((e) => console.error(e));
-  });
-
-  return (
-    <StyledMainPage>
-      <StyledTop>
-        <StyleSubtitle />
-        <SytleTitle />
-      </StyledTop>
-
-      <StyledBottom>
-        <Link to="/check">
-          <StyledMoveToTest />
-        </Link>
-        <StyledTestCount>현재 총 {testCount}명이 참여했어요.</StyledTestCount>
-      </StyledBottom>
-    </StyledMainPage>
-  );
-};
-
-export default Home;
