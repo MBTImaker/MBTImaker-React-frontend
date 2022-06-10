@@ -4,7 +4,7 @@ export type Children = React.ReactNode;
 export type Answer = "a" | "b" | null;
 export type Image = string;
 export type ButtonColor = "red" | "gray";
-export type SelectType = "신고";
+export type SelectAndModalType = "신고";
 
 export type ButtonSize = {
     width?: string;
@@ -177,3 +177,5 @@ export type WriteCommentProperties = GetCommetsProperties & {
 }
 
 export type DeleteCommentProperties = GetCommetsProperties & { id: number, name: string, password: string }
+
+export type ReportCommentProperties = { commentId: number, description: string, subject: string }

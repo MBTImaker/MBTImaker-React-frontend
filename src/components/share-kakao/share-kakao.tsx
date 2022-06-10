@@ -1,12 +1,20 @@
 import { useEffect } from "react";
-import { IconShare } from "../icon-share";
+import { DISTRIBUTED_URL } from "../../constants";
+import { ShareIcon } from "../share-icon";
 
 type ShareKaKaoProps = {
   url?: string;
 };
 
+/**
+ * It is the KakaoTalk sharing button.
+ * 카카오톡 공유 버튼입니다.
+ */
 export const ShareKaKao = ({
-  url = "https://christmas-movie.netlify.app",
+  /**
+   * 공유되는 링크 (배포된 주소)
+   */
+  url = DISTRIBUTED_URL,
 }: ShareKaKaoProps) => {
   useEffect(() => {
     initKakao();
@@ -44,5 +52,5 @@ export const ShareKaKao = ({
     }
   };
 
-  return <IconShare media="kakaotalk" handleClick={shareKakao} />;
+  return <ShareIcon media="kakaotalk" handleClick={shareKakao} />;
 };

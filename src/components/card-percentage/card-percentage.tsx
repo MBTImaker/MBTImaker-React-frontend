@@ -3,6 +3,68 @@ import { PALETTE } from "../../styles/palette";
 import { CardPercentageInfo } from "../../types";
 import { PieChart } from "react-minimal-pie-chart";
 
+type CardPercentageProps = CardPercentageInfo & { explanation: string };
+
+/**
+ * Show the ratio.
+ * 나와 같은 유형과 가장 많이 나온 유형의 비율을 보여줍니다.
+ */
+export const CardPercentage = ({
+  /**
+   * 비율의 나타내는 의미를 알려주는 글자
+   */
+  explanation,
+  /**
+   * 캐릭터가 나온 영화 이름
+   */
+  movieName,
+  /**
+   * 영화에 나온 캐릭터 이름
+   */
+  characterName,
+  /**
+   * 캐릭터의 사진 (추가 예정)
+   */
+  imageUrl,
+  /**
+   * 전체 응답 결과 대비 사용자와 관련되 응답의 비율
+   */
+  percentage,
+}: CardPercentageProps) => (
+  <StyledCardPercentage>
+    <StyledMovieName>{movieName}</StyledMovieName>
+    <StyledCharacterName>{characterName}</StyledCharacterName>
+    <StyledImageContainer>
+      <StyledImage image="" />
+
+      <div>
+        <PieChart
+          data={[{ title: "", value: percentage, color: PALETTE.GREEN }]}
+          animate={true}
+          animationEasing="ease-out"
+          lineWidth={15}
+          startAngle={-90}
+          totalValue={100}
+          rounded
+          background={PALETTE.LIGHT_GRAY_040}
+        />
+
+        <StyledTextContainer>
+          <StyledNumber>
+            {percentage}
+            <StyledPercentage>%</StyledPercentage>
+          </StyledNumber>
+          <StyledExplanation>{explanation}</StyledExplanation>
+        </StyledTextContainer>
+      </div>
+    </StyledImageContainer>
+  </StyledCardPercentage>
+);
+
+/////////////////////////////
+/// Styles
+/////////////////////////////
+
 const StyledCardPercentage = styled.li`
   width: 100%;
   height: 100%;
@@ -40,8 +102,6 @@ const StyledImage = styled.img<{ image: string }>`
   object-fit: cover;
 `;
 
-const StyledPercentageContainer = styled.div``;
-
 const StyledTextContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -64,42 +124,3 @@ const StyledExplanation = styled.span`
   font-size: 0.875rem;
   color: ${PALETTE.BLACK_010};
 `;
-
-type CardPercentageProps = CardPercentageInfo & { explanation: string };
-
-export const CardPercentage = ({
-  explanation,
-  movieName,
-  characterName,
-  imageUrl,
-  percentage,
-}: CardPercentageProps) => (
-  <StyledCardPercentage>
-    <StyledMovieName>{movieName}</StyledMovieName>
-    <StyledCharacterName>{characterName}</StyledCharacterName>
-    <StyledImageContainer>
-      <StyledImage image="" />
-
-      <StyledPercentageContainer>
-        <PieChart
-          data={[{ title: "", value: percentage, color: PALETTE.GREEN }]}
-          animate={true}
-          animationEasing="ease-out"
-          lineWidth={15}
-          startAngle={-90}
-          totalValue={100}
-          rounded
-          background={PALETTE.LIGHT_GRAY_040}
-        />
-
-        <StyledTextContainer>
-          <StyledNumber>
-            {percentage}
-            <StyledPercentage>%</StyledPercentage>
-          </StyledNumber>
-          <StyledExplanation>{explanation}</StyledExplanation>
-        </StyledTextContainer>
-      </StyledPercentageContainer>
-    </StyledImageContainer>
-  </StyledCardPercentage>
-);

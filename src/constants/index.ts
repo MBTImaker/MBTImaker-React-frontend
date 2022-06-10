@@ -1,5 +1,7 @@
 import { Question, ReportKoreanType } from './../types';
 
+export const DISTRIBUTED_URL = "https://christmas-movie.netlify.app";
+
 export const QUESTION_LIST: Question[] = [
     {
         id: 1,

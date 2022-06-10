@@ -1,41 +1,10 @@
 import styled from "styled-components";
+import { useEffect } from "react";
 import { PALETTE } from "../../styles/palette";
 import LeftArrowBlocked from "../../assets/images/arrow/left-arrow-blocked.svg";
 import RightArrowBlocked from "../../assets/images/arrow/right-arrow-blocked.svg";
 import LeftArrow from "../../assets/images/arrow/left-arrow.svg";
 import RightArrow from "../../assets/images/arrow/right-arrow.svg";
-import { useEffect } from "react";
-
-const BUTTON_SIZE = "32px";
-
-const StyledUl = styled.ul`
-  display: flex;
-  padding: 0 16px;
-`;
-
-const StyledNumber = styled.button<{ isCurrentPageIndex: boolean }>`
-  width: ${BUTTON_SIZE};
-  height: ${BUTTON_SIZE};
-  font-size: 1rem;
-  color: ${(props) =>
-    props.isCurrentPageIndex ? PALETTE.RED_020 : PALETTE.NAVY};
-`;
-
-const StyledLeftArrow = styled.button<{ isBlocked: boolean }>`
-  width: ${BUTTON_SIZE};
-  height: ${BUTTON_SIZE};
-  background-size: contain;
-  background-image: url(${(props) =>
-    props.isBlocked ? LeftArrowBlocked : LeftArrow});
-`;
-
-const StyledRightArrow = styled.button<{ isBlocked: boolean }>`
-  width: ${BUTTON_SIZE};
-  height: ${BUTTON_SIZE};
-  background-size: contain;
-  background-image: url(${(props) =>
-    props.isBlocked ? RightArrowBlocked : RightArrow});
-`;
 
 type PaginationProps = {
   currentPageIndex: number;
@@ -45,11 +14,29 @@ type PaginationProps = {
   handleCommnetsFromServer?: (page: number, size: number) => void;
 };
 
+/**
+ * Used to show multiple comments.
+ * 댓글을 여러 개 보여줄 때 사용됩니다.
+ */
 export const Pagination = ({
+  /**
+   * 댓글 페이지 번호
+   */
   currentPageIndex,
+  /**
+   * 댓글 한 페이지에 있는 댓글의 개수
+   */
   commentsPerPage,
-  totalCommentLength,
+  /**
+   * 서버에 저장된 댓글의 전체 개수
+   */ totalCommentLength,
+  /**
+   * 댓글 페이지 번호를 변경하는 함수
+   */
   handleCurrentPageIndex,
+  /**
+   * 서버로부터 댓글을 가져오는 함수
+   */
   handleCommnetsFromServer,
 }: PaginationProps) => {
   const pageNumbers: number[] = [];
@@ -117,3 +104,38 @@ export const Pagination = ({
     </nav>
   );
 };
+
+/////////////////////////////
+/// Styles
+/////////////////////////////
+
+const BUTTON_SIZE = "32px";
+
+const StyledUl = styled.ul`
+  display: flex;
+  padding: 0 16px;
+`;
+
+const StyledNumber = styled.button<{ isCurrentPageIndex: boolean }>`
+  width: ${BUTTON_SIZE};
+  height: ${BUTTON_SIZE};
+  font-size: 1rem;
+  color: ${(props) =>
+    props.isCurrentPageIndex ? PALETTE.RED_020 : PALETTE.NAVY};
+`;
+
+const StyledLeftArrow = styled.button<{ isBlocked: boolean }>`
+  width: ${BUTTON_SIZE};
+  height: ${BUTTON_SIZE};
+  background-size: contain;
+  background-image: url(${(props) =>
+    props.isBlocked ? LeftArrowBlocked : LeftArrow});
+`;
+
+const StyledRightArrow = styled.button<{ isBlocked: boolean }>`
+  width: ${BUTTON_SIZE};
+  height: ${BUTTON_SIZE};
+  background-size: contain;
+  background-image: url(${(props) =>
+    props.isBlocked ? RightArrowBlocked : RightArrow});
+`;

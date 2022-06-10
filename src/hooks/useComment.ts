@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { useEffect, useState } from 'react'
-import { Comment, CommentDelete, CommentReport, Comments, CommentSave, DeleteCommentProperties, GetCommetsProperties, TotalComments, WriteCommentProperties } from '../types';
+import { Comment, CommentDelete, CommentReport, Comments, CommentSave, DeleteCommentProperties, GetCommetsProperties, ReportCommentProperties, TotalComments, WriteCommentProperties } from '../types';
 
 const useComment = ({ page, size }: GetCommetsProperties) => {
     const [savedComments, setSavedComments] = useState<Comment[]>([]);
@@ -27,6 +27,10 @@ const useComment = ({ page, size }: GetCommetsProperties) => {
     }
 
     const writeComment = async ({ content, mbti, name, password, page, size }: WriteCommentProperties) => {
+        console.log(content,
+            mbti,
+            name,
+            password)
         try {
             const response: AxiosResponse<CommentSave> = await axios({
                 method: "post",
@@ -67,7 +71,7 @@ const useComment = ({ page, size }: GetCommetsProperties) => {
         }
     };
 
-    const reportComment = async (commentId: number, description: string, subject: string) => {
+    const reportComment = async ({ commentId, description, subject }: ReportCommentProperties) => {
         try {
             const response: AxiosResponse<CommentReport> = await axios({
                 method: "post",
