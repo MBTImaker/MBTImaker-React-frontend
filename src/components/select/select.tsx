@@ -7,7 +7,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
-import { ReportType, SelectType } from "../../types";
+import { ReportType, SelectAndModalType } from "../../types";
 import { REPORT_TYPE } from "../../constants";
 import DownArrow from "../../assets/images/arrow/down-arrow.svg";
 
@@ -66,7 +66,7 @@ const StyledArrow = styled.img<{ isOpen: boolean }>`
 
 type SelectProps = {
   isModalActive: boolean;
-  selectType: SelectType;
+  selectType: SelectAndModalType;
   handleReportType: (reportType: ReportType) => void;
 };
 

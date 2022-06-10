@@ -189,6 +189,7 @@ export const ReplySaved = ({
       </StyledReplayContainer>
 
       <Modal
+        modalType="신고"
         commentId={id}
         textareaPlaceholder="신고 내용을 적어주세요"
         cancleButtonText="취소"

@@ -12,7 +12,7 @@ import { BlockInner } from "../block-inner";
 import { Textarea } from "../textarea";
 import { Select } from "../select";
 import { Button } from "../button";
-import { ReportType } from "../../types";
+import { ReportType, SelectAndModalType } from "../../types";
 import Report from "../../assets/images/text/report.png";
 
 const StyledContainer = styled.div<{ isModalActive: boolean }>`
@@ -57,6 +57,7 @@ const StyledButtonContainer = styled.div`
 `;
 
 type ModalProps = {
+  modalType: SelectAndModalType;
   titleImage?: string;
   textareaPlaceholder: string;
   cancleButtonText: string;
@@ -69,6 +70,7 @@ type ModalProps = {
 };
 
 export const Modal = ({
+  modalType,
   titleImage = Report,
   textareaPlaceholder,
   cancleButtonText,
@@ -83,8 +85,8 @@ export const Modal = ({
     page: currentCommentPage,
     size: currentCommentSize,
   });
-  const [description, setDescription] = useState<string>("");
-  const [reportType, setReportType] = useState<ReportType>("ABUSE");
+  const [description, setDescription] = useState<string>();
+  const [reportType, setReportType] = useState<ReportType>();
   const [isSubmitClick, setIsSubmitClick] = useState(false);
   const modalRef = useRef(null);
 
@@ -95,11 +97,29 @@ export const Modal = ({
   };
 
   const onSubmit = () => {
-    reportComment({
-      commentId,
-      description,
-      subject: reportType,
-    });
+    switch (modalType) {
+      case "신고": {
+        if (reportType == null) {
+          alert("신고 유형을 선택해 주세요.");
+          return;
+        }
+
+        if (description == null) {
+          alert("신고 내용을 작성해 주세요.");
+          return;
+        }
+
+        setIsSubmitClick(true);
+
+        reportComment({
+          commentId,
+          description,
+          subject: reportType,
+        }).finally(() => {
+          setIsSubmitClick(false);
+        });
+      }
+    }
   };
 
   useEffect(() => {
