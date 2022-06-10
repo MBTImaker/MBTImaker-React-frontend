@@ -45,7 +45,7 @@ export const Textarea = ({
   isSubmit,
   width = "100%",
   height = "100%",
-  placeholder = "",
+  placeholder,
   handleDescription,
 }: TextareaProps) => {
   const textareaRef = useRef(null);
