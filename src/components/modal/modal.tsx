@@ -104,6 +104,7 @@ export const Modal = ({
           subject: reportType,
         }).finally(() => {
           setIsSubmitClick(false);
+          handleModalActive(false);
         });
       }
     }
