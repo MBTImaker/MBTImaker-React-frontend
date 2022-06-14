@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { createContext, useCallback, useState } from "react";
-import { Answer, Children, TestCode, TestResult } from "../../types";
+import { Option, Children, TestCode, TestResult } from "../../types";
 
 const userTestResultDefaultValue: TestResult = {
   status: 0,
@@ -65,7 +65,7 @@ export const UserTestCode = createContext({
   userTestCode: {},
   userTestResult: userTestResultDefaultValue,
   resetTestCode: () => {},
-  handleTestCode: (id: number, userSelected: Answer) => {},
+  handleUserChoices: (id: number, userSelected: Option) => {},
   getUserTestResult: () => {},
 });
 
@@ -84,7 +84,7 @@ const UserTestCodeProvider = ({ children }: UserTestCodeProviderProps) => {
     setUserTestCode({});
   };
 
-  const handleTestCode = useCallback((id: number, userSelected: Answer) => {
+  const handleUserChoices = useCallback((id: number, userSelected: Option) => {
     const userSelectedNumber = userSelected === "a" ? 0 : 1;
     setUserTestCode((userTestCode) => ({
       ...userTestCode,
@@ -128,7 +128,7 @@ const UserTestCodeProvider = ({ children }: UserTestCodeProviderProps) => {
         userTestCode,
         userTestResult,
         resetTestCode,
-        handleTestCode,
+        handleUserChoices,
         getUserTestResult,
       }}
     >

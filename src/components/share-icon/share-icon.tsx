@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import styled from "styled-components";
 import useImage from "../../hooks/useImage";
 import { SocialMedia } from "../../types";
@@ -14,22 +15,13 @@ type ShareIconProps = {
  */
 
 export const ShareIcon = ({
-  /**
-   * 버튼이 눌렸을 때 실행되는 함수
-   */
-  handleClick = () => {},
-  /**
-   * 공유가능한 매체
-   */
   media,
-  /**
-   * SNS에 공유되는 링크 (배포된 주소)
-   */
   url = "https://christmas-movie.netlify.app",
+  handleClick = () => {},
 }: ShareIconProps) => {
   const { image } = useImage(undefined, media);
 
-  const onClick = () => {
+  const onClick = useCallback(() => {
     switch (media) {
       case "facebook":
         window.open(`http://www.facebook.com/sharer/sharer.php?u=${url}`);
@@ -52,7 +44,8 @@ export const ShareIcon = ({
       default:
         handleClick();
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [media, url]);
 
   return <StyledShareIcon image={image} onClick={onClick} />;
 };

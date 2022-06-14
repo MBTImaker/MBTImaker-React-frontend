@@ -1,13 +1,13 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import useImage from "../../hooks/useImage";
 import { PALETTE } from "../../styles/palette";
 import { ButtonAnswer } from "../button-answer";
-import { Answer, Question } from "../../types";
+import { Option, Question } from "../../types";
 
 type BlockProps = Question & {
   currentQuestionIndex: number;
-  handleTestCode: (id: number, userSelected: Answer) => void;
+  handleUserChoices: (id: number, userSelected: Option) => void;
 };
 
 /**
@@ -19,38 +19,22 @@ export const Block = ({
    * 문제의 번호 (삭제 예정)
    */
   currentQuestionIndex,
-  /**
-   * 사용자가 버튼을 눌렀을 때 선택한 값을 저장하는 함수
-   */
-  handleTestCode,
-  /**
-   * 문제의 번호
-   */
+  handleUserChoices,
   id,
-  /**
-   * 문제
-   */
   question,
-  /**
-   * 선택지 문항 2개 (이름 변경 예정)
-   */
-  answer,
+  options,
 }: BlockProps) => {
   const { image } = useImage(id);
-  const [userSelected, setUserSelected] = useState<Answer>();
+  const [userSelected, setUserSelected] = useState<Option>();
 
-  const handleClick = useCallback(
-    (answer: Answer) => {
-      if (userSelected === answer) {
-        setUserSelected(null);
-      } else {
-        setUserSelected(answer);
-        handleTestCode(id, answer);
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [userSelected]
-  );
+  const handleUserSelected = (userSelectedLatest: Option) => {
+    if (userSelected === userSelectedLatest) {
+      setUserSelected(null);
+    } else {
+      setUserSelected(userSelectedLatest);
+      handleUserChoices(id, userSelectedLatest);
+    }
+  };
 
   return (
     <StyledBox>
@@ -64,16 +48,16 @@ export const Block = ({
       <StyledButtonContainer>
         <ButtonAnswer
           currentQuestionIndex={currentQuestionIndex}
-          id="a"
-          handleClick={handleClick}
-          content={answer.a}
+          type="a"
+          handleButtonAnswer={handleUserSelected}
+          content={options.a}
           isClicked={userSelected === "a"}
         />
         <ButtonAnswer
           currentQuestionIndex={currentQuestionIndex}
-          id="b"
-          handleClick={handleClick}
-          content={answer.b}
+          type="b"
+          handleButtonAnswer={handleUserSelected}
+          content={options.b}
           isClicked={userSelected === "b"}
         />
       </StyledButtonContainer>

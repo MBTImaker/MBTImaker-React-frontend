@@ -10,7 +10,7 @@ import { ReportType, SelectAndModalType } from "../../types";
 import Report from "../../assets/images/text/report.png";
 
 type ModalProps = {
-  modalType: SelectAndModalType;
+  type: SelectAndModalType;
   titleImage?: string;
   textareaPlaceholder: string;
   cancleButtonText: string;
@@ -27,45 +27,15 @@ type ModalProps = {
  * 기존 창 위에 생기는 작은 화면입니다. 현재는 불건전한 댓글을 신고할 때 사용됩니다.
  */
 export const Modal = ({
-  /**
-   * 유형 ("신고")
-   */
-  modalType,
-  /**
-   * 제목 이미지 (png)
-   */
+  type,
   titleImage = Report,
-  /**
-   * textarea에 입력된 값이 없을 때 보여지는 문구
-   */
   textareaPlaceholder,
-  /**
-   * 취소 버튼에 들어가는 문구
-   */
   cancleButtonText,
-  /**
-   * 실행 버튼에 들어가는 문구
-   */
   submitButtonText,
-  /**
-   * 모달이 열려야할 때 True
-   */
   isModalActive,
-  /**
-   * 모달의 활성화 여부를 변경하는 함수
-   */
   handleModalActive,
-  /**
-   * 모달과 연결된 댓글의 아이디
-   */
   commentId,
-  /**
-   * 모달이 열린 댓글 페이지
-   */
   currentCommentPage,
-  /**
-   * 댓글 한 페이지에 있는 댓글의 개수
-   */
   currentCommentSize,
 }: ModalProps) => {
   const { reportComment } = useComment({
@@ -84,7 +54,7 @@ export const Modal = ({
   };
 
   const onSubmit = () => {
-    switch (modalType) {
+    switch (type) {
       case "신고": {
         if (reportType == null) {
           alert("신고 유형을 선택해 주세요.");
@@ -128,7 +98,7 @@ export const Modal = ({
           gap={18}
         >
           <Select
-            selectType="신고"
+            type="신고"
             isModalActive={isModalActive}
             handleReportType={setReportType}
           />

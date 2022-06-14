@@ -1,39 +1,27 @@
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
-import { CardPercentageInfo } from "../../types";
+import { Character } from "../../types";
 import { PieChart } from "react-minimal-pie-chart";
 
-type CardPercentageProps = CardPercentageInfo & { explanation: string };
+type CardPercentageProps = Character & {
+  percentage: number;
+  explanation: string;
+};
 
 /**
  * Show the ratio.
  * 나와 같은 유형과 가장 많이 나온 유형의 비율을 보여줍니다.
  */
 export const CardPercentage = ({
-  /**
-   * 비율의 나타내는 의미를 알려주는 글자
-   */
   explanation,
-  /**
-   * 캐릭터가 나온 영화 이름
-   */
-  movieName,
-  /**
-   * 영화에 나온 캐릭터 이름
-   */
-  characterName,
-  /**
-   * 캐릭터의 사진 (추가 예정)
-   */
-  imageUrl,
-  /**
-   * 전체 응답 결과 대비 사용자와 관련되 응답의 비율
-   */
+  movie,
+  character,
+  image,
   percentage,
 }: CardPercentageProps) => (
   <StyledCardPercentage>
-    <StyledMovieName>{movieName}</StyledMovieName>
-    <StyledCharacterName>{characterName}</StyledCharacterName>
+    <StyledMovieName>{movie}</StyledMovieName>
+    <StyledCharacterName>{character}</StyledCharacterName>
     <StyledImageContainer>
       <StyledImage image="" />
 

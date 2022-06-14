@@ -15,25 +15,10 @@ type BlockInnerProps = {
  * 결과 페이지 내에 있는 영역을 나눕니다. 회색 배경입니다. 예) 성격, 결과 공유하기, 추천 영화
  */
 export const BlockInner = ({
-  /**
-   * 이 컴포넌트의 자식
-   */
   children,
-  /**
-   * 배경 색상
-   */
   backgroundColor = PALETTE.LIGHT_GRAY_020,
-  /**
-   * 테두리 두께
-   */
   borderWidth = "4px",
-  /**
-   * 안쪽 여백
-   */
   padding = 0,
-  /**
-   * 행과 열 사이의 간격
-   */
   gap = 0,
 }: BlockInnerProps) => (
   <StyledInnerBox

@@ -19,24 +19,10 @@ type PaginationProps = {
  * 댓글을 여러 개 보여줄 때 사용됩니다.
  */
 export const Pagination = ({
-  /**
-   * 댓글 페이지 번호
-   */
   currentPageIndex,
-  /**
-   * 댓글 한 페이지에 있는 댓글의 개수
-   */
   commentsPerPage,
-  /**
-   * 서버에 저장된 댓글의 전체 개수
-   */ totalCommentLength,
-  /**
-   * 댓글 페이지 번호를 변경하는 함수
-   */
+  totalCommentLength,
   handleCurrentPageIndex,
-  /**
-   * 서버로부터 댓글을 가져오는 함수
-   */
   handleCommnetsFromServer,
 }: PaginationProps) => {
   const pageNumbers: number[] = [];
