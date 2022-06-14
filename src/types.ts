@@ -36,11 +36,17 @@ export type Question = {
     };
 };
 
-export type CardPercentageInfo = {
+export type CardPercentageServer = {
     "movieName": string;
     "characterName": string;
     "imageUrl": string;
     "percentage": number;
+};
+
+export type Character = {
+    "movie": string;
+    "character": string;
+    "image": string;
 };
 
 export type TestResult = {
@@ -85,8 +91,8 @@ export type TestResult = {
                 }
             ]
         },
-        "sameType": CardPercentageInfo,
-        "mostPopularType": CardPercentageInfo,
+        "sameType": CardPercentageServer,
+        "mostPopularType": CardPercentageServer,
         "kakao_JAVASCRIPT_KEY": string;
     }
 };
