@@ -20,7 +20,7 @@ const Check = () => {
     loading,
     userTestCode,
     resetTestCode,
-    handleTestCode,
+    handleUserChoices,
     getUserTestResult,
   } = useContext(UserTestCode);
   const QUESTION_LIST_LENGTH = QUESTION_LIST.length;
@@ -41,11 +41,11 @@ const Check = () => {
             {QUESTION_LIST.map((q: Question) => (
               <Block
                 currentQuestionIndex={currentQuestionIndex}
-                handleTestCode={handleTestCode}
+                handleUserChoices={handleUserChoices}
                 key={q.id}
                 id={q.id}
                 question={q.question}
-                answer={q.answer}
+                options={q.options}
               />
             ))}
           </StyledBoxContainer>
