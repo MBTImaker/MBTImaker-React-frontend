@@ -1,7 +1,7 @@
 export type SocialMedia = "band" | "facebook" | "instagram" | "kakaotalk" | "twitter";
 export type TestCode = Record<number, 0 | 1>;
 export type Children = React.ReactNode;
-export type Answer = "a" | "b" | null;
+export type Option = "a" | "b" | null;
 export type Image = string;
 export type ButtonColor = "red" | "gray";
 export type SelectAndModalType = "신고";
@@ -30,7 +30,7 @@ export type Question = {
         situation: string;
         ask: string;
     }
-    answer: {
+    options: {
         a: string;
         b: string;
     };

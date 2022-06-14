@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { PALETTE } from "../../styles/palette";
-import { Answer } from "../../types";
+import { Option } from "../../types";
 
 type AnswerButtonProps = {
   currentQuestionIndex: number;
-  id: Answer;
-  handleClick: (answer: Answer) => void;
+  type: Option;
+  handleButtonAnswer: (answer: Option) => void;
   isClicked: boolean;
   content: string;
 };
@@ -19,25 +19,13 @@ export const ButtonAnswer = ({
    * 문제의 번호 (삭제 예정)
    */
   currentQuestionIndex,
-  /**
-   * 유형 ("a" | "b")
-   */
-  id,
-  /**
-   * 유형 설정하는 함수
-   */
-  handleClick,
-  /**
-   * 버튼이 눌렸을 때 True
-   */
+  type,
+  handleButtonAnswer,
   isClicked,
-  /**
-   * 버튼 안에 들어가는 글자
-   */
   content,
 }: AnswerButtonProps) => {
   const onClick = () => {
-    handleClick(id);
+    handleButtonAnswer(type);
     scrollToNextQuestion();
   };
 
