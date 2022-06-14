@@ -13,21 +13,9 @@ type CardChemistryProps = {
  * 환상의 케미와 환장의 케미를 보여줍니다.
  */
 export const CardChemistry = ({
-  /**
-   * 제목 ("환상의 케미" | "환장의 캐미")
-   */
   title,
-  /**
-   * 문제 번호 사진 (png)
-   */
   image,
-  /**
-   * 캐릭터가 나온 영화 이름
-   */
   movie,
-  /**
-   * 영화에 나온 캐릭터 이름
-   */
   character,
 }: CardChemistryProps) => {
   return (

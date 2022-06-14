@@ -9,12 +9,7 @@ type BarProps = {
  * Used to show 12 personalities one by one.
  * 12가지 성격을 하나씩 보여줄 때 사용됩니다.
  */
-export const Bar = ({
-  /**
-   * 바 안에 들어가는 글자
-   */
-  content,
-}: BarProps) => (
+export const Bar = ({ content }: BarProps) => (
   <StyledBar>
     <StyledSpan>{content}</StyledSpan>
   </StyledBar>
