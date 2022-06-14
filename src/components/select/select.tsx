@@ -6,8 +6,8 @@ import { REPORT_TYPE } from "../../constants";
 import DownArrow from "../../assets/images/arrow/down-arrow.svg";
 
 type SelectProps = {
+  type: SelectAndModalType;
   isModalActive: boolean;
-  selectType: SelectAndModalType;
   handleReportType: (reportType: ReportType) => void;
 };
 
@@ -16,17 +16,8 @@ type SelectProps = {
  * 모달 안에 있는 <select>입니다. 디자인을 위해 직접 만들었습니다.
  */
 export const Select = ({
-  /**
-   * 모달의 활성화 여부
-   */
+  type,
   isModalActive,
-  /**
-   * 유형 ("신고")
-   */
-  selectType,
-  /**
-   * 신고 유형을 변경하는 함수
-   */
   handleReportType,
 }: SelectProps) => {
   const [buttonText, setButtonText] = useState(DEAULT_TEXT);
@@ -43,7 +34,7 @@ export const Select = ({
   };
 
   const getContents = () => {
-    switch (selectType) {
+    switch (type) {
       case "신고":
         return REPORT_TYPE;
       default:

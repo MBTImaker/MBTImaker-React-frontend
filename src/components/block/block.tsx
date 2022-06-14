@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import useImage from "../../hooks/useImage";
 import { PALETTE } from "../../styles/palette";
@@ -27,18 +27,14 @@ export const Block = ({
   const { image } = useImage(id);
   const [userSelected, setUserSelected] = useState<Option>();
 
-  const handleUserSelected = useCallback(
-    (userSelectedLatest: Option) => {
-      if (userSelected === userSelectedLatest) {
-        setUserSelected(null);
-      } else {
-        setUserSelected(userSelectedLatest);
-        handleUserChoices(id, userSelectedLatest);
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [userSelected]
-  );
+  const handleUserSelected = (userSelectedLatest: Option) => {
+    if (userSelected === userSelectedLatest) {
+      setUserSelected(null);
+    } else {
+      setUserSelected(userSelectedLatest);
+      handleUserChoices(id, userSelectedLatest);
+    }
+  };
 
   return (
     <StyledBox>

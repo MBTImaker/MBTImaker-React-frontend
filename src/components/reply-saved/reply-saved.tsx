@@ -20,33 +20,12 @@ type ReplyProps = GetCommetsProperties & {
  * 서버에 등록된 댓글 하나를 보여줄 때 사용됩니다.
  */
 export const ReplySaved = ({
-  /**
-   * 댓글의 아이디
-   */
   id,
-  /**
-   * 댓글이 생성된 날짜
-   */
   createdDate,
-  /**
-   * 사용자의 닉네임
-   */
   name,
-  /**
-   * 댓글 내용
-   */
   content,
-  /**
-   * MBTI (16가지 성격유형 중 하나)
-   */
   mbti,
-  /**
-   * 댓글 페이지 번호
-   */
   page,
-  /**
-   * 댓글 한 페이지에 있는 댓글의 개수
-   */
   size,
 }: ReplyProps) => {
   const getNamebyMbti = () => {
@@ -141,7 +120,7 @@ export const ReplySaved = ({
       </StyledReplayContainer>
 
       <Modal
-        modalType="신고"
+        type="신고"
         commentId={id}
         textareaPlaceholder="신고 내용을 적어주세요"
         cancleButtonText="취소"
