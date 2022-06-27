@@ -12,13 +12,10 @@ type ShareKaKaoProps = {
  * 카카오톡 공유 버튼입니다.
  */
 export const ShareKaKao = ({ url = DISTRIBUTED_URL }: ShareKaKaoProps) => {
-  useEffect(() => {
-    initKakao();
-  }, []);
+  const KAKAO_KEY = process.env.REACT_APP_KAKAO_TOKEN;
 
   const initKakao = () => {
-    const KAKAO_KEY = process.env.REACT_APP_KAKAO_TOKEN;
-    if ((window as any).Kakao) {
+    if (KAKAO_KEY && (window as any).Kakao) {
       const kakao = (window as any).Kakao;
       if (!kakao.isInitialized()) {
         kakao.init(KAKAO_KEY);
@@ -26,8 +23,19 @@ export const ShareKaKao = ({ url = DISTRIBUTED_URL }: ShareKaKaoProps) => {
     }
   };
 
+  useEffect(() => {
+    initKakao();
+  }, []);
+
   const shareKakao = useCallback(() => {
     try {
+      if (!KAKAO_KEY) {
+        alert(
+          "현재 카카오톡 공유를 할 수 없습니다. 관리자에게 문의 부탁드립니다."
+        );
+        return;
+      }
+
       (window as any).Kakao.Link.sendDefault({
         objectType: "feed",
         content: {
@@ -47,7 +55,7 @@ export const ShareKaKao = ({ url = DISTRIBUTED_URL }: ShareKaKaoProps) => {
       alert("카카오톡이 설치되어 있지 않습니다.");
       console.error(`카카오톡 미설치 오류: ${e}`);
     }
-  }, [url]);
+  }, [url, KAKAO_KEY]);
 
   return <ShareIcon media="kakaotalk" handleClick={shareKakao} />;
 };
