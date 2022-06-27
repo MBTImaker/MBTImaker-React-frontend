@@ -17,10 +17,11 @@ export const ShareKaKao = ({ url = DISTRIBUTED_URL }: ShareKaKaoProps) => {
   }, []);
 
   const initKakao = () => {
+    const KAKAO_KEY = process.env.REACT_APP_KAKAO_TOKEN;
     if ((window as any).Kakao) {
       const kakao = (window as any).Kakao;
       if (!kakao.isInitialized()) {
-        kakao.init(process.env.REACT_APP_KAKAO_TOKEN);
+        kakao.init(KAKAO_KEY);
       }
     }
   };
