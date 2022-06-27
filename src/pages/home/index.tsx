@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
  * 첫 화면입니다. 서버에 저장된 MBTI 결과 횟수와 테스트 페이지로 이동할 수 있는 버튼이 있습니다.
  */
 const Home = () => {
-  const [testCount, setTestCount] = useState(0);
+  const [testCount, setTestCount] = useState<number | string>("__");
 
   useEffect(() => {
     axios
